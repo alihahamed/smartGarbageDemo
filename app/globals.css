@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-accent: #BEF000;
+  --color-brand-bg: #F8FAFC;
+  --color-brand-surface: #FFFFFF;
+  --color-brand-surface-alt: #F1F5F9;
+  --color-brand-text: #0A3D2A;
+  --color-brand-text-muted: #3D7A5F;
+  --color-brand-success: #16A34A;
+  --color-brand-warning: #EA580C;
+  
+  --font-sans: var(--font-dm-sans), sans-serif;
+  
+  --radius-lg: 12px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+}
+
+/* Custom scrollbars for a clean SaaS UI */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-brand-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #A7C4B5;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6B9E82;
+}
+
+/* Base custom classes */
+body {
+  background-color: var(--color-brand-bg);
+  color: var(--color-brand-text);
+  font-family: var(--font-sans);
+}
+
+/* Glassmorphism utility card */
+.glass-panel {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
+  border: 1px solid rgba(15, 100, 65, 0.08);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 25px -5px rgba(15, 100, 65, 0.05), 0 8px 16px -6px rgba(0, 0, 0, 0.03);
+}
+
+.glass-panel-hover:hover {
+  border-color: rgba(15, 100, 65, 0.2);
+  box-shadow: 0 12px 30px -5px rgba(15, 100, 65, 0.1), 0 10px 20px -6px rgba(0, 0, 0, 0.04);
+  transform: translateY(-2px);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Pulse animation for QR validation and live GPS indicators */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 10px rgba(190, 240, 0, 0.4);
+  }
+  50% {
+    opacity: 0.6;
+    box-shadow: 0 0 2px rgba(190, 240, 0, 0.1);
+  }
+}
+
+.glow-active {
+  animation: pulse-glow 2s infinite;
+}
