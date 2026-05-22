@@ -399,7 +399,7 @@ export default function ServiceHubHome() {
                     setSelectedWorker(null);
                   }
                 }}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 active:scale-95 border border-white/15 text-white text-[12px] font-medium transition-all cursor-pointer self-start mb-2"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 active:scale-95 border border-white/15 text-white text-[13px] font-medium transition-all cursor-pointer self-start mb-2"
               >
                 <ArrowLeft size={13} className="text-white" />
                 <span>{isScheduling ? 'Back to Profile' : 'Back to List'}</span>
@@ -532,21 +532,21 @@ export default function ServiceHubHome() {
             <div className="flex-1 flex flex-col space-y-4 overflow-y-auto min-h-0 pr-0.5 px-6 pt-4">
               {/* Header profile details */}
               <div className="w-full rounded-2xl bg-white p-5 border border-[#1D4ED8]/10 flex flex-col items-center text-center space-y-4 shadow-sm">
-                <div className="w-16 h-16 rounded-2xl bg-[#FAF6F3] border border-[#1D4ED8]/12 flex items-center justify-center text-[#1D4ED8] text-2xl font-medium relative">
+                <div className="w-16 h-16 rounded-full bg-[#FAF6F3] border border-[#1D4ED8]/12 flex items-center justify-center text-[#1D4ED8] text-2xl font-medium relative">
                   {selectedWorker.name.split(' ').map(n => n[0]).join('')}
                   <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-[#10B981] border-2 border-white flex items-center justify-center text-white">
-                    <CheckCircle size={10} />
+                    <CheckCircle size={12} />
                   </div>
                 </div>
 
                 <div className="space-y-1">
-                  <h2 className="text-[15px] font-medium text-[#0A1C33]">{selectedWorker.name}</h2>
+                  <h2 className="text-[22px] font-medium text-[#0A1C33]">{selectedWorker.name}</h2>
                   <p className="text-[10px] font-medium text-[#1D4ED8] uppercase tracking-wider">
                     Verified {selectedWorker.category}
                   </p>
                 </div>
 
-                <div className="flex gap-3 text-[11px] font-light text-[#0A1C33]/70 justify-center py-2 border-y border-[#EFEAE6] w-full">
+                <div className="flex gap-3 text-[13px] font-light text-[#0A1C33]/70 justify-center py-2 border-y border-[#EFEAE6] w-full">
                   <span className="flex items-center gap-0.5 font-medium text-[#0A1C33]">
                     <Star size={11} className="fill-[#1D4ED8] text-[#1D4ED8]" />
                     {selectedWorker.rating} Rating
@@ -560,35 +560,35 @@ export default function ServiceHubHome() {
                   <span>{selectedWorker.jobsCompleted} jobs completed</span>
                 </div>
 
-                <div className="flex items-center gap-2 text-[11px] font-light text-[#0A1C33]/75 bg-[#FAF6F3] px-3 py-2.5 rounded-xl border border-[#1D4ED8]/10 w-full justify-center">
-                  <Phone size={11} className="text-[#1D4ED8]" />
+                <div className="flex items-center gap-2 text-[14px] font-light text-[#0A1C33]/75 bg-[#FAF6F3] px-3 py-2.5 rounded-xl border border-[#1D4ED8]/10 w-full justify-center">
+                  <Phone size={13} className="text-[#1D4ED8]" />
                   <span>Contact: <strong className="font-medium text-[#0A1C33]">{selectedWorker.phone}</strong></span>
                 </div>
               </div>
 
               {/* Biography */}
               <div className="p-4 rounded-2xl border border-[#1D4ED8]/10 bg-white shadow-sm space-y-1.5">
-                <h3 className="text-[9px] font-medium text-[#0A1C33]/70 uppercase tracking-wider">
+                <h3 className="text-[12px] font-medium text-[#0A1C33]/70 uppercase tracking-wider">
                   Biography & Skills
                 </h3>
-                <p className="text-[11px] font-light text-[#0A1C33]/75 leading-relaxed">
+                <p className="text-[14px] font-medium text-black leading-relaxed">
                   {selectedWorker.bio}
                 </p>
               </div>
 
               {/* Checks */}
               <div className="p-4 rounded-2xl border border-[#1D4ED8]/10 bg-white shadow-sm space-y-2.5">
-                <h3 className="text-[9px] font-medium text-[#0A1C33] uppercase tracking-wider flex items-center gap-1">
-                  <ShieldCheck size={11} className="text-[#1D4ED8]" />
+                <h3 className="text-[14px] font-medium text-[#0A1C33] uppercase tracking-wider flex items-center gap-1">
+                  <ShieldCheck size={14} className="text-[#1D4ED8]" />
                   SV Verification Records
                 </h3>
-                <div className="grid grid-cols-2 gap-2 text-[10px] font-light">
+                <div className="grid grid-cols-2 gap-2 text-[12px] font-light">
                   <div className="flex items-center gap-1.5 p-2 rounded-xl bg-[#FAF6F3] border border-[#1D4ED8]/10">
-                    <Award size={12} className="text-[#1D4ED8] shrink-0" />
+                    <Award size={14} className="text-[#1D4ED8] shrink-0" />
                     <span className="text-[#0A1C33] truncate">ID Verified</span>
                   </div>
                   <div className="flex items-center gap-1.5 p-2 rounded-xl bg-[#FAF6F3] border border-[#1D4ED8]/10">
-                    <ShieldCheck size={12} className="text-[#1D4ED8] shrink-0" />
+                    <ShieldCheck size={14} className="text-[#1D4ED8] shrink-0" />
                     <span className="text-[#0A1C33] truncate">Police Clearance</span>
                   </div>
                 </div>
@@ -597,7 +597,7 @@ export default function ServiceHubHome() {
               {/* Action */}
               <button
                 onClick={() => setIsScheduling(true)}
-                className="w-full py-3 rounded-xl bg-gradient-to-r from-[#3B82F6] to-[#1D4ED8] text-white text-[13px] font-medium hover:opacity-95 active:scale-[0.98] transition-all flex items-center justify-center gap-1.5 shadow-md shadow-[#1D4ED8]/15 shrink-0"
+                className="w-full py-3 rounded-xl bg-gradient-to-r from-[#3B82F6] to-[#1D4ED8] text-white text-[16px] font-medium hover:opacity-95 active:scale-[0.98] transition-all flex items-center justify-center gap-1.5 shadow-md shadow-[#1D4ED8]/15 shrink-0"
               >
                 <Calendar size={13} />
                 <span>Schedule Appointment Slot</span>
@@ -609,15 +609,15 @@ export default function ServiceHubHome() {
               {/* Selectors card */}
               <div className="w-full rounded-2xl bg-white p-5 border border-[#1D4ED8]/10 flex flex-col space-y-5 shadow-sm">
                 <div className="space-y-1">
-                  <h3 className="text-[13px] font-medium text-[#0A1C33]">Select Date & Time</h3>
-                  <p className="text-[10px] font-light text-[#0A1C33]/70">
+                  <h3 className="text-[18px] font-medium text-[#0A1C33]">Select Date & Time</h3>
+                  <p className="text-[13px] font-light text-[#0A1C33]/70">
                     Choose from available calendar slot options.
                   </p>
                 </div>
 
                 {/* Dates */}
                 <div className="space-y-2">
-                  <label className="text-[10px] font-medium text-[#0A1C33]/70 uppercase tracking-wider block">
+                  <label className="text-[12px] font-medium text-[#0A1C33]/70 uppercase tracking-wider block">
                     Appointment Date
                   </label>
                   <div className="grid grid-cols-4 gap-2">
@@ -632,10 +632,10 @@ export default function ServiceHubHome() {
                             : 'border-[#1D4ED8]/10 bg-[#FAF6F3] text-[#0A1C33]/65 hover:bg-[#EFEAE6]/60'
                         }`}
                       >
-                        <span className="text-[9px] font-light leading-none capitalize">
+                        <span className="text-[15px] font-light leading-none capitalize">
                           {d.label.split(' ')[0]}
                         </span>
-                        <span className="text-[12px] font-medium leading-none">
+                        <span className="text-[15px] font-medium leading-none">
                           {d.label.split(' ')[1]}
                         </span>
                       </button>
@@ -645,7 +645,7 @@ export default function ServiceHubHome() {
 
                 {/* Slots */}
                 <div className="space-y-2">
-                  <label className="text-[10px] font-medium text-[#0A1C33]/70 uppercase tracking-wider block">
+                  <label className="text-[13px] font-medium text-[#0A1C33]/70 uppercase tracking-wider block">
                     Time Slot
                   </label>
                   <div className="space-y-2">
@@ -654,14 +654,14 @@ export default function ServiceHubHome() {
                         key={slot}
                         type="button"
                         onClick={() => setSelectedTime(slot)}
-                        className={`w-full p-2.5 rounded-xl border text-left text-[11px] font-light transition-all flex items-center justify-between ${
+                        className={`w-full p-2.5 rounded-xl border text-left text-[14px] font-light transition-all flex items-center justify-between ${
                           selectedTime === slot
                             ? 'border-[#3B82F6] bg-[#3B82F6]/5 text-[#1D4ED8] font-medium'
                             : 'border-[#1D4ED8]/10 bg-[#FAF6F3] text-[#0A1C33]/65 hover:bg-[#EFEAE6]/50'
                         }`}
                       >
                         <span className="flex items-center gap-2">
-                          <Clock size={11} className={selectedTime === slot ? 'text-[#1D4ED8]' : 'text-[#0A1C33]/60'} />
+                          <Clock size={13} className={selectedTime === slot ? 'text-[#1D4ED8]' : 'text-[#0A1C33]/60'} />
                           {slot}
                         </span>
                         <div className={`w-3 h-3 rounded-full border flex items-center justify-center ${
@@ -678,7 +678,7 @@ export default function ServiceHubHome() {
                 <button
                   onClick={handleBook}
                   disabled={bookingActive}
-                  className="w-full py-3 rounded-xl bg-gradient-to-r from-[#3B82F6] to-[#1D4ED8] text-white text-[12px] font-medium hover:opacity-95 disabled:opacity-50 transition-all flex items-center justify-center gap-1.5 shadow-md shadow-[#1D4ED8]/15"
+                  className="w-full py-3 rounded-xl bg-gradient-to-r from-[#3B82F6] to-[#1D4ED8] text-white text-[16px] font-medium hover:opacity-95 disabled:opacity-50 transition-all flex items-center justify-center gap-1.5 shadow-md shadow-[#1D4ED8]/15"
                 >
                   <CheckCircle2 size={13} />
                   <span>{bookingActive ? 'Registering Slot...' : 'Confirm Appointment'}</span>

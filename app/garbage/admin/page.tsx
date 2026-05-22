@@ -2,12 +2,13 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Megaphone, Bell, Calendar, Clock, Download, AlertTriangle, CheckCircle2, PieChart as PieIcon } from 'lucide-react';
+import { ArrowRight, Megaphone, Bell, Clock, Download, AlertTriangle, CheckCircle2, PieChart as PieIcon, Settings } from 'lucide-react';
 import { fetchBroadcasts, fetchResidents, addBroadcast, Broadcast, House } from '@/lib/api/garbage';
 import Toast from '@/components/Toast';
 import Skeleton from '@/components/Skeleton';
 import gsap from 'gsap';
 import { BarChart as RechartsChart, Bar as RechartsBar, ResponsiveContainer, PieChart, Pie, Cell, Tooltip } from 'recharts';
+import { Drawer, DrawerContent } from '@/components/ui/drawer';
 
 // Custom components for Premium SVG data visuals
 const BarChart = ({ percentage }: { percentage: number }) => {
@@ -104,10 +105,41 @@ export default function GarbageAdmin() {
   const [toastType, setToastType] = useState<'success' | 'warning' | 'info'>('success');
   const [activeTab, setActiveTab] = useState<'overview' | 'ward'>('overview');
 
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
+  const [displayName, setDisplayName] = useState('Sajibur Rahman');
+  const [avatarUrl, setAvatarUrl] = useState('/avatar.png');
+
+  // Form states for settings
+  const [tempName, setTempName] = useState('Sajibur Rahman');
+  const [phoneNumber, setPhoneNumber] = useState('+91 98765 43210');
+  const [emailAlerts, setEmailAlerts] = useState(true);
+  const [pushNotifications, setPushNotifications] = useState(true);
+  const [refreshInterval, setRefreshInterval] = useState('30');
+
+  const getGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour < 12) return 'Good morning! 🌅';
+    if (hour < 17) return 'Good afternoon! ☀️';
+    return 'Good evening! 🌙';
+  };
+
+  const saveSettings = () => {
+    setDisplayName(tempName);
+    setIsSettingsOpen(false);
+    setToastMessage('Profile settings updated successfully!');
+    setToastType('success');
+  };
+
   useEffect(() => {
     const role = localStorage.getItem('sgcs_role');
     if (role === 'ward') {
       setActiveTab('ward');
+    }
+    const storedName = localStorage.getItem('sgcs_username');
+    if (storedName) {
+      setDisplayName(storedName);
+      setTempName(storedName);
     }
   }, []);
 
@@ -231,23 +263,25 @@ export default function GarbageAdmin() {
               />
             </div>
             <div className="space-y-0.5">
-              <p className="text-[16px] font-light text-white/80">Good morning!</p>
-              <h2 className="text-[24px] font-medium text-white tracking-tight">Sajibur Rahman</h2>
+              <p className="text-[16px] font-light text-white/80">{getGreeting()}</p>
+              <h2 className="text-[24px] font-medium text-white tracking-tight">{displayName}</h2>
             </div>
           </div>
           
           <div className="flex items-center gap-2">
-            {/* Calendar Button */}
+            {/* Settings/Profile Customization Button */}
             <button 
               type="button"
+              onClick={() => setIsSettingsOpen(true)}
               className="flex items-center justify-center w-13 h-13 rounded-full bg-white/10 border border-white/15 hover:bg-white/20 text-white transition-all min-h-[50px] min-w-[50px]"
-              aria-label="Calendar Schedule"
+              aria-label="Profile Customization"
             >
-              <Calendar size={22} />
+              <Settings size={22} />
             </button>
             {/* Notification Button */}
             <button 
               type="button"
+              onClick={() => setIsNotificationsOpen(true)}
               className="relative flex items-center justify-center w-13 h-13 rounded-full bg-white/10 border border-white/15 hover:bg-white/20 text-white transition-all min-h-[50px] min-w-[50px]"
               aria-label="Notifications"
             >
@@ -402,40 +436,6 @@ export default function GarbageAdmin() {
             </div>
           </Link>
 
-          {/* Broadcast Log (Reduced width and centered) */}
-          <div className="flex-1 space-y-3 min-h-0 w-[88%] mx-auto">
-            <h3 className="text-[20px] font-medium text-black flex items-center justify-center gap-1.5">
-              <Bell size={20} className="text-yellow-600" />
-              Recent Broadcast Logs
-            </h3>
-
-            <div className="rounded-xl border border-[#014BAA]/10 overflow-hidden bg-[#FAF6F3]">
-              <div className="max-h-[160px] overflow-y-auto divide-y divide-[#014BAA]/8">
-                {broadcasts.length === 0 ? (
-                  <div className="p-4 text-center text-[14px] font-light text-black">
-                    No announcements broadcasted yet.
-                  </div>
-                ) : (
-                  broadcasts.map((b, idx) => (
-                    <div key={idx} className="p-4 flex items-start gap-3">
-                      <div className="p-1.5 rounded bg-[#FAF6F3] text-[#014BAA]">
-                        <Clock size={18} className="text-[#014BAA]" />
-                      </div>
-                      <div className="flex-1 space-y-1">
-                        <div className="flex justify-between items-center text-[16px]">
-                          <span className="font-medium text-[#014BAA]">{b.actor}</span>
-                          <span className="font-light text-black">{b.time}</span>
-                        </div>
-                        <p className="text-[14px] font-light text-[#0A3366] leading-relaxed">
-                          {b.message}
-                        </p>
-                      </div>
-                    </div>
-                  ))
-                )}
-              </div>
-            </div>
-          </div>
         </>
       ) : (
         <>
@@ -560,6 +560,160 @@ export default function GarbageAdmin() {
           </div>
         </>
       )}
+
+      {/* Settings (Profile Customization) Drawer */}
+      <Drawer open={isSettingsOpen} onOpenChange={setIsSettingsOpen}>
+        <DrawerContent className="max-w-[430px] mx-auto bg-[#FAF6F3] rounded-t-[32px] p-6 flex flex-col space-y-4 outline-none border-t border-[#014BAA]/10 shadow-2xl max-h-[92vh] overflow-y-auto">
+          <div className="flex items-center justify-between pb-3 border-b border-[#014BAA]/8">
+            <h3 className="text-[20px] font-medium text-[#0A1C33]">Profile Settings</h3>
+            <button
+              onClick={() => setIsSettingsOpen(false)}
+              className="text-[12px] font-medium text-slate-500 hover:text-[#014BAA] cursor-pointer"
+            >
+              Cancel
+            </button>
+          </div>
+
+          <div className="space-y-4 pt-2">
+            {/* Avatar Section */}
+            <div className="flex flex-col items-center space-y-2">
+              <div className="relative w-20 h-20 rounded-full overflow-hidden border-2 border-[#014BAA]/20 shadow-md">
+                <img 
+                  src={avatarUrl} 
+                  alt="Admin Avatar" 
+                  className="w-full h-full object-cover" 
+                />
+              </div>
+              <p className="text-[12px] font-light text-slate-500">Administrator Profile</p>
+            </div>
+
+            {/* Display Name Input */}
+            <div className="space-y-1">
+              <label className="text-[12px] font-medium uppercase tracking-wider text-[#0A1C33]">Display Name</label>
+              <input
+                type="text"
+                value={tempName}
+                onChange={(e) => setTempName(e.target.value)}
+                className="w-full px-4 py-2.5 rounded-xl border border-[#014BAA]/15 bg-white text-[#0A1C33] text-[15px] focus:outline-none focus:border-[#014BAA] focus:ring-2 focus:ring-[#014BAA]/10 transition-all font-light shadow-sm"
+                placeholder="e.g. Sajibur Rahman"
+              />
+            </div>
+
+            {/* Phone Number Input */}
+            <div className="space-y-1">
+              <label className="text-[12px] font-medium uppercase tracking-wider text-[#0A1C33]">Phone Number</label>
+              <input
+                type="tel"
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+                className="w-full px-4 py-2.5 rounded-xl border border-[#014BAA]/15 bg-white text-[#0A1C33] text-[15px] focus:outline-none focus:border-[#014BAA] focus:ring-2 focus:ring-[#014BAA]/10 transition-all font-light shadow-sm"
+                placeholder="e.g. +91 98765 43210"
+              />
+            </div>
+
+            {/* Dashboard Auto-Refresh Select */}
+            <div className="space-y-1">
+              <label className="text-[12px] font-medium uppercase tracking-wider text-[#0A1C33]">Dashboard Refresh</label>
+              <select
+                value={refreshInterval}
+                onChange={(e) => setRefreshInterval(e.target.value)}
+                className="w-full px-4 py-2.5 rounded-xl border border-[#014BAA]/15 bg-white text-[#0A1C33] text-[15px] focus:outline-none focus:border-[#014BAA] transition-all font-light shadow-sm cursor-pointer"
+              >
+                <option value="30">Every 30 seconds</option>
+                <option value="60">Every 1 minute</option>
+                <option value="300">Every 5 minutes</option>
+                <option value="manual">Manual only</option>
+              </select>
+            </div>
+
+            {/* Push Notifications Toggle */}
+            <div className="flex items-center justify-between p-3 rounded-xl border border-[#014BAA]/8 bg-white shadow-sm">
+              <div className="space-y-0.5">
+                <span className="text-[14px] font-medium text-[#0A1C33] block">Push Notifications</span>
+                <span className="text-[11px] font-light text-slate-400 block">Receive instant desktop alerts</span>
+              </div>
+              <input 
+                type="checkbox" 
+                checked={pushNotifications}
+                onChange={(e) => setPushNotifications(e.target.checked)}
+                className="w-4 h-4 rounded text-[#014BAA] focus:ring-[#014BAA]/30 border-[#014BAA]/15 accent-[#014BAA] cursor-pointer"
+              />
+            </div>
+
+            {/* Email Notifications Toggle */}
+            <div className="flex items-center justify-between p-3 rounded-xl border border-[#014BAA]/8 bg-white shadow-sm">
+              <div className="space-y-0.5">
+                <span className="text-[14px] font-medium text-[#0A1C33] block">Email Alerts</span>
+                <span className="text-[11px] font-light text-slate-400 block">Receive daily sanitation audits</span>
+              </div>
+              <input 
+                type="checkbox" 
+                checked={emailAlerts}
+                onChange={(e) => setEmailAlerts(e.target.checked)}
+                className="w-4 h-4 rounded text-[#014BAA] focus:ring-[#014BAA]/30 border-[#014BAA]/15 accent-[#014BAA] cursor-pointer"
+              />
+            </div>
+
+            {/* Save Button */}
+            <div className="pt-2 flex justify-center">
+              <button
+                type="button"
+                onClick={saveSettings}
+                className="flex items-center justify-center gap-2 w-full py-3 rounded-full text-[15px] font-medium bg-[#014BAA] text-white hover:opacity-95 shadow-md shadow-[#014BAA]/15 active:scale-[0.98] transition-all cursor-pointer"
+              >
+                Save Changes
+              </button>
+            </div>
+          </div>
+        </DrawerContent>
+      </Drawer>
+
+      {/* Notifications Drawer */}
+      <Drawer open={isNotificationsOpen} onOpenChange={setIsNotificationsOpen}>
+        <DrawerContent className="max-w-[430px] mx-auto bg-[#FAF6F3] rounded-t-[32px] p-6 flex flex-col space-y-4 outline-none border-t border-[#014BAA]/10 shadow-2xl max-h-[92vh] overflow-y-auto">
+          <div className="flex items-center justify-between pb-3 border-b border-[#014BAA]/8">
+            <h3 className="text-[20px] font-medium text-[#0A1C33] flex items-center gap-2">
+              <Bell size={20} className="text-[#014BAA]" />
+              Recent Broadcast Logs
+            </h3>
+            <button
+              onClick={() => setIsNotificationsOpen(false)}
+              className="text-[12px] font-medium text-slate-500 hover:text-[#014BAA] cursor-pointer"
+            >
+              Close
+            </button>
+          </div>
+
+          <div className="space-y-3 pt-2">
+            <div className="rounded-xl border border-[#014BAA]/10 overflow-hidden bg-white">
+              <div className="divide-y divide-[#014BAA]/8 max-h-[60vh] overflow-y-auto">
+                {broadcasts.length === 0 ? (
+                  <div className="p-8 text-center text-[14px] font-light text-black">
+                    No announcements broadcasted yet.
+                  </div>
+                ) : (
+                  broadcasts.map((b, idx) => (
+                    <div key={idx} className="p-4 flex items-start gap-3 hover:bg-[#FAF6F3]/50 transition-colors">
+                      <div className="p-1.5 rounded bg-[#FAF6F3] text-[#014BAA]">
+                        <Clock size={18} className="text-[#014BAA]" />
+                      </div>
+                      <div className="flex-1 space-y-1">
+                        <div className="flex justify-between items-center text-[15px]">
+                          <span className="font-medium text-[#014BAA]">{b.actor}</span>
+                          <span className="text-[12px] font-light text-slate-500">{b.time}</span>
+                        </div>
+                        <p className="text-[14px] font-light text-[#0A3366] leading-relaxed">
+                          {b.message}
+                        </p>
+                      </div>
+                    </div>
+                  ))
+                )}
+              </div>
+            </div>
+          </div>
+        </DrawerContent>
+      </Drawer>
     </div>
   );
 }

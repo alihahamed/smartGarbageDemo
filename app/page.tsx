@@ -21,7 +21,7 @@ export default function Home() {
       image: '/garbage-illust.png',
       href: '/garbage',
       gradient: 'from-[#014BAA] to-[#0A3366]', // Royal Blue/Dark Blue
-      glow: 'shadow-blue-950/40 border-blue-400/20'
+      glow: 'shadow-[#014BAA]/15 border-white/10'
     },
     {
       title: 'Service Hub',
@@ -30,7 +30,7 @@ export default function Home() {
       image: '/service-illust.png',
       href: '/service-hub',
       gradient: 'from-[#3B82F6] to-[#1D4ED8]', // Sky/Blue
-      glow: 'shadow-blue-950/40 border-blue-400/20'
+      glow: 'shadow-[#3B82F6]/15 border-white/10'
     },
     {
       title: 'Welfare Assistant',
@@ -39,7 +39,7 @@ export default function Home() {
       image: '/welfare-illust-.png',
       href: '/welfare',
       gradient: 'from-[#8B5CF6] to-[#6D28D9]', // Purple/Indigo
-      glow: 'shadow-purple-950/40 border-purple-400/20'
+      glow: 'shadow-[#8B5CF6]/15 border-white/10'
     },
     {
       title: 'Citizen Complaints',
@@ -48,9 +48,10 @@ export default function Home() {
       image: '/citizen-illust.png',
       href: '/complaints',
       gradient: 'from-[#EF4444] to-[#B91C1C]', // Coral/Red
-      glow: 'shadow-red-950/40 border-red-400/20'
+      glow: 'shadow-[#EF4444]/15 border-white/10'
     }
   ];
+  
 
   const nextSlide = () => {
     setActiveIndex((prev) => (prev + 1) % modules.length);
@@ -171,10 +172,10 @@ export default function Home() {
           </h2>
         </div>
 
-        {/* GSAP Carousel Slider Container */}
+        {/* GSAP Carousel Slider Container - Expanded dynamically for bleed-through shadow */}
         <div 
           ref={containerRef}
-          className={`relative w-full overflow-hidden py-3 cursor-grab active:cursor-grabbing select-none transition-opacity duration-300 ${mounted ? 'opacity-100' : 'opacity-0'}`}
+          className={`relative w-[calc(100%+2rem)] -mx-4 overflow-hidden px-4 py-4 cursor-grab active:cursor-grabbing select-none transition-opacity duration-300 ${mounted ? 'opacity-100' : 'opacity-0'}`}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
@@ -190,7 +191,7 @@ export default function Home() {
                 <Link
                   key={idx}
                   href={m.href}
-                  className={`relative block w-[310px] h-[340px] rounded-[28px] bg-gradient-to-br ${m.gradient} ${m.glow} border shadow-xl overflow-hidden p-6 flex flex-col justify-between group transition-all duration-300`}
+                  className={`relative block w-[310px] h-[340px] rounded-[28px] bg-gradient-to-br ${m.gradient} ${m.glow} border shadow-lg overflow-hidden p-6 flex flex-col justify-between group transition-all duration-300`}
                   onClick={(e) => {
                     // If card is not active, activate it instead of navigating
                     if (!isActive) {

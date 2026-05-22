@@ -119,14 +119,46 @@ export default function HouseAction() {
     setPhotoCaptured(false);
     
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({
-        video: { facingMode: 'environment' },
-        audio: false
-      });
+      if (typeof window === 'undefined' || !navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        throw new Error('Camera API not supported or insecure context');
+      }
+
+      let stream: MediaStream | null = null;
+
+      // 1. Try environment (back) camera (for scanning front door)
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: 'environment' },
+          audio: false
+        });
+      } catch (e1) {
+        console.warn('Failed to access environment camera, trying user camera...', e1);
+      }
+
+      // 2. Try user (front) camera
+      if (!stream) {
+        try {
+          stream = await navigator.mediaDevices.getUserMedia({
+            video: { facingMode: 'user' },
+            audio: false
+          });
+        } catch (e2) {
+          console.warn('Failed to access user camera, trying generic video...', e2);
+        }
+      }
+
+      // 3. Try generic video constraint
+      if (!stream) {
+        stream = await navigator.mediaDevices.getUserMedia({
+          video: true,
+          audio: false
+        });
+      }
+
       setCameraStream(stream);
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
-        videoRef.current.play();
+        videoRef.current.play().catch(e => console.error('Video play failure:', e));
       }
     } catch (err) {
       console.warn('Failed to access camera for door photo, using simulation.', err);
@@ -417,7 +449,7 @@ export default function HouseAction() {
         <div className="space-y-4 text-center">
           <div className="w-full aspect-video rounded-xl border border-brand-surface-alt bg-black overflow-hidden relative flex items-center justify-center">
             {cameraStream ? (
-              <video ref={videoRef} className="w-full h-full object-cover" playsInline />
+              <video ref={videoRef} className="w-full h-full object-cover" autoPlay playsInline muted />
             ) : (
               <div className="space-y-1">
                 <Camera size={24} className="text-brand-text-muted mx-auto" />

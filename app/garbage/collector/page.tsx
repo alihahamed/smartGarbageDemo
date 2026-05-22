@@ -29,14 +29,46 @@ export default function CollectorShift() {
   const handleStartShift = async () => {
     try {
       setCameraActive(true);
-      const mediaStream = await navigator.mediaDevices.getUserMedia({
-        video: { facingMode: 'user' },
-        audio: false
-      });
+      if (typeof window === 'undefined' || !navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        throw new Error('Camera API not supported or insecure context');
+      }
+
+      let mediaStream: MediaStream | null = null;
+
+      // 1. Try user (front) camera (for selfie check-in)
+      try {
+        mediaStream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: 'user' },
+          audio: false
+        });
+      } catch (e1) {
+        console.warn('Failed to access front camera, trying environment camera...', e1);
+      }
+
+      // 2. Try environment (back) camera
+      if (!mediaStream) {
+        try {
+          mediaStream = await navigator.mediaDevices.getUserMedia({
+            video: { facingMode: 'environment' },
+            audio: false
+          });
+        } catch (e2) {
+          console.warn('Failed to access environment camera, trying generic video...', e2);
+        }
+      }
+
+      // 3. Try generic video constraint
+      if (!mediaStream) {
+        mediaStream = await navigator.mediaDevices.getUserMedia({
+          video: true,
+          audio: false
+        });
+      }
+
       setStream(mediaStream);
       if (videoRef.current) {
         videoRef.current.srcObject = mediaStream;
-        videoRef.current.play();
+        videoRef.current.play().catch(e => console.error('Video play failure:', e));
       }
       setToastMessage('Webcam feed active. Take a check-in selfie to start shift.');
       setToastType('info');
@@ -141,7 +173,7 @@ export default function CollectorShift() {
           {/* Camera Stream Overlay */}
           {cameraActive && (
             <div className="absolute inset-0 w-full h-full z-10 bg-black">
-              <video ref={videoRef} className="w-full h-full object-cover scale-x-[-1]" playsInline />
+              <video ref={videoRef} className="w-full h-full object-cover scale-x-[-1]" autoPlay playsInline muted />
               <button
                 onClick={handleCaptureSelfie}
                 className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center justify-center w-11 h-11 rounded-full bg-[#014BAA] shadow-md shadow-[#014BAA]/20 transform active:scale-95 duration-150 cursor-pointer hover:opacity-95 z-20"

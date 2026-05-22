@@ -73,6 +73,7 @@ export default function Navbar() {
     
     if (pathname.startsWith('/welfare/quiz')) return 'Welfare Survey';
     if (pathname.startsWith('/welfare/results')) return 'Scheme Matches';
+    if (pathname.startsWith('/welfare/scheme')) return 'Scheme Info';
     if (pathname.startsWith('/welfare')) return 'Welfare Portal';
     
     if (pathname.startsWith('/service-hub/book')) return 'Book Service';
@@ -104,11 +105,11 @@ export default function Navbar() {
   if (isHome || isLogin || isDrawerOpen) return null;
 
   return (
-    <nav className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2.5rem)] max-w-[320px] bg-gradient-to-t from-[#014BAA]/20 via-white/95 to-white/95 border border-[#014BAA]/12 backdrop-blur-sm rounded-full shadow-lg p-1.5 flex items-center justify-between">
+    <nav className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2.5rem)] max-w-[320px] bg-gradient-to-t from-[#014BAA]/40 via-white/85 to-white/95 border border-[#014BAA]/40 backdrop-blur-sm rounded-full shadow-lg p-1.5 flex items-center justify-between">
       {/* Left: Back Button */}
       <button
         onClick={handleBack}
-        className="flex items-center justify-center w-14 h-14 rounded-full bg-brand-surface-alt border border-[#014BAA]/12 text-[#014BAA] hover:bg-[#E5EFFC] active:scale-[0.93] transition-all shadow-sm min-h-[56px] min-w-[56px]"
+        className="flex items-center justify-center w-14 h-14 rounded-full bg-brand-surface-alt border border-[#014BAA]/40 text-[#014BAA] hover:bg-[#E5EFFC] active:scale-[0.93] transition-all shadow-sm min-h-[56px] min-w-[56px]"
         aria-label="Go Back"
       >
         <ArrowLeft size={22} />
@@ -128,7 +129,7 @@ export default function Navbar() {
       {/* Right: Logout/Exit Button */}
       <button
         onClick={handleExit}
-        className="flex items-center justify-center w-14 h-14 rounded-full bg-red-50 border border-red-200 text-red-500 hover:bg-red-100 active:scale-[0.93] transition-all shadow-sm min-h-[56px] min-w-[56px]"
+        className="flex items-center justify-center w-14 h-14 rounded-full bg-red-50 border border-red-400 text-red-500 hover:bg-red-100 active:scale-[0.93] transition-all shadow-sm min-h-[56px] min-w-[56px]"
         aria-label="Exit Console"
       >
         <LogOut size={22} />

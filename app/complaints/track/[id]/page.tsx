@@ -131,7 +131,17 @@ export default function ComplaintTracker() {
   const activeIndex = getStatusIndex(complaint.status);
 
   return (
-    <div className="flex-1 flex flex-col justify-between py-2 space-y-5">
+    <div className="fixed inset-0 w-full max-w-[480px] mx-auto z-40 bg-[#FAF6F3] overflow-y-auto flex flex-col select-none no-scrollbar">
+      <style dangerouslySetInnerHTML={{ __html: `
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}} />
+
       {toastMessage && (
         <Toast 
           message={toastMessage} 
@@ -140,182 +150,203 @@ export default function ComplaintTracker() {
         />
       )}
 
-      {/* Header Banner */}
-      <div className="flex items-center justify-between shrink-0">
-        <Link 
-          href="/complaints/dashboard" 
-          className="inline-flex items-center gap-1 text-xs text-brand-accent hover:underline"
-        >
-          <ArrowLeft size={14} />
-          <span>Dashboard</span>
-        </Link>
-        <span className="text-[10px] font-mono text-brand-text-muted">
-          ID: {complaint.id}
-        </span>
-      </div>
-
-      {/* Overview Block */}
-      <div className="rounded-2xl glass-panel p-4 border border-brand-accent/20 space-y-3">
-        <div className="flex justify-between items-start">
-          <div className="space-y-0.5">
-            <span className="text-[9px] font-medium text-brand-accent uppercase tracking-widest bg-brand-accent/5 px-2.5 py-0.5 rounded-full border border-brand-accent/15">
-              {complaint.category} Grievance
-            </span>
-            <h3 className="text-sm font-medium text-brand-text pt-1">{complaint.category} Issue</h3>
-          </div>
-          <div className="text-right space-y-0.5">
-            <span className="text-[8px] font-light text-brand-text-muted block">Filed Date</span>
-            <span className="text-[10px] font-medium text-brand-text">{complaint.date}</span>
+      {/* Curved Top Brand Banner Header (No top back button) */}
+      <div className="w-full px-5 pt-8 pb-8 bg-gradient-to-b from-[#EF4444] via-[#EF4444] to-[#B91C1C] text-white flex flex-col relative shadow-lg shadow-[#EF4444]/15 shrink-0 rounded-b-[40px] space-y-6">
+        {/* Header Title + ID Badge Row */}
+        <div className="flex items-center justify-between w-full">
+          <h2 className="text-[24px] font-medium leading-none tracking-tight">Grievance Status</h2>
+          <div className="px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-[11px] font-mono text-white shrink-0 tracking-wider">
+            ID: {complaint.id}
           </div>
         </div>
 
-        <p className="text-xs font-light text-brand-text-muted leading-relaxed">
-          {complaint.description}
-        </p>
-
-        {/* Location & GPS Info */}
-        <div className="flex items-center justify-between p-2.5 rounded-lg bg-brand-surface-alt/40 border border-brand-surface-alt/60 text-[9px] font-light text-brand-text-muted">
-          <div className="flex items-center gap-1.5">
-            <MapPin size={12} className="text-brand-accent shrink-0" />
-            <span>{complaint.latitude.toFixed(4)}° N, {complaint.longitude.toFixed(4)}° E</span>
-          </div>
-          <span className="text-brand-text-muted/70">Radius validation check: PASS</span>
+        <div className="space-y-1">
+          <p className="text-[13px] font-light text-white/80 leading-normal">
+            Real-time resolution updates and municipal routing log.
+          </p>
         </div>
 
-        {/* Photo Record and ETA */}
-        <div className="grid grid-cols-2 gap-3 pt-1">
-          <div className="relative aspect-video rounded-lg overflow-hidden border border-brand-surface-alt">
-            <img 
-              src={complaint.photoUrl} 
-              alt="Grievance record" 
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute bottom-1 right-1 bg-brand-bg/85 px-1.5 py-0.5 rounded text-[7px] text-brand-accent border border-brand-accent/15">
-              Site Photo
-            </div>
-          </div>
-          <div className="flex flex-col justify-center p-3 rounded-lg bg-brand-surface-alt/30 border border-brand-surface-alt/40 text-center space-y-0.5">
-            <span className="text-[8px] font-medium text-brand-text-muted uppercase tracking-wider block">Estimated Resolution</span>
-            <div className="flex items-center justify-center gap-1">
-              <Clock size={11} className="text-brand-accent" />
-              <span className="text-xs font-medium text-brand-text">
-                {complaint.status === 'Resolved' ? 'Completed' : `${complaint.etaDays} Days Left`}
+        {/* Overview Card nested inside the red banner */}
+        <div className="w-full rounded-3xl bg-white border border-slate-200/80 p-5 space-y-4 shadow-sm text-slate-800">
+          <div className="flex justify-between items-start">
+            <div className="space-y-1">
+              <span className="inline-block px-3 py-1 rounded-full text-[11px] font-medium bg-[#EF4444]/8 text-[#B91C1C] border border-[#EF4444]/15 uppercase tracking-wider">
+                {complaint.category}
               </span>
+              <h3 className="text-[18px] font-medium text-slate-800 pt-0.5">{complaint.category} Issue</h3>
+            </div>
+            <div className="text-right">
+              <span className="text-[11px] font-light text-slate-400 block uppercase tracking-wider">Filed Date</span>
+              <span className="text-[13px] font-medium text-slate-800">{complaint.date}</span>
             </div>
           </div>
-        </div>
-      </div>
 
-      {/* Live Status Timeline */}
-      <div className="rounded-2xl glass-panel p-5 border border-brand-accent/10 space-y-4">
-        <h3 className="text-xs font-medium text-brand-text flex items-center gap-1.5">
-          <Clock size={13} className="text-brand-accent" />
-          <span>Live Resolution Timeline</span>
-        </h3>
+          <p className="text-[15px] font-light text-slate-600 leading-relaxed">
+            {complaint.description}
+          </p>
 
-        <div className="relative pl-6 space-y-5 border-l border-brand-surface-alt">
-          {steps.map((step, idx) => {
-            const isCompleted = idx <= activeIndex;
-            const isActive = idx === activeIndex;
-            return (
-              <div key={idx} className="relative">
-                {/* Timeline node dot */}
-                <div 
-                  className={`absolute -left-[31px] top-0.5 w-4 h-4 rounded-full border-2 flex items-center justify-center transition-all ${
-                    isCompleted 
-                      ? 'bg-brand-bg border-brand-accent text-brand-accent' 
-                      : 'bg-brand-bg border-brand-surface-alt text-brand-text-muted/30'
-                  } ${isActive ? 'glow-active' : ''}`}
-                >
-                  {step.icon}
-                </div>
+          {/* Location details */}
+          <div className="flex items-center justify-between p-3 rounded-2xl bg-[#FAF6F3] border border-slate-200/60 text-[13px] font-light text-slate-600 shadow-sm">
+            <div className="flex items-center gap-2">
+              <MapPin size={16} className="text-[#EF4444] shrink-0" />
+              <span className="font-medium text-slate-700">{complaint.latitude.toFixed(4)}° N, {complaint.longitude.toFixed(4)}° E</span>
+            </div>
+            <span className="text-[11px] font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100 uppercase tracking-wider">PASS</span>
+          </div>
 
-                <div className="space-y-0.5">
-                  <h4 
-                    className={`text-xs font-medium transition-colors ${
-                      isCompleted ? 'text-brand-text' : 'text-brand-text-muted/40'
-                    }`}
-                  >
-                    {step.label}
-                  </h4>
-                  <p 
-                    className={`text-[10px] font-light leading-relaxed transition-colors ${
-                      isCompleted ? 'text-brand-text-muted' : 'text-brand-text-muted/20'
-                    }`}
-                  >
-                    {step.desc}
-                  </p>
-                </div>
+          {/* Photo and ETA Grid */}
+          <div className="grid grid-cols-2 gap-4 pt-1">
+            <div className="relative aspect-video rounded-2xl overflow-hidden border border-slate-200 shadow-inner">
+              <img 
+                src={complaint.photoUrl} 
+                alt="Grievance record" 
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute bottom-2 right-2 bg-slate-900/80 backdrop-blur-sm px-2 py-0.5 rounded-lg text-[9px] text-white border border-white/10 font-medium">
+                Verified Photo
               </div>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Rating & Service Resolution Evaluation Panel */}
-      <div className="rounded-2xl glass-panel p-5 border border-brand-accent/15 space-y-3 shrink-0">
-        <h3 className="text-xs font-medium text-brand-text">Service Quality Feedback</h3>
-
-        {complaint.status !== 'Resolved' ? (
-          <div className="flex items-center gap-2 p-3 rounded-xl border border-brand-surface-alt bg-brand-surface-alt/10 text-center justify-center">
-            <span className="text-[10px] font-light text-brand-text-muted leading-normal">
-              Rating submissions will unlock once the municipal task force marks this grievance as <span className="text-brand-accent font-medium">Resolved</span>.
-            </span>
-          </div>
-        ) : (
-          <div className="space-y-3">
-            <p className="text-[10px] font-light text-brand-text-muted leading-relaxed">
-              This grievance has been resolved. Please evaluate the work quality and responsiveness of the department below:
-            </p>
-
-            <div className="flex items-center justify-center gap-2">
-              {[1, 2, 3, 4, 5].map((starValue) => {
-                const isStarred = complaint.rating 
-                  ? starValue <= complaint.rating
-                  : starValue <= (hoverRating ?? 0);
-                
-                return (
-                  <button
-                    key={starValue}
-                    onClick={() => handleRate(starValue)}
-                    onMouseEnter={() => !complaint.rating && setHoverRating(starValue)}
-                    onMouseLeave={() => !complaint.rating && setHoverRating(null)}
-                    disabled={complaint.rating !== undefined || ratingLoading}
-                    className={`w-12 h-12 flex items-center justify-center rounded-xl border transition-all ${
-                      complaint.rating !== undefined
-                        ? isStarred
-                          ? 'border-brand-accent/30 bg-brand-accent/5 text-brand-accent'
-                          : 'border-brand-surface-alt bg-brand-bg/50 text-brand-text-muted/30'
-                        : isStarred
-                          ? 'border-brand-accent/50 bg-brand-accent/10 text-brand-accent scale-105'
-                          : 'border-brand-surface-alt bg-brand-surface-alt/20 text-brand-text-muted hover:border-brand-accent/40'
-                    }`}
-                    aria-label={`Rate ${starValue} stars`}
-                    style={{ minWidth: '48px', minHeight: '48px' }} // Touch Target safe area
-                  >
-                    <Star 
-                      size={20} 
-                      fill={isStarred ? 'currentColor' : 'none'} 
-                      className="transition-transform duration-100 active:scale-125"
-                    />
-                  </button>
-                );
-              })}
             </div>
-
-            {complaint.rating !== undefined ? (
-              <div className="text-center">
-                <span className="text-[9px] font-medium text-brand-success uppercase tracking-wider bg-brand-success/5 border border-brand-success/20 px-3 py-1 rounded-full">
-                  Feedback Received ({complaint.rating} / 5 Stars)
+            
+            <div className="flex flex-col justify-center p-4 rounded-2xl bg-[#FAF6F3] border border-slate-200/60 text-center space-y-1 shadow-sm">
+              <span className="text-[11px] font-medium text-slate-400 uppercase tracking-wider block">Estimated Resolution</span>
+              <div className="flex items-center justify-center gap-1.5 pt-0.5">
+                <Clock size={16} className="text-[#EF4444]" />
+                <span className="text-[15px] font-medium text-slate-800">
+                  {complaint.status === 'Resolved' ? 'Completed' : `${complaint.etaDays} Days Left`}
                 </span>
               </div>
-            ) : (
-              <div className="text-center text-[9px] font-light text-brand-text-muted">
-                {hoverRating ? `Rate ${hoverRating} star${hoverRating > 1 ? 's' : ''}` : 'Tap a star to submit your review'}
-              </div>
-            )}
+            </div>
           </div>
-        )}
+        </div>
+      </div>
+
+      {/* Scrollable Content (Timeline and Feedback) */}
+      <div className="w-full px-5 pt-6 pb-28 flex-1 flex flex-col space-y-6 relative z-10">
+        
+        {/* Live Timeline Card */}
+        <div className="w-full rounded-3xl bg-white border border-slate-200/80 p-5 space-y-5 shadow-sm">
+          <h3 className="text-[18px] font-medium text-slate-800 flex items-center gap-2">
+            <Clock size={18} className="text-[#EF4444]" />
+            <span>Resolution Timeline</span>
+          </h3>
+
+          <div className="relative pl-6 space-y-6 border-l-2 border-slate-100 ml-2.5">
+            {steps.map((step, idx) => {
+              const isCompleted = idx <= activeIndex;
+              const isActive = idx === activeIndex;
+              return (
+                <div key={idx} className="relative">
+                  {/* Node Circle */}
+                  <div 
+                    className={`absolute -left-[35px] top-0.5 w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all bg-white ${
+                      isCompleted 
+                        ? 'border-[#EF4444] text-[#B91C1C] shadow-sm' 
+                        : 'border-slate-200 text-slate-300'
+                    } ${isActive ? 'ring-4 ring-[#EF4444]/15' : ''}`}
+                  >
+                    <div className={`w-1.5 h-1.5 rounded-full ${isCompleted ? 'bg-[#EF4444]' : 'bg-transparent'}`} />
+                  </div>
+
+                  <div className="space-y-0.5">
+                    <h4 
+                      className={`text-[15px] font-medium transition-colors ${
+                        isCompleted ? 'text-slate-800' : 'text-slate-400'
+                      }`}
+                    >
+                      {step.label}
+                    </h4>
+                    <p 
+                      className={`text-[13px] font-light leading-relaxed transition-colors ${
+                        isCompleted ? 'text-slate-500' : 'text-slate-300/40'
+                      }`}
+                    >
+                      {step.desc}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Quality Feedback Card */}
+        <div className="w-full rounded-3xl bg-white border border-slate-200/80 p-5 space-y-4 shadow-sm">
+          <h3 className="text-[18px] font-medium text-slate-800">Service Feedback</h3>
+
+          {complaint.status !== 'Resolved' ? (
+            <div className="flex items-center gap-3 p-4 rounded-2xl border border-[#EF4444]/10 bg-[#EF4444]/5 text-center justify-center">
+              <span className="text-[13px] font-light text-slate-600 leading-relaxed">
+                Rating submissions will unlock once the municipal task force marks this grievance as <span className="text-[#B91C1C] font-medium">Resolved</span>.
+              </span>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              <p className="text-[13px] font-light text-slate-500 leading-relaxed">
+                This grievance has been resolved. Please evaluate the work quality and responsiveness of the department below:
+              </p>
+
+              <div className="flex items-center justify-center gap-3">
+                {[1, 2, 3, 4, 5].map((starValue) => {
+                  const isStarred = complaint.rating 
+                    ? starValue <= complaint.rating
+                    : starValue <= (hoverRating ?? 0);
+                  
+                  return (
+                    <button
+                      key={starValue}
+                      onClick={() => handleRate(starValue)}
+                      onMouseEnter={() => !complaint.rating && setHoverRating(starValue)}
+                      onMouseLeave={() => !complaint.rating && setHoverRating(null)}
+                      disabled={complaint.rating !== undefined || ratingLoading}
+                      className={`w-12 h-12 flex items-center justify-center rounded-2xl border transition-all ${
+                        complaint.rating !== undefined
+                          ? isStarred
+                            ? 'border-[#EF4444]/30 bg-[#EF4444]/5 text-[#B91C1C]'
+                            : 'border-slate-200 bg-[#FAF6F3]/50 text-slate-300'
+                          : isStarred
+                            ? 'border-[#EF4444]/50 bg-[#EF4444]/10 text-[#B91C1C] scale-105'
+                            : 'border-slate-200 bg-[#FAF6F3] text-slate-400 hover:border-[#EF4444]/40 hover:bg-slate-50'
+                      } active:scale-95 cursor-pointer shadow-sm`}
+                      aria-label={`Rate ${starValue} stars`}
+                    >
+                      <Star 
+                        size={22} 
+                        fill={isStarred ? 'currentColor' : 'none'} 
+                        className="transition-transform duration-100"
+                      />
+                    </button>
+                  );
+                })}
+              </div>
+
+              {complaint.rating !== undefined ? (
+                <div className="text-center pt-1">
+                  <span className="inline-block text-[11px] font-medium text-emerald-600 bg-emerald-50 border border-emerald-200/60 px-4 py-1.5 rounded-full uppercase tracking-wider shadow-sm">
+                    Feedback Received ({complaint.rating} / 5 Stars)
+                  </span>
+                </div>
+              ) : (
+                <div className="text-center text-[12px] font-light text-slate-400">
+                  {hoverRating ? `Rate ${hoverRating} star${hoverRating > 1 ? 's' : ''}` : 'Tap a star to submit your review'}
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Back to Dashboard CTA (design.md primary button) */}
+        <div className="flex justify-center pt-2">
+          <button
+            onClick={() => router.push('/complaints/dashboard')}
+            className="flex items-center justify-between w-[240px] pl-5 pr-1.5 py-[5px] rounded-full text-[15px] font-medium bg-gradient-to-r from-[#EF4444] to-[#B91C1C] text-white hover:opacity-95 shadow-md shadow-[#EF4444]/15 active:scale-[0.96] transition-all cursor-pointer min-h-[48px]"
+          >
+            <span>Back to Dashboard</span>
+            <div className="w-9 h-9 rounded-full bg-[#FAF6F3] flex items-center justify-center text-[#B91C1C] shrink-0 shadow-sm border border-[#EF4444]/10">
+              <ArrowLeft size={16} />
+            </div>
+          </button>
+        </div>
+
       </div>
     </div>
   );
