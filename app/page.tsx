@@ -21,7 +21,7 @@ export default function Home() {
       image: '/garbage-illust.png',
       href: '/garbage',
       gradient: 'from-[#014BAA] to-[#0A3366]', // Royal Blue/Dark Blue
-      glow: 'shadow-[#014BAA]/15 border-white/10'
+      glow: 'shadow-[0_14px_28px_rgba(1,75,170,0.25)] border-white/10 hover:shadow-[0_20px_40px_rgba(1,75,170,0.4)]'
     },
     {
       title: 'Service Hub',
@@ -30,7 +30,7 @@ export default function Home() {
       image: '/service-illust.png',
       href: '/service-hub',
       gradient: 'from-[#3B82F6] to-[#1D4ED8]', // Sky/Blue
-      glow: 'shadow-[#3B82F6]/15 border-white/10'
+      glow: 'shadow-[0_14px_28px_rgba(59,130,246,0.25)] border-white/10 hover:shadow-[0_20px_40px_rgba(59,130,246,0.4)]'
     },
     {
       title: 'Welfare Assistant',
@@ -39,7 +39,7 @@ export default function Home() {
       image: '/welfare-illust-.png',
       href: '/welfare',
       gradient: 'from-[#8B5CF6] to-[#6D28D9]', // Purple/Indigo
-      glow: 'shadow-[#8B5CF6]/15 border-white/10'
+      glow: 'shadow-[0_14px_28px_rgba(139,92,246,0.25)] border-white/10 hover:shadow-[0_20px_40px_rgba(139,92,246,0.4)]'
     },
     {
       title: 'Citizen Complaints',
@@ -48,7 +48,7 @@ export default function Home() {
       image: '/citizen-illust.png',
       href: '/complaints',
       gradient: 'from-[#EF4444] to-[#B91C1C]', // Coral/Red
-      glow: 'shadow-[#EF4444]/15 border-white/10'
+      glow: 'shadow-[0_14px_28px_rgba(239,68,68,0.25)] border-white/10 hover:shadow-[0_20px_40px_rgba(239,68,68,0.4)]'
     }
   ];
   
@@ -175,7 +175,7 @@ export default function Home() {
         {/* GSAP Carousel Slider Container - Expanded dynamically for bleed-through shadow */}
         <div 
           ref={containerRef}
-          className={`relative w-[calc(100%+2rem)] -mx-4 overflow-hidden px-4 py-4 cursor-grab active:cursor-grabbing select-none transition-opacity duration-300 ${mounted ? 'opacity-100' : 'opacity-0'}`}
+          className={`relative w-[calc(100%+2rem)] -mx-4 overflow-hidden px-4 py-8 cursor-grab active:cursor-grabbing select-none transition-opacity duration-300 ${mounted ? 'opacity-100' : 'opacity-0'}`}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
@@ -191,7 +191,7 @@ export default function Home() {
                 <Link
                   key={idx}
                   href={m.href}
-                  className={`relative block w-[310px] h-[340px] rounded-[28px] bg-gradient-to-br ${m.gradient} ${m.glow} border shadow-lg overflow-hidden p-6 flex flex-col justify-between group transition-all duration-300`}
+                  className={`relative block w-[310px] h-[340px] rounded-[28px] bg-gradient-to-br ${m.gradient} ${m.glow} border overflow-hidden p-6 flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1.5`}
                   onClick={(e) => {
                     // If card is not active, activate it instead of navigating
                     if (!isActive) {

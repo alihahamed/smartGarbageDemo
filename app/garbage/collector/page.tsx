@@ -16,6 +16,13 @@ export default function CollectorShift() {
   const [toastType, setToastType] = useState<'success' | 'warning' | 'info'>('success');
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  const getGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour < 12) return 'Good morning! 🌅';
+    if (hour < 17) return 'Good afternoon! ☀️';
+    return 'Good evening! 🌙';
+  };
+
   // Sync state with localStorage to persist across navigation
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -144,7 +151,7 @@ export default function CollectorShift() {
               />
             </div>
             <div className="space-y-0.5">
-              <p className="text-[16px] font-light text-white/80">Good morning!</p>
+              <p className="text-[16px] font-light text-white/80">{getGreeting()}</p>
               <h2 className="text-[24px] font-medium text-white tracking-tight leading-none">Rajesh Kumar</h2>
             </div>
           </div>
