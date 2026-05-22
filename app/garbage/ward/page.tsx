@@ -57,11 +57,11 @@ export default function WardDashboard() {
 
       {/* Title greeting */}
       <div className="space-y-1">
-        <h2 className="text-lg font-medium text-brand-text flex items-center gap-2">
+        <h2 className="text-[16px] font-medium text-brand-text flex items-center gap-2">
           <PieChart size={18} className="text-brand-accent animate-pulse" />
           Ward Member Console
         </h2>
-        <p className="text-xs font-light text-brand-text-muted">
+        <p className="text-[12px] font-light text-brand-text-muted">
           Ward 1 Municipal Representative Panel
         </p>
       </div>
@@ -102,46 +102,46 @@ export default function WardDashboard() {
               </svg>
               {/* Inner readout */}
               <div className="absolute inset-0 flex flex-col items-center justify-center space-y-0.5">
-                <span className="text-xl font-medium text-brand-text leading-none">{coveragePercent}%</span>
-                <span className="text-[11px] font-light text-brand-text-muted uppercase tracking-wider">Cleared</span>
+                <span className="text-[20px] font-medium text-brand-text leading-none">{coveragePercent}%</span>
+                <span className="text-[12px] font-light text-brand-text-muted uppercase tracking-wider">Cleared</span>
               </div>
             </div>
 
             <div className="space-y-3 flex-1 min-w-0">
               <div className="space-y-0.5">
-                <h3 className="text-xs font-medium text-brand-text">Coverage Summary</h3>
-                <p className="text-[11px] font-light text-brand-text-muted">
+                <h3 className="text-[16px] font-medium text-brand-text">Coverage Summary</h3>
+                <p className="text-[12px] font-light text-brand-text-muted">
                   Daily route tracking index.
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 gap-2 text-[11px]">
+              <div className="grid grid-cols-2 gap-2 text-[12px]">
                 <div className="space-y-0.5 border-l border-brand-success/40 pl-2">
                   <span className="text-brand-text-muted block">Cleaned</span>
-                  <strong className="text-brand-success text-xs font-medium">{collectedCount} Houses</strong>
+                  <strong className="text-brand-success text-[12px] font-medium">{collectedCount} Houses</strong>
                 </div>
                 <div className="space-y-0.5 border-l border-brand-warning/40 pl-2">
                   <span className="text-brand-text-muted block">Missed</span>
-                  <strong className="text-brand-warning text-xs font-medium">{attemptedCount} Houses</strong>
+                  <strong className="text-brand-warning text-[12px] font-medium">{attemptedCount} Houses</strong>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Export Report Actions */}
+          {/* Export Report Actions (Reskinned, Royal Blue bg, Cream icon wrapper) */}
           <button
             onClick={handleExport}
-            className="w-full flex items-center justify-center gap-3 pl-6 pr-1.5 py-1.5 rounded-full bg-[#014BAA] text-white text-xs font-medium hover:opacity-90 transition-all shadow-md shadow-[#014BAA]/20 transform active:scale-95 duration-150"
+            className="w-full flex items-center justify-center gap-3 pl-6 pr-1.5 py-[7px] rounded-full bg-[#014BAA] text-white text-[16px] font-medium hover:opacity-90 transition-all shadow-md shadow-[#014BAA]/20 transform active:scale-95 duration-150"
           >
             <span>Export Ward Audit Report</span>
-            <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[#FAF6F3] text-[#014BAA]">
-              <Download size={12} />
+            <span className="flex items-center justify-center w-14 h-14 rounded-full bg-[#FAF6F3] text-[#014BAA] min-h-[56px] min-w-[56px]">
+              <Download size={22} />
             </span>
           </button>
 
           {/* Pending houses list */}
           <div className="flex-1 space-y-3 min-h-0 flex flex-col">
-            <h3 className="text-xs font-medium text-brand-text flex items-center gap-1.5 shrink-0">
+            <h3 className="text-[16px] font-medium text-brand-text flex items-center gap-1.5 shrink-0">
               <AlertTriangle size={13} className="text-brand-warning shrink-0" />
               <span>Pending & Missed Houses ({pendingCount + attemptedCount})</span>
             </h3>
@@ -149,7 +149,7 @@ export default function WardDashboard() {
             <div className="flex-1 rounded-xl border border-brand-surface-alt bg-brand-surface-alt/10 overflow-hidden flex flex-col">
               <div className="flex-1 overflow-y-auto divide-y divide-brand-surface-alt">
                 {houses.filter(h => h.status !== 'done').length === 0 ? (
-                  <div className="p-8 text-center text-xs font-light text-brand-text-muted flex flex-col items-center justify-center h-full gap-1.5">
+                  <div className="p-8 text-center text-[12px] font-light text-brand-text-muted flex flex-col items-center justify-center h-full gap-1.5">
                     <CheckCircle2 size={24} className="text-brand-success" />
                     <p>100% Ward Coverage Achieved!</p>
                   </div>
@@ -157,12 +157,12 @@ export default function WardDashboard() {
                   houses.filter(h => h.status !== 'done').map((h) => (
                     <div key={h.id} className="p-3.5 flex items-start justify-between gap-3 bg-brand-surface-alt/10">
                       <div className="space-y-0.5 min-w-0">
-                        <span className="text-xs font-medium text-brand-text block">{h.houseNo}</span>
-                        <p className="text-[11px] font-light text-brand-text-muted truncate leading-relaxed">
+                        <span className="text-[12px] font-medium text-brand-text block">{h.houseNo}</span>
+                        <p className="text-[12px] font-light text-brand-text-muted truncate leading-relaxed">
                           {h.address}
                         </p>
                       </div>
-                      <span className={`text-[11px] font-medium uppercase tracking-wider px-1.5 py-0.5 rounded border shrink-0 ${
+                      <span className={`text-[12px] font-medium uppercase tracking-wider px-1.5 py-0.5 rounded border shrink-0 ${
                         h.status === 'attempted'
                           ? 'bg-brand-warning/10 text-brand-warning border-brand-warning/20'
                           : 'bg-brand-text-muted/10 text-brand-text-muted border-brand-text-muted/20'

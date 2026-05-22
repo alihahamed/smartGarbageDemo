@@ -95,7 +95,7 @@ export default function ResidentPay() {
       <div>
         <Link 
           href="/garbage/resident" 
-          className="inline-flex items-center gap-1 text-xs text-brand-accent hover:underline"
+          className="inline-flex items-center gap-1 text-[12px] text-brand-accent hover:underline"
         >
           <ArrowLeft size={14} />
           <span>Back to Portal</span>
@@ -105,21 +105,21 @@ export default function ResidentPay() {
       {/* Main Billing Card */}
       <div className="w-full rounded-2xl glass-panel p-6 border border-brand-accent/25 flex flex-col space-y-6">
         <div className="text-center space-y-1">
-          <h2 className="text-base font-medium text-brand-text">Municipal Sanitation Fee</h2>
-          <p className="text-xs font-light text-brand-text-muted">
+          <h2 className="text-[16px] font-medium text-brand-text">Municipal Sanitation Fee</h2>
+          <p className="text-[12px] font-light text-brand-text-muted">
             Monthly service fee for household waste collection.
           </p>
         </div>
 
         {/* Amount Box */}
         <div className="bg-brand-surface-alt/45 p-6 rounded-xl border border-brand-accent/15 text-center space-y-1">
-          <span className="text-[11px] font-medium text-brand-text-muted uppercase tracking-wider block">
+          <span className="text-[12px] font-medium text-brand-text-muted uppercase tracking-wider block">
             Amount Outstanding
           </span>
-          <span className="text-3xl font-medium text-brand-accent block">
+          <span className="text-[30px] font-medium text-brand-accent block">
             {userHouse?.status === 'done' ? '₹0.00' : '₹15.00'}
           </span>
-          <span className="text-[11px] font-light text-brand-text-muted block">
+          <span className="text-[12px] font-light text-brand-text-muted block">
             {userHouse?.status === 'done' ? 'All dues settled' : 'Due date: End of Month'}
           </span>
         </div>
@@ -128,7 +128,7 @@ export default function ResidentPay() {
           <div className="space-y-4">
             {/* Pay methods list */}
             <div className="space-y-2">
-              <label className="text-[11px] font-medium text-brand-text uppercase tracking-wider block">
+              <label className="text-[12px] font-medium text-brand-text uppercase tracking-wider block">
                 Select Payment Mode
               </label>
 
@@ -140,15 +140,15 @@ export default function ResidentPay() {
                 <button
                   key={method.id}
                   onClick={() => setPaymentMode(method.id)}
-                  className={`w-full p-3 rounded-lg border text-left transition-all flex items-center justify-between ${
+                  className={`w-full py-[13px] px-3 rounded-lg border text-left transition-all flex items-center justify-between ${
                     paymentMode === method.id
                       ? 'border-brand-accent bg-brand-accent/5'
                       : 'border-brand-surface-alt bg-brand-bg/40 hover:bg-brand-surface-alt/20'
                   }`}
                 >
                   <div className="space-y-0.5">
-                    <span className="text-xs font-medium text-brand-text">{method.label}</span>
-                    <p className="text-[11px] font-light text-brand-text-muted">{method.desc}</p>
+                    <span className="text-[12px] font-medium text-brand-text">{method.label}</span>
+                    <p className="text-[12px] font-light text-brand-text-muted">{method.desc}</p>
                   </div>
                   <div className={`w-3.5 h-3.5 rounded-full border flex items-center justify-center ${
                     paymentMode === method.id ? 'border-brand-accent' : 'border-brand-text-muted/30'
@@ -159,25 +159,25 @@ export default function ResidentPay() {
               ))}
             </div>
 
-            {/* Submit button */}
+            {/* Submit button (Reskinned, Royal Blue bg, Cream icon wrapper) */}
             <div className="flex justify-center w-full pt-2">
               <button
                 onClick={handlePay}
                 disabled={paying}
-                className="flex items-center gap-3 pl-6 pr-1.5 py-1.5 rounded-full bg-[#014BAA] text-white text-xs font-medium hover:opacity-90 disabled:opacity-50 transition-all shadow-md shadow-[#014BAA]/20 transform active:scale-95 duration-150"
+                className="flex items-center gap-3 pl-6 pr-1.5 py-[7px] rounded-full bg-[#014BAA] text-white text-[16px] font-medium hover:opacity-90 disabled:opacity-50 transition-all shadow-md shadow-[#014BAA]/20 transform active:scale-95 duration-150"
               >
                 <span>{paying ? 'Processing Gateway...' : 'Pay Fee Online'}</span>
-                <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[#FAF6F3] text-[#014BAA]">
-                  <CreditCard size={12} />
+                <span className="flex items-center justify-center w-14 h-14 rounded-full bg-[#FAF6F3] text-[#014BAA] min-h-[56px] min-w-[56px]">
+                  <CreditCard size={22} />
                 </span>
               </button>
             </div>
           </div>
         ) : (
-          <div className="p-4 rounded-xl border border-brand-success/20 bg-brand-success/5 text-center space-y-1.5">
+          <div className="py-[17px] px-4 rounded-xl border border-brand-success/20 bg-brand-success/5 text-center space-y-1.5">
             <CheckCircle2 className="text-brand-success mx-auto" size={20} />
-            <h4 className="text-xs font-medium text-brand-text">Fee Settled Successfully</h4>
-            <p className="text-[11px] font-light text-brand-text-muted">
+            <h4 className="text-[12px] font-medium text-brand-text">Fee Settled Successfully</h4>
+            <p className="text-[12px] font-light text-brand-text-muted">
               Thank you! Your payment receipt has been recorded in your portal logs.
             </p>
           </div>
@@ -185,8 +185,8 @@ export default function ResidentPay() {
       </div>
 
       {/* Trust seal */}
-      <div className="flex items-center justify-center gap-1.5 text-[11px] font-light text-brand-text-muted">
-        <ShieldCheck size={11} className="text-brand-accent" />
+      <div className="flex items-center justify-center gap-1.5 text-[12px] font-light text-brand-text-muted">
+        <ShieldCheck size={12} className="text-brand-accent" />
         <span>Secured by Kerala Municipal Financial Services Gateway</span>
       </div>
     </div>

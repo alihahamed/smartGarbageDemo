@@ -30,7 +30,7 @@ export default function ResidentReceipts() {
       <div>
         <Link 
           href="/garbage/resident" 
-          className="inline-flex items-center gap-1 text-xs text-brand-accent hover:underline"
+          className="inline-flex items-center gap-1 text-[12px] text-brand-accent hover:underline"
         >
           <ArrowLeft size={14} />
           <span>Back to Portal</span>
@@ -39,11 +39,11 @@ export default function ResidentReceipts() {
 
       {/* Header title */}
       <div className="space-y-1">
-        <h2 className="text-lg font-medium text-brand-text flex items-center gap-2">
+        <h2 className="text-[16px] font-medium text-brand-text flex items-center gap-2">
           <History size={18} className="text-brand-accent animate-[spin_4s_linear_infinite]" />
           Receipt History Logs
         </h2>
-        <p className="text-xs font-light text-brand-text-muted">
+        <p className="text-[12px] font-light text-brand-text-muted">
           Track official settlements for municipal sanitation services.
         </p>
       </div>
@@ -56,10 +56,10 @@ export default function ResidentReceipts() {
               <Skeleton variant="list" count={3} />
             </div>
           ) : receipts.length === 0 ? (
-            <div className="p-8 text-center text-xs font-light text-brand-text-muted space-y-2 flex flex-col items-center justify-center h-full">
+            <div className="p-8 text-center text-[12px] font-light text-brand-text-muted space-y-2 flex flex-col items-center justify-center h-full">
               <FileText size={24} className="text-brand-text-muted/40" />
               <p>No receipt history found.</p>
-              <p className="text-[11px] max-w-[200px]">Once a collector validates your household or you pay dues online, your tax records will appear here.</p>
+              <p className="text-[12px] max-w-[200px]">Once a collector validates your household or you pay dues online, your tax records will appear here.</p>
             </div>
           ) : (
             <div className="divide-y divide-brand-surface-alt">
@@ -67,18 +67,18 @@ export default function ResidentReceipts() {
                 <div key={rcpt.id} className="p-4 flex items-center justify-between gap-4 hover:bg-brand-surface-alt/25 transition-colors">
                   <div className="space-y-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <span className="text-xs font-medium text-brand-text">{rcpt.id}</span>
-                      <span className="inline-flex items-center gap-0.5 text-[11px] font-medium uppercase tracking-wider px-1.5 py-0.5 rounded bg-brand-success/15 text-brand-success border border-brand-success/20">
+                      <span className="text-[12px] font-medium text-brand-text">{rcpt.id}</span>
+                      <span className="inline-flex items-center gap-0.5 text-[12px] font-medium uppercase tracking-wider px-1.5 py-0.5 rounded bg-brand-success/15 text-brand-success border border-brand-success/20">
                         <CheckCircle size={11} /> {rcpt.status}
                       </span>
                     </div>
-                    <p className="text-[11px] font-light text-brand-text-muted">
+                    <p className="text-[12px] font-light text-brand-text-muted">
                       House {rcpt.house} • Method: {rcpt.mode}
                     </p>
                   </div>
                   <div className="text-right shrink-0">
-                    <div className="text-sm font-medium text-brand-accent">₹{rcpt.amount}.00</div>
-                    <span className="text-[11px] font-light text-brand-text-muted block">Verified TAX</span>
+                    <div className="text-[16px] font-medium text-brand-accent">₹{rcpt.amount}.00</div>
+                    <span className="text-[12px] font-light text-brand-text-muted block">Verified TAX</span>
                   </div>
                 </div>
               ))}

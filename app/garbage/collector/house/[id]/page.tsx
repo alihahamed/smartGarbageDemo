@@ -79,8 +79,8 @@ export default function HouseAction() {
     return (
       <div className="flex-1 flex flex-col items-center justify-center p-6 text-center">
         <AlertTriangle size={24} className="text-brand-warning mb-2" />
-        <p className="text-xs font-light text-brand-text-muted mb-4">Household records could not be resolved.</p>
-        <Link href="/garbage/collector/map" className="text-xs text-brand-accent hover:underline">
+        <p className="text-[12px] font-light text-brand-text-muted mb-4">Household records could not be resolved.</p>
+        <Link href="/garbage/collector/map" className="text-[12px] text-brand-accent hover:underline">
           Return to Checklist
         </Link>
       </div>
@@ -186,7 +186,7 @@ export default function HouseAction() {
       <div>
         <Link 
           href="/garbage/collector/map" 
-          className="inline-flex items-center gap-1 text-xs text-brand-accent hover:underline"
+          className="inline-flex items-center gap-1 text-[12px] text-brand-accent hover:underline"
         >
           <ArrowLeft size={14} />
           <span>Back to Checklist</span>
@@ -199,8 +199,8 @@ export default function HouseAction() {
           {house.houseNo}
         </div>
         <div className="space-y-0.5 min-w-0">
-          <h3 className="text-sm font-medium text-brand-text truncate">{house.address}</h3>
-          <div className="flex items-center gap-1.5 text-[11px] font-light text-brand-text-muted">
+          <h3 className="text-[16px] font-medium text-brand-text truncate">{house.address}</h3>
+          <div className="flex items-center gap-1.5 text-[12px] font-light text-brand-text-muted">
             <Navigation size={9} />
             <span>Ward 1 Route • Latitude Stamp 10.85"</span>
           </div>
@@ -209,11 +209,11 @@ export default function HouseAction() {
 
       {/* House Collection Status Details */}
       <div className="p-4 rounded-xl border border-brand-surface-alt bg-brand-surface-alt/10 space-y-3">
-        <h4 className="text-[11px] font-medium text-brand-text-muted uppercase tracking-wider">
+        <h4 className="text-[12px] font-medium text-brand-text-muted uppercase tracking-wider">
           Household Audit Log
         </h4>
         <div className="space-y-2">
-          <div className="flex justify-between text-xs font-light">
+          <div className="flex justify-between text-[12px] font-light">
             <span className="text-brand-text-muted">Status</span>
             <span className={`font-medium capitalize ${
               house.status === 'done' ? 'text-brand-success' :
@@ -221,21 +221,21 @@ export default function HouseAction() {
             }`}>{house.status}</span>
           </div>
           {house.visitTimestamp && (
-            <div className="flex justify-between text-xs font-light">
+            <div className="flex justify-between text-[12px] font-light">
               <span className="text-brand-text-muted">Visit Checked</span>
               <span className="text-brand-text">{house.visitTimestamp}</span>
             </div>
           )}
           {house.paymentMode && (
-            <div className="flex justify-between text-xs font-light">
+            <div className="flex justify-between text-[12px] font-light">
               <span className="text-brand-text-muted">Payment Type</span>
               <span className="text-brand-text">{house.paymentMode}</span>
             </div>
           )}
           {house.amount && (
-            <div className="flex justify-between text-xs font-light">
+            <div className="flex justify-between text-[12px] font-light">
               <span className="text-brand-text-muted">Amount Settled</span>
-              <span className="text-brand-accent font-medium">₹{house.amount}</span>
+              <span className="text-brand-accent font-medium text-[16px]">₹{house.amount}</span>
             </div>
           )}
         </div>
@@ -246,41 +246,41 @@ export default function HouseAction() {
         <div className="space-y-3">
           <button
             onClick={handleSomeoneHome}
-            className="w-full flex items-center justify-between p-4 rounded-xl border border-brand-accent/20 bg-brand-accent/5 hover:bg-brand-accent/10 transition-colors text-left"
+            className="w-full flex items-center justify-between py-[17px] px-4 rounded-xl border border-brand-accent/20 bg-brand-accent/5 hover:bg-brand-accent/10 transition-colors text-left"
           >
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-lg bg-brand-accent/10 text-brand-accent">
                 <UserCheck size={16} />
               </div>
               <div className="space-y-0.5">
-                <span className="text-xs font-medium text-brand-text">Someone Home</span>
-                <p className="text-[11px] font-light text-brand-text-muted">Verify Resident QR & log payment.</p>
+                <span className="text-[16px] font-medium text-brand-text">Someone Home</span>
+                <p className="text-[12px] font-light text-brand-text-muted">Verify Resident QR & log payment.</p>
               </div>
             </div>
-            <span className="text-brand-accent text-xs font-medium">Verify Pass →</span>
+            <span className="text-brand-accent text-[12px] font-medium">Verify Pass →</span>
           </button>
 
           <button
             onClick={handleNoOneHome}
-            className="w-full flex items-center justify-between p-4 rounded-xl border border-brand-surface-alt bg-brand-bg hover:bg-brand-surface-alt/30 transition-colors text-left"
+            className="w-full flex items-center justify-between py-[17px] px-4 rounded-xl border border-brand-surface-alt bg-brand-bg hover:bg-brand-surface-alt/30 transition-colors text-left"
           >
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-lg bg-brand-surface-alt text-brand-text-muted">
                 <UserMinus size={16} />
               </div>
               <div className="space-y-0.5">
-                <span className="text-xs font-medium text-brand-text">No One Home</span>
-                <p className="text-[11px] font-light text-brand-text-muted">Log attendance attempt with photo.</p>
+                <span className="text-[16px] font-medium text-brand-text">No One Home</span>
+                <p className="text-[12px] font-light text-brand-text-muted">Log attendance attempt with photo.</p>
               </div>
             </div>
-            <span className="text-brand-text-muted text-xs">Upload Photo →</span>
+            <span className="text-brand-text-muted text-[12px]">Upload Photo →</span>
           </button>
         </div>
       ) : (
         <div className="p-6 rounded-xl border border-brand-success/15 bg-brand-success/5 text-center space-y-2">
           <CheckCircle className="text-brand-success mx-auto" size={24} />
-          <h3 className="text-xs font-medium text-brand-text">Household Processed</h3>
-          <p className="text-[11px] font-light text-brand-text-muted max-w-[240px] mx-auto leading-relaxed">
+          <h3 className="text-[16px] font-medium text-brand-text">Household Processed</h3>
+          <p className="text-[12px] font-light text-brand-text-muted max-w-[240px] mx-auto leading-relaxed">
             This residence is already logged for today's collection cycle.
           </p>
         </div>
@@ -304,10 +304,10 @@ export default function HouseAction() {
           </div>
 
           <div className="space-y-1">
-            <p className={`text-xs font-medium ${scannerSuccess ? 'text-brand-success' : 'text-brand-text'}`}>
+            <p className={`text-[12px] font-medium ${scannerSuccess ? 'text-brand-success' : 'text-brand-text'}`}>
               {scannerStatus}
             </p>
-            <p className="text-[11px] font-light text-brand-text-muted">
+            <p className="text-[12px] font-light text-brand-text-muted">
               {scannerMessage}
             </p>
           </div>
@@ -322,33 +322,33 @@ export default function HouseAction() {
         subtitle={`${house.houseNo} • Monthly Fee: ₹15`}
       >
         <div className="space-y-4">
-          <p className="text-xs font-light text-brand-text-muted leading-relaxed">
+          <p className="text-[12px] font-light text-brand-text-muted leading-relaxed">
             Resident details match. Select a collection method to issue receipts and close route point.
           </p>
 
           <div className="grid grid-cols-2 gap-3">
             <button
               onClick={() => handleLogPayment('Online')}
-              className="py-3 px-4 rounded-lg bg-brand-accent/10 border border-brand-accent/30 text-brand-accent hover:bg-brand-accent/20 transition-all text-center flex flex-col items-center gap-1.5"
+              className="py-[13px] px-4 rounded-lg bg-brand-accent/10 border border-brand-accent/30 text-brand-accent hover:bg-brand-accent/20 transition-all text-center flex flex-col items-center gap-1.5"
             >
               <Smartphone size={16} />
-              <span className="text-xs font-medium">Online Paid</span>
-              <span className="text-[11px] font-light opacity-80">Pre-settled online</span>
+              <span className="text-[12px] font-medium">Online Paid</span>
+              <span className="text-[12px] font-light opacity-80">Pre-settled online</span>
             </button>
 
             <button
               onClick={() => setShowCashInput(!showCashInput)}
-              className="py-3 px-4 rounded-lg bg-brand-bg border border-brand-surface-alt text-brand-text hover:bg-brand-surface-alt/40 transition-all text-center flex flex-col items-center gap-1.5"
+              className="py-[13px] px-4 rounded-lg bg-brand-bg border border-brand-surface-alt text-brand-text hover:bg-brand-surface-alt/40 transition-all text-center flex flex-col items-center gap-1.5"
             >
               <UserCheck size={16} className="text-brand-text-muted" />
-              <span className="text-xs font-medium">Collect Cash</span>
-              <span className="text-[11px] font-light opacity-80">Collect at doorstep</span>
+              <span className="text-[12px] font-medium">Collect Cash</span>
+              <span className="text-[12px] font-light opacity-80">Collect at doorstep</span>
             </button>
           </div>
 
           {showCashInput && (
             <div className="p-4 rounded-xl border border-brand-surface-alt bg-brand-bg/40 space-y-3 animate-fade-in">
-              <label className="text-[11px] font-medium text-brand-text uppercase tracking-wider block">
+              <label className="text-[12px] font-medium text-brand-text uppercase tracking-wider block">
                 Enter Cash Amount Collected (₹)
               </label>
               <div className="flex gap-2">
@@ -356,12 +356,12 @@ export default function HouseAction() {
                   type="number"
                   value={cashAmount}
                   onChange={(e) => setCashAmount(e.target.value)}
-                  className="flex-1 px-3 py-2 rounded-lg border border-brand-surface-alt bg-brand-bg text-brand-text text-xs focus:outline-none focus:border-brand-accent/40"
+                  className="flex-1 px-3 py-2 rounded-lg border border-brand-surface-alt bg-brand-bg text-brand-text text-[12px] focus:outline-none focus:border-brand-accent/40"
                   placeholder="e.g. 15"
                 />
                 <button
                   onClick={() => handleLogPayment('Cash')}
-                  className="px-4 bg-[#014BAA] hover:opacity-90 text-white text-xs font-medium rounded-lg"
+                  className="px-4 py-[9px] bg-[#014BAA] hover:opacity-90 text-white text-[12px] font-medium rounded-lg"
                 >
                   Confirm Cash
                 </button>
@@ -388,23 +388,23 @@ export default function HouseAction() {
             ) : (
               <div className="space-y-1">
                 <Camera size={24} className="text-brand-text-muted mx-auto" />
-                <span className="text-[11px] font-light text-brand-text-muted block">Simulating Camera Feed</span>
+                <span className="text-[12px] font-light text-brand-text-muted block">Simulating Camera Feed</span>
               </div>
             )}
           </div>
 
-          <p className="text-[11px] font-light text-brand-text-muted leading-normal max-w-[300px] mx-auto">
+          <p className="text-[12px] font-light text-brand-text-muted leading-normal max-w-[300px] mx-auto">
             Ensure the locked house gate/door is fully visible in frame. GPS location stamp will be permanently locked on log.
           </p>
 
           <div className="flex justify-center w-full">
             <button
               onClick={handleCaptureDoorPhoto}
-              className="flex items-center gap-3 pl-6 pr-1.5 py-1.5 rounded-full bg-[#014BAA] text-white text-xs font-medium hover:opacity-90 transition-all shadow-md shadow-[#014BAA]/20 transform active:scale-95 duration-150"
+              className="flex items-center gap-3 pl-6 pr-1.5 py-[7px] rounded-full bg-[#014BAA] text-white text-[16px] font-medium hover:opacity-90 transition-all shadow-md shadow-[#014BAA]/20 transform active:scale-95 duration-150"
             >
               <span>Capture Photo & Log Attempt</span>
-              <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[#FAF6F3] text-[#014BAA]">
-                <Camera size={12} />
+              <span className="flex items-center justify-center w-14 h-14 rounded-full bg-[#FAF6F3] text-[#014BAA] min-h-[56px] min-w-[56px]">
+                <Camera size={22} />
               </span>
             </button>
           </div>

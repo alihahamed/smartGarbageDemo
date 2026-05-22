@@ -43,16 +43,30 @@ We use the Google Font **"DM Sans"** for a clean, friendly, geometric sans-serif
 > **Strict Font Weight Rule:** Semibold (600), Bold (700), Extrabold (800), and Black (900) weights are strictly prohibited. All elements requiring emphasis must use `font-weight: 500` (Medium) combined with appropriate size/color contrast, rather than heavier weights.
 
 ### Text Size Scale
-* **Hero / Large Value:** `2.25rem` (36px) / Line height `1.1`
-* **Heading 1:** `1.5rem` (24px) / Line height `1.2`
-* **Heading 2:** `1.25rem` (20px) / Line height `1.3`
-* **Body Text:** `1rem` (16px) / Line height `1.5`
-* **Small / Helper Text:** `0.875rem` (14px) / Line height `1.5`
-* **Micro / Badge Text:** `0.75rem` (12px) / Line height `1`
+* **Hero / Large Value:** `1.875rem` (30px) or `2.25rem` (36px) / Line height `1.1`
+* **Card / Form / Normal Headings:** `1rem` (16px) / Line height `1.5`
+* **Subheadings / Details / Badges / Captions:** `0.75rem` (12px) / Line height `1.5` or `1`
+* **No `text-xs` or `text-sm` classes:** Tailored utility overrides (e.g. `text-[12px]`, `text-[16px]`) are used everywhere on mobile to guarantee readability and strict adherence to the 12px/16px scale.
 
 ---
 
-## 3. Layout & Structure (Mobile-First)
+## 3. Button Specifications
+
+All interactive buttons and action selectors have been reskinned and scaled:
+
+* **Primary CTAs (Royal Blue Pill):** 
+  - **Fills:** Royal Blue (`#014BAA`) background with high-contrast white text.
+  - **Height:** Increased by 2px (padding adjusted from `py-1.5` to `py-[7px]`, or `py-2.5` to `py-[11px]`). Width is unchanged.
+  - **Icon Wrapper:** Fully rounded trailing/leading circle badge in Cream (`#FAF6F3`) background of size `w-14 h-14` (56px) to fit premium touch targets.
+  - **Icon Details:** Lucide icons scaled up to `size={22}` and colored in Royal Blue (`#014BAA`) to stand out clearly against the cream background.
+* **Filter and Action Pills:**
+  - **Pills:** Compact fully rounded pills with `py-[7px] px-3.5` and `text-[12px]`.
+* **Grid and Card Buttons:**
+  - **Sizing:** `p-3` (12px) scaled to `py-[13px] px-3`, and `p-4` (16px) scaled to `py-[17px] px-4` to add the +2px height requirement.
+
+---
+
+## 4. Layout & Structure (Mobile-First)
 
 The demo is optimized for mobile-first interactions simulating a citizen's or field collector's smartphone.
 
@@ -67,7 +81,7 @@ The demo is optimized for mobile-first interactions simulating a citizen's or fi
 
 ---
 
-## 4. Visual Tokens & Glass Panels
+## 5. Visual Tokens & Glass Panels
 
 To give the app a premium, clean, SaaS-grade appearance:
 
@@ -85,3 +99,5 @@ To give the app a premium, clean, SaaS-grade appearance:
   - Border: `1px solid rgba(1, 75, 170, 0.08)`
   - Shadow: `0 10px 25px -5px rgba(1, 75, 170, 0.05), 0 8px 16px -6px rgba(0, 0, 0, 0.03)`
 * **Scrollbars:** Blue-tinted thumbs (`#B4C6D8` / `#7FA3C7` on hover).
+* **Navbar:** Underlaid with a bottom-to-top linear gradient (`bg-gradient-to-t from-[#014BAA]/33 via-white/95 to-white/95`) spanning the bottom 1/3 of the screen.
+

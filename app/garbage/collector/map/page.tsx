@@ -52,14 +52,14 @@ export default function CollectorMap() {
           <AlertCircle size={24} />
         </div>
         <div className="space-y-1.5">
-          <h3 className="text-base font-medium text-brand-text">Shift Lock Active</h3>
-          <p className="text-xs font-light text-brand-text-muted max-w-[280px] mx-auto leading-relaxed">
+          <h3 className="text-[16px] font-medium text-brand-text">Shift Lock Active</h3>
+          <p className="text-[12px] font-light text-brand-text-muted max-w-[280px] mx-auto leading-relaxed">
             Please start your shift in the Collector Console before accessing routes.
           </p>
         </div>
         <Link
           href="/garbage/collector"
-          className="px-4 py-2 bg-brand-accent text-brand-bg text-xs font-medium rounded-lg hover:bg-brand-accent/90 transition-colors"
+          className="px-4 py-[10px] bg-brand-accent text-brand-bg text-[12px] font-medium rounded-lg hover:bg-brand-accent/90 transition-colors"
         >
           Go to Collector Shift
         </Link>
@@ -73,7 +73,7 @@ export default function CollectorMap() {
       <div className="flex items-center justify-between">
         <Link 
           href="/garbage/collector" 
-          className="inline-flex items-center gap-1 text-xs text-brand-accent hover:underline"
+          className="inline-flex items-center gap-1 text-[12px] text-brand-accent hover:underline"
         >
           <ArrowLeft size={14} />
           <span>Collector Shift</span>
@@ -83,7 +83,7 @@ export default function CollectorMap() {
         <div className="flex rounded-lg border border-brand-surface-alt bg-brand-surface-alt/45 p-0.5">
           <button
             onClick={() => setViewMode('list')}
-            className={`p-1.5 rounded-md transition-colors ${
+            className={`py-[7px] px-1.5 rounded-md transition-colors ${
               viewMode === 'list' ? 'bg-brand-accent text-brand-bg' : 'text-brand-text-muted hover:text-brand-text'
             }`}
             aria-label="List View"
@@ -92,7 +92,7 @@ export default function CollectorMap() {
           </button>
           <button
             onClick={() => setViewMode('map')}
-            className={`p-1.5 rounded-md transition-colors ${
+            className={`py-[7px] px-1.5 rounded-md transition-colors ${
               viewMode === 'map' ? 'bg-brand-accent text-brand-bg' : 'text-brand-text-muted hover:text-brand-text'
             }`}
             aria-label="Interactive Route Map"
@@ -104,7 +104,7 @@ export default function CollectorMap() {
 
       {/* Progress Card */}
       <div className="p-4 rounded-xl glass-panel border border-brand-accent/15 space-y-3">
-        <div className="flex justify-between items-center text-[11px] text-brand-text-muted">
+        <div className="flex justify-between items-center text-[12px] text-brand-text-muted">
           <span className="font-medium uppercase tracking-wider">Route Progress (Ward 1)</span>
           <span className="text-brand-accent">{coveragePercent}% Coverage</span>
         </div>
@@ -117,16 +117,16 @@ export default function CollectorMap() {
 
         <div className="grid grid-cols-3 gap-2 text-center pt-1">
           <div className="bg-brand-bg/40 p-1.5 rounded border border-brand-surface-alt">
-            <div className="text-[14px] font-medium text-brand-success">{collectedCount}</div>
-            <div className="text-[11px] font-light text-brand-text-muted">Done</div>
+            <div className="text-[16px] font-medium text-brand-success">{collectedCount}</div>
+            <div className="text-[12px] font-light text-brand-text-muted">Done</div>
           </div>
           <div className="bg-brand-bg/40 p-1.5 rounded border border-brand-surface-alt">
-            <div className="text-[14px] font-medium text-brand-warning">{attemptedCount}</div>
-            <div className="text-[11px] font-light text-brand-text-muted">Attempted</div>
+            <div className="text-[16px] font-medium text-brand-warning">{attemptedCount}</div>
+            <div className="text-[12px] font-light text-brand-text-muted">Attempted</div>
           </div>
           <div className="bg-brand-bg/40 p-1.5 rounded border border-brand-surface-alt">
-            <div className="text-[14px] font-medium text-brand-text-muted">{pendingCount}</div>
-            <div className="text-[11px] font-light text-brand-text-muted">Pending</div>
+            <div className="text-[16px] font-medium text-brand-text-muted">{pendingCount}</div>
+            <div className="text-[12px] font-light text-brand-text-muted">Pending</div>
           </div>
         </div>
       </div>
@@ -142,34 +142,34 @@ export default function CollectorMap() {
               <button
                 key={house.id}
                 onClick={() => router.push(`/garbage/collector/house/${house.id}`)}
-                className="w-full p-3 rounded-xl border border-brand-accent/10 bg-brand-surface-alt/25 hover:border-brand-accent/40 hover:bg-brand-surface-alt/55 text-left transition-all flex justify-between items-center group"
+                className="w-full py-[13px] px-3 rounded-xl border border-brand-accent/10 bg-brand-surface-alt/25 hover:border-brand-accent/40 hover:bg-brand-surface-alt/55 text-left transition-all flex justify-between items-center group"
               >
                 <div className="space-y-1 min-w-0">
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-medium text-brand-text group-hover:text-brand-accent transition-colors">
+                    <span className="text-[16px] font-medium text-brand-text group-hover:text-brand-accent transition-colors">
                       {house.houseNo}
                     </span>
                     {house.status === 'done' && (
-                      <span className="text-[11px] font-medium uppercase tracking-wider text-brand-success px-1.5 py-0.5 rounded bg-brand-success/10 border border-brand-success/20 flex items-center gap-0.5">
+                      <span className="text-[12px] font-medium uppercase tracking-wider text-brand-success px-1.5 py-0.5 rounded bg-brand-success/10 border border-brand-success/20 flex items-center gap-0.5">
                         <CheckCircle2 size={11} /> Done
                       </span>
                     )}
                     {house.status === 'attempted' && (
-                      <span className="text-[11px] font-medium uppercase tracking-wider text-brand-warning px-1.5 py-0.5 rounded bg-brand-warning/10 border border-brand-warning/20 flex items-center gap-0.5">
+                      <span className="text-[12px] font-medium uppercase tracking-wider text-brand-warning px-1.5 py-0.5 rounded bg-brand-warning/10 border border-brand-warning/20 flex items-center gap-0.5">
                         <AlertCircle size={11} /> Attempt
                       </span>
                     )}
                     {house.status === 'pending' && (
-                      <span className="text-[11px] font-medium uppercase tracking-wider text-brand-text-muted px-1.5 py-0.5 rounded bg-brand-surface-alt/60 border border-brand-surface-alt flex items-center gap-0.5">
+                      <span className="text-[12px] font-medium uppercase tracking-wider text-brand-text-muted px-1.5 py-0.5 rounded bg-brand-surface-alt/60 border border-brand-surface-alt flex items-center gap-0.5">
                         <HelpCircle size={11} /> Pending
                       </span>
                     )}
                   </div>
-                  <p className="text-[11px] font-light text-brand-text-muted truncate">
+                  <p className="text-[12px] font-light text-brand-text-muted truncate">
                     {house.address}
                   </p>
                 </div>
-                <div className="text-[11px] font-medium text-brand-accent group-hover:translate-x-0.5 transition-transform shrink-0">
+                <div className="text-[12px] font-medium text-brand-accent group-hover:translate-x-0.5 transition-transform shrink-0">
                   Manage →
                 </div>
               </button>
@@ -178,7 +178,7 @@ export default function CollectorMap() {
         ) : (
           /* High-Fidelity SVG Route Map */
           <div className="w-full flex-1 flex flex-col justify-between p-4 rounded-xl border border-brand-surface-alt bg-brand-surface-alt/20">
-            <div className="flex items-center justify-between text-[11px] text-brand-text-muted mb-2">
+            <div className="flex items-center justify-between text-[12px] text-brand-text-muted mb-2">
               <span className="flex items-center gap-1">
                 <Compass size={12} className="animate-spin" style={{ animationDuration: '6s' }} />
                 Interactive Route Map
@@ -221,13 +221,13 @@ export default function CollectorMap() {
                 );
               })}
 
-              <div className="absolute top-2 right-2 bg-brand-surface-alt/90 px-2 py-1 rounded text-[11px] font-light flex items-center gap-1 border border-brand-accent/20">
+              <div className="absolute top-2 right-2 bg-brand-surface-alt/90 px-2 py-1 rounded text-[12px] font-light flex items-center gap-1 border border-brand-accent/20">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-ping" />
                 <span>Your Location</span>
               </div>
             </div>
 
-            <p className="text-[11px] font-light text-brand-text-muted text-center mt-3">
+            <p className="text-[12px] font-light text-brand-text-muted text-center mt-3">
               Tap dots on map to scan household QR codes or log check-ins directly.
             </p>
           </div>

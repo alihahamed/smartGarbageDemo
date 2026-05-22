@@ -218,18 +218,18 @@ export default function GarbageAdmin() {
           {/* Calendar Button */}
           <button 
             type="button"
-            className="flex items-center justify-center w-11 h-11 rounded-full bg-white border border-[#014BAA]/12 hover:border-[#014BAA]/30 text-[#4A607A] hover:text-[#014BAA] transition-all min-h-[44px] min-w-[44px]"
+            className="flex items-center justify-center w-14 h-14 rounded-full bg-white border border-[#014BAA]/12 hover:border-[#014BAA]/30 text-[#4A607A] hover:text-[#014BAA] transition-all min-h-[50px] min-w-[50px]"
             aria-label="Calendar Schedule"
           >
-            <Calendar size={16} />
+            <Calendar size={22} />
           </button>
           {/* Notification Button */}
           <button 
             type="button"
-            className="relative flex items-center justify-center w-11 h-11 rounded-full bg-white border border-[#014BAA]/12 hover:border-[#014BAA]/30 text-[#4A607A] hover:text-[#014BAA] transition-all min-h-[44px] min-w-[44px]"
+            className="relative flex items-center justify-center w-14 h-14 rounded-full bg-white border border-[#014BAA]/12 hover:border-[#014BAA]/30 text-[#4A607A] hover:text-[#014BAA] transition-all min-h-[50px] min-w-[50px]"
             aria-label="Notifications"
           >
-            <Bell size={16} />
+            <Bell size={22} />
             <span className="absolute top-3.5 right-3.5 w-2 h-2 rounded-full bg-[#FF5A36]" />
           </button>
         </div>
@@ -251,12 +251,12 @@ export default function GarbageAdmin() {
           <div className="w-full flex-shrink-0 pr-1">
             <div className="p-4 h-32 rounded-xl glass-panel border border-[#014BAA]/10 flex items-center justify-between">
               <div className="flex flex-col justify-between h-full">
-                <span className="text-[11px] font-medium tracking-wider uppercase text-[#4A607A]">
+                <span className="text-[12px] font-medium tracking-wider uppercase text-[#4A607A]">
                   Collection Rate
                 </span>
                 <div className="space-y-0.5">
                   <span className="text-3xl font-medium text-[#0A1C33]">{coveragePercent}%</span>
-                  <p className="text-[11px] font-light text-[#4A607A]">
+                  <p className="text-[12px] font-light text-[#4A607A]">
                     {collectedCount} of {houses.length} houses logged
                   </p>
                 </div>
@@ -271,12 +271,12 @@ export default function GarbageAdmin() {
           <div className="w-full flex-shrink-0 pl-1">
             <div className="p-4 h-32 rounded-xl glass-panel border border-[#014BAA]/10 flex items-center justify-between">
               <div className="flex flex-col justify-between h-full">
-                <span className="text-[11px] font-medium tracking-wider uppercase text-[#4A607A]">
+                <span className="text-[12px] font-medium tracking-wider uppercase text-[#4A607A]">
                   Active Route
                 </span>
                 <div className="space-y-0.5">
                   <span className="text-3xl font-medium text-[#0A1C33]">Ward 1</span>
-                  <p className="text-[11px] font-light text-[#4A607A]">
+                  <p className="text-[12px] font-light text-[#4A607A]">
                     Collector: Rajesh Kumar
                   </p>
                 </div>
@@ -317,16 +317,16 @@ export default function GarbageAdmin() {
             value={broadcastText}
             onChange={(e) => setBroadcastText(e.target.value)}
             placeholder="Write announcement (e.g. Collection delayed today due to rain)..."
-            className="w-full h-40 p-3 rounded-lg border border-[#014BAA]/12 bg-white text-[#0A1C33] text-sm font-light placeholder-[#6B7F96] focus:outline-none focus:border-[#014BAA]/50 transition-colors resize-none"
+            className="w-full h-40 p-3 rounded-lg border border-[#014BAA]/12 bg-white text-[#0A1C33] text-[12px] font-light placeholder-[#6B7F96] focus:outline-none focus:border-[#014BAA]/50 transition-colors resize-none"
           />
           <div className="flex justify-center w-full">
             <button
               type="submit"
-              className="flex items-center gap-3 pl-6 pr-1.5 py-1.5 rounded-full bg-[#014BAA] text-white text-sm font-medium hover:opacity-90 transition-all shadow-md shadow-[#014BAA]/20 transform active:scale-95 duration-150"
+              className="flex items-center gap-3 pl-6 pr-1.5 py-[4px] rounded-full bg-[#014BAA] text-white text-[15px] font-medium hover:opacity-90 transition-all shadow-md shadow-[#014BAA]/20 transform active:scale-95 duration-150"
             >
               <span>Send Broadcast</span>
-              <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[#FAF6F3] text-[#014BAA]">
-                <Megaphone size={12} />
+              <span className="flex items-center justify-center w-13 h-13 rounded-full bg-[#FAF6F3] text-[#014BAA] min-h-[56px] min-w-[56px]">
+                <Megaphone size={22} />
               </span>
             </button>
           </div>
@@ -347,13 +347,13 @@ export default function GarbageAdmin() {
           </p>
         </div>
         <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#014BAA] border border-[#014BAA]/12 group-hover:bg-[#014BAA] text-white group-hover:text-white transition-all">
-          <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
+          <ArrowRight size={17} className="group-hover:translate-x-0.5 transition-transform" />
         </div>
       </Link>
 
       {/* Broadcast Log (Reduced width and centered) */}
       <div className="flex-1 space-y-3 min-h-0 w-[84%] mx-auto">
-        <h3 className="text-xs font-medium text-[#014BAA] flex items-center gap-1.5">
+        <h3 className="text-[16px] font-medium text-[#014BAA] flex items-center gap-1.5">
           <Bell size={13} className="text-[#4A607A]" />
           Recent Broadcast Logs
         </h3>
@@ -361,21 +361,21 @@ export default function GarbageAdmin() {
         <div className="rounded-xl border border-[#014BAA]/10 overflow-hidden bg-[#FAF6F3]">
           <div className="max-h-[160px] overflow-y-auto divide-y divide-[#014BAA]/8">
             {broadcasts.length === 0 ? (
-              <div className="p-4 text-center text-[11px] font-light text-[#4A607A]">
+              <div className="p-4 text-center text-[12px] font-light text-[#4A607A]">
                 No announcements broadcasted yet.
               </div>
             ) : (
               broadcasts.map((b, idx) => (
                 <div key={idx} className="p-3 flex items-start gap-3">
                   <div className="p-1.5 rounded bg-[#FAF6F3] text-[#014BAA]">
-                    <Clock size={11} className="text-[#014BAA]" />
+                    <Clock size={16} className="text-[#014BAA]" />
                   </div>
                   <div className="flex-1 space-y-1">
-                    <div className="flex justify-between items-center text-[11px]">
+                    <div className="flex justify-between items-center text-[12px]">
                       <span className="font-medium text-[#014BAA]">{b.actor}</span>
                       <span className="font-light text-[#4A607A]">{b.time}</span>
                     </div>
-                    <p className="text-[11px] font-light text-[#0A3366] leading-relaxed">
+                    <p className="text-[12px] font-light text-[#0A3366] leading-relaxed">
                       {b.message}
                     </p>
                   </div>

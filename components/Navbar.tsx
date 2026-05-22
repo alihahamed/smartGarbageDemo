@@ -46,28 +46,28 @@ export default function Navbar() {
   if (isHome || isLogin) return null;
 
   return (
-    <nav className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2.5rem)] max-w-[300px] bg-white/95 border border-[#014BAA]/10 backdrop-blur-md rounded-full shadow-lg p-2.5 flex items-center justify-between">
+    <nav className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2.5rem)] max-w-[300px] bg-gradient-to-t from-[#014BAA]/33 via-white/95 to-white/95 border border-[#014BAA]/10 backdrop-blur-md rounded-full shadow-lg p-2.5 flex items-center justify-between">
       {/* Left: Back Button (Royal blue color, warm cream bg, fully rounded) */}
       <button
         onClick={handleBack}
-        className="flex items-center justify-center w-11 h-11 rounded-full bg-brand-surface-alt border border-[#014BAA]/12 text-[#014BAA] hover:bg-[#E5EFFC] transition-colors shadow-sm min-h-[44px] min-w-[44px]"
+        className="flex items-center justify-center w-14 h-14 rounded-full bg-brand-surface-alt border border-[#014BAA]/12 text-[#014BAA] hover:bg-[#E5EFFC] transition-colors shadow-sm min-h-[56px] min-w-[56px]"
         aria-label="Go Back"
       >
-        <ArrowLeft size={18} />
+        <ArrowLeft size={22} />
       </button>
 
       {/* Middle: Dashboard Text */}
-      <span className="text-[13px] font-medium tracking-[0.12em] text-[#014BAA] uppercase select-none px-4 text-center">
+      <span className="text-[14px] font-medium tracking-[0.12em] text-[#014BAA] uppercase select-none px-4 text-center">
         {pathname === '/garbage/admin/status' ? 'collection' : 'dashboard'}
       </span>
 
       {/* Right: Logout/Exit Button (Red text, light slate bg, fully rounded) */}
       <button
         onClick={handleExit}
-        className="flex items-center justify-center w-11 h-11 rounded-full bg-red-50 border border-red-200 text-red-500 hover:bg-red-100 transition-colors shadow-sm min-h-[44px] min-w-[44px]"
+        className="flex items-center justify-center w-14 h-14 rounded-full bg-red-50 border border-red-200 text-red-500 hover:bg-red-100 transition-colors shadow-sm min-h-[56px] min-w-[56px]"
         aria-label="Exit Console"
       >
-        <LogOut size={18} />
+        <LogOut size={22} />
       </button>
     </nav>
   );

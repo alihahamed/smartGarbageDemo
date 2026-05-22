@@ -53,16 +53,16 @@ export default function ResidentDashboard() {
     <div className="flex-1 flex flex-col justify-between py-2 space-y-6">
       {/* Title greeting */}
       <div className="space-y-1">
-        <h2 className="text-lg font-medium text-brand-text capitalize">
+        <h2 className="text-[16px] font-medium text-brand-text capitalize">
           Welcome back, {username}!
         </h2>
         {userHouse ? (
-          <p className="text-xs font-light text-brand-text-muted flex items-center gap-1">
+          <p className="text-[12px] font-light text-brand-text-muted flex items-center gap-1">
             <MapPin size={12} className="text-brand-accent" />
             <span>Assigned Household: <strong>{userHouse.houseNo}</strong> ({userHouse.address})</span>
           </p>
         ) : (
-          <p className="text-xs font-light text-brand-text-muted">Assigned Household: H-101</p>
+          <p className="text-[12px] font-light text-brand-text-muted">Assigned Household: H-101</p>
         )}
       </div>
 
@@ -70,38 +70,38 @@ export default function ResidentDashboard() {
       <div className="grid grid-cols-3 gap-3">
         <Link
           href="/garbage/resident/qr"
-          className="p-3 rounded-xl border border-brand-accent/20 bg-brand-accent/5 hover:bg-brand-accent/15 transition-all text-center flex flex-col items-center justify-center space-y-2 group"
+          className="py-[13px] px-3 rounded-xl border border-brand-accent/20 bg-brand-accent/5 hover:bg-brand-accent/15 transition-all text-center flex flex-col items-center justify-center space-y-2 group"
         >
           <div className="p-2 rounded-lg bg-brand-accent/10 text-brand-accent group-hover:scale-105 transition-transform">
             <QrCode size={18} />
           </div>
-          <span className="text-[11px] font-medium text-brand-text block">Resident Pass</span>
+          <span className="text-[12px] font-medium text-brand-text block">Resident Pass</span>
         </Link>
 
         <Link
           href="/garbage/resident/pay"
-          className="p-3 rounded-xl border border-brand-accent/15 bg-brand-surface-alt/45 hover:bg-brand-surface-alt/80 transition-all text-center flex flex-col items-center justify-center space-y-2 group"
+          className="py-[13px] px-3 rounded-xl border border-brand-accent/15 bg-brand-surface-alt/45 hover:bg-brand-surface-alt/80 transition-all text-center flex flex-col items-center justify-center space-y-2 group"
         >
           <div className="p-2 rounded-lg bg-brand-surface-alt border border-brand-accent/10 text-brand-accent group-hover:scale-105 transition-transform">
             <CreditCard size={18} />
           </div>
-          <span className="text-[11px] font-medium text-brand-text block">Pay Dues</span>
+          <span className="text-[12px] font-medium text-brand-text block">Pay Dues</span>
         </Link>
 
         <Link
           href="/garbage/resident/receipts"
-          className="p-3 rounded-xl border border-brand-accent/15 bg-brand-surface-alt/45 hover:bg-brand-surface-alt/80 transition-all text-center flex flex-col items-center justify-center space-y-2 group"
+          className="py-[13px] px-3 rounded-xl border border-brand-accent/15 bg-brand-surface-alt/45 hover:bg-brand-surface-alt/80 transition-all text-center flex flex-col items-center justify-center space-y-2 group"
         >
           <div className="p-2 rounded-lg bg-brand-surface-alt border border-brand-accent/10 text-brand-accent group-hover:scale-105 transition-transform">
             <History size={18} />
           </div>
-          <span className="text-[11px] font-medium text-brand-text block">Receipts</span>
+          <span className="text-[12px] font-medium text-brand-text block">Receipts</span>
         </Link>
       </div>
 
       {/* Household Status Alert Box */}
       {userHouse && (
-        <div className={`p-4 rounded-xl border flex items-start gap-3 ${
+        <div className={`py-[17px] px-4 rounded-xl border flex items-start gap-3 ${
           userHouse.status === 'done'
             ? 'border-brand-success/20 bg-brand-success/5 text-brand-text'
             : userHouse.status === 'attempted'
@@ -112,10 +112,10 @@ export default function ResidentDashboard() {
             <>
               <CheckCircle className="text-brand-success shrink-0 mt-0.5" size={16} />
               <div className="space-y-0.5">
-                <span className="text-[11px] font-medium text-brand-success uppercase tracking-wide block">
+                <span className="text-[12px] font-medium text-brand-success uppercase tracking-wide block">
                   Collection Processed
                 </span>
-                <p className="text-[11px] font-light text-brand-text-muted leading-normal">
+                <p className="text-[12px] font-light text-brand-text-muted leading-normal">
                   Your waste collection was successfully logged at {userHouse.visitTimestamp || 'today'}. Receipt generated.
                 </p>
               </div>
@@ -124,10 +124,10 @@ export default function ResidentDashboard() {
             <>
               <AlertCircle className="text-brand-warning shrink-0 mt-0.5" size={16} />
               <div className="space-y-0.5">
-                <span className="text-[11px] font-medium text-brand-warning uppercase tracking-wide block">
+                <span className="text-[12px] font-medium text-brand-warning uppercase tracking-wide block">
                   Collector Attempt Missed
                 </span>
-                <p className="text-[11px] font-light text-brand-text-muted leading-normal">
+                <p className="text-[12px] font-light text-brand-text-muted leading-normal">
                   Rajesh Kumar attempted verification at your door. Please keep your QR pass ready next cycle.
                 </p>
               </div>
@@ -136,10 +136,10 @@ export default function ResidentDashboard() {
             <>
               <Clock className="text-brand-accent shrink-0 mt-0.5 animate-pulse" size={16} />
               <div className="space-y-0.5">
-                <span className="text-[11px] font-medium text-brand-accent uppercase tracking-wide block">
+                <span className="text-[12px] font-medium text-brand-accent uppercase tracking-wide block">
                   Pending Collection
                 </span>
-                <p className="text-[11px] font-light text-brand-text-muted leading-normal">
+                <p className="text-[12px] font-light text-brand-text-muted leading-normal">
                    Rajesh Kumar is currently on route. Please ensure waste bins are sorted and QR pass is visible.
                 </p>
               </div>
@@ -150,7 +150,7 @@ export default function ResidentDashboard() {
 
       {/* Notifications Feed */}
       <div className="flex-1 space-y-3 min-h-0 flex flex-col">
-        <h3 className="text-xs font-medium text-brand-text flex items-center gap-1.5 shrink-0">
+        <h3 className="text-[16px] font-medium text-brand-text flex items-center gap-1.5 shrink-0">
           <Bell size={13} className="text-brand-text-muted" />
           Inbox & Announcements
         </h3>
@@ -159,11 +159,11 @@ export default function ResidentDashboard() {
           <div className="flex-1 overflow-y-auto divide-y divide-brand-surface-alt">
             {inbox.map((msg, index) => (
               <div key={index} className="p-3.5 space-y-1.5 bg-brand-surface-alt/15">
-                <div className="flex items-center justify-between text-[11px] font-medium text-brand-accent uppercase tracking-wider">
+                <div className="flex items-center justify-between text-[12px] font-medium text-brand-accent uppercase tracking-wider">
                   <span>Alert {index + 1}</span>
                   <span className="text-brand-text-muted font-normal lowercase">{index === 0 ? 'now' : 'today'}</span>
                 </div>
-                <p className="text-[11px] font-light text-brand-text leading-relaxed">
+                <p className="text-[12px] font-light text-brand-text leading-relaxed">
                   {msg}
                 </p>
               </div>

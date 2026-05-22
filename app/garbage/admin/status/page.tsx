@@ -51,23 +51,23 @@ export default function AdminStatus() {
     switch (status) {
       case 'done':
         return (
-          <span className="inline-flex items-center gap-1 text-[11px] font-medium uppercase tracking-wide px-2 py-0.5 rounded bg-brand-success/10 text-brand-success border border-brand-success/20">
-            <CheckCircle2 size={10} />
+          <span className="inline-flex items-center gap-1 text-[12px] font-medium uppercase tracking-wide px-2 py-0.5 rounded bg-brand-success/10 text-brand-success border border-brand-success/20">
+            <CheckCircle2 size={12} />
             Done
           </span>
         );
       case 'attempted':
         return (
-          <span className="inline-flex items-center gap-1 text-[11px] font-medium uppercase tracking-wide px-2 py-0.5 rounded bg-brand-warning/10 text-brand-warning border border-brand-warning/20">
-            <AlertCircle size={10} />
+          <span className="inline-flex items-center gap-1 text-[12px] font-medium uppercase tracking-wide px-2 py-0.5 rounded bg-brand-warning/10 text-brand-warning border border-brand-warning/20">
+            <AlertCircle size={12} />
             Attempted
           </span>
         );
       case 'pending':
       default:
         return (
-          <span className="inline-flex items-center gap-1 text-[11px] font-medium uppercase tracking-wide px-2 py-0.5 rounded bg-brand-text-muted/10 text-brand-text-muted border border-brand-text-muted/20">
-            <HelpCircle size={10} />
+          <span className="inline-flex items-center gap-1 text-[12px] font-medium uppercase tracking-wide px-2 py-0.5 rounded bg-brand-text-muted/10 text-brand-text-muted border border-brand-text-muted/20">
+            <HelpCircle size={12} />
             Pending
           </span>
         );
@@ -85,10 +85,10 @@ export default function AdminStatus() {
             placeholder="Search house no. or name..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-10 pr-24 py-2.5 rounded-full border border-brand-surface-alt bg-brand-bg text-brand-text text-xs placeholder-brand-text-muted/40 focus:outline-none focus:border-brand-accent/50 transition-colors"
+            className="w-full pl-10 pr-24 py-[11px] rounded-full border border-brand-surface-alt bg-brand-bg text-brand-text text-[12px] placeholder-brand-text-muted/40 focus:outline-none focus:border-brand-accent/50 transition-colors"
           />
-          <Search size={14} className="absolute left-3.5 top-3.5 text-brand-text-muted/50" />
-          <span className="absolute right-2 top-1.5 text-[11px] font-medium tracking-wide bg-brand-surface-alt border border-brand-accent/20 text-brand-accent px-2.5 py-1.5 rounded-full select-none">
+          <Search size={18} className="absolute left-3.5 top-[13px] text-brand-text-muted/50" />
+          <span className="absolute right-2 top-1.5 text-[12px] font-medium tracking-wide bg-brand-surface-alt border border-brand-accent/20 text-brand-accent px-2.5 py-[7px] rounded-full select-none">
             {houses.length} Houses
           </span>
         </div>
@@ -104,7 +104,7 @@ export default function AdminStatus() {
             <button
               key={opt.id}
               onClick={() => setFilter(opt.id)}
-              className={`px-3.5 py-1.5 rounded-full border text-[11px] font-medium transition-all ${
+              className={`px-3.5 py-[7px] rounded-full border text-[12px] font-medium transition-all ${
                 filter === opt.id
                   ? 'border-brand-accent bg-brand-accent/10 text-brand-accent'
                   : 'border-brand-surface-alt bg-brand-surface-alt/40 text-brand-text-muted hover:bg-brand-surface-alt/80'
@@ -123,9 +123,9 @@ export default function AdminStatus() {
             <Skeleton variant="list" count={5} />
           </div>
         ) : filteredHouses.length === 0 ? (
-          <div className="p-8 text-center text-xs font-light text-brand-text-muted space-y-1">
+          <div className="p-8 text-center text-[12px] font-light text-brand-text-muted space-y-1">
             <p>No matching households found.</p>
-            <p className="text-[11px]">Try adjusting your search or filters.</p>
+            <p className="text-[12px]">Try adjusting your search or filters.</p>
           </div>
         ) : (
           filteredHouses.map((house) => (
@@ -135,19 +135,19 @@ export default function AdminStatus() {
             >
               <div className="space-y-1 min-w-0 flex-1">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-xs font-medium text-brand-text">{house.houseNo}</span>
+                  <span className="text-[16px] font-medium text-brand-text">{house.houseNo}</span>
                   {getStatusBadge(house.status)}
                   {house.visitTimestamp && (
-                    <span className="text-[11px] font-light text-brand-accent/70">
+                    <span className="text-[12px] font-light text-brand-accent/70">
                       Visited at {house.visitTimestamp}
                     </span>
                   )}
                 </div>
-                <p className="text-[11px] font-light text-brand-text-muted truncate leading-relaxed">
+                <p className="text-[12px] font-light text-brand-text-muted truncate leading-relaxed">
                   {house.address}
                 </p>
                 {house.visitTimestamp && house.paymentMode && (
-                  <p className="text-[11px] font-light text-brand-text-muted opacity-80">
+                  <p className="text-[12px] font-light text-brand-text-muted opacity-80">
                     Payment Mode: {house.paymentMode}
                   </p>
                 )}
@@ -155,8 +155,8 @@ export default function AdminStatus() {
               
               {house.amount && (
                 <div className="text-right shrink-0">
-                  <div className="text-xs font-medium text-brand-accent">₹{house.amount}</div>
-                  <div className="text-[11px] font-light text-brand-text-muted opacity-50 truncate max-w-[60px]">
+                  <div className="text-[16px] font-medium text-brand-accent">₹{house.amount}</div>
+                  <div className="text-[12px] font-light text-brand-text-muted opacity-50 truncate max-w-[60px]">
                     {house.receiptId}
                   </div>
                 </div>

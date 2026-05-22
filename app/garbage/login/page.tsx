@@ -67,11 +67,11 @@ export default function GarbageLogin() {
         {/* Back Button (Top Right) */}
         <button
           onClick={() => router.push('/')}
-          className="absolute top-6 right-6 flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full bg-white/80 border border-[#014BAA]/15 text-[#0A1C33] hover:bg-white transition-colors shadow-md min-h-[36px] backdrop-blur-sm"
+          className="absolute top-6 right-6 flex items-center justify-center gap-1.5 px-3 py-[7px] rounded-full bg-white/80 border border-[#014BAA]/15 text-[#0A1C33] hover:bg-white transition-colors shadow-md min-h-[38px] backdrop-blur-sm"
           aria-label="Back to home"
         >
           <ArrowLeft size={14} className="text-[#014BAA]" />
-          <span className="text-[11px] font-medium uppercase tracking-wider">Back</span>
+          <span className="text-[12px] font-medium uppercase tracking-wider">Back</span>
         </button>
       </div>
 
@@ -80,17 +80,17 @@ export default function GarbageLogin() {
         <div>
           {/* Title */}
           <div className="text-center mb-6">
-            <h2 className="text-lg font-medium text-[#0A1C33] tracking-wide">Garbage Portal Sign-In</h2>
+            <h2 className="text-[16px] font-medium text-[#0A1C33] tracking-wide">Garbage Portal Sign-In</h2>
           </div>
 
           {/* Form */}
           <form onSubmit={handleLogin} className="space-y-4">
             <div className="space-y-1.5">
-              <label className="text-[11px] font-medium uppercase tracking-wider text-[#4A607A]">Select Role</label>
+              <label className="text-[12px] font-medium uppercase tracking-wider text-[#4A607A]">Select Role</label>
               <select
                 value={role}
                 onChange={(e) => setRole(e.target.value as any)}
-                className="w-full px-4 py-3 rounded-xl border border-[#014BAA]/12 bg-brand-surface-alt text-[#0A1C33] text-xs focus:outline-none focus:border-[#014BAA]/50 transition-colors font-light"
+                className="w-full px-4 py-3 rounded-xl border border-[#014BAA]/12 bg-brand-surface-alt text-[#0A1C33] text-[12px] focus:outline-none focus:border-[#014BAA]/50 transition-colors font-light"
               >
                 <option value="resident">Resident</option>
                 <option value="collector">Collector</option>
@@ -100,24 +100,24 @@ export default function GarbageLogin() {
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-[11px] font-medium uppercase tracking-wider text-[#4A607A]">Username</label>
+              <label className="text-[12px] font-medium uppercase tracking-wider text-[#4A607A]">Username</label>
               <input
                 type="text"
                 placeholder="e.g. resident42"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-[#014BAA]/12 bg-brand-surface-alt text-[#0A1C33] text-xs placeholder-[#6B7F96] focus:outline-none focus:border-[#014BAA]/50 transition-colors font-light"
+                className="w-full px-4 py-3 rounded-xl border border-[#014BAA]/12 bg-brand-surface-alt text-[#0A1C33] text-[12px] placeholder-[#6B7F96] focus:outline-none focus:border-[#014BAA]/50 transition-colors font-light"
               />
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-[11px] font-medium uppercase tracking-wider text-[#4A607A]">Password</label>
+              <label className="text-[12px] font-medium uppercase tracking-wider text-[#4A607A]">Password</label>
               <input
                 type="password"
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-[#014BAA]/12 bg-brand-surface-alt text-[#0A1C33] text-xs placeholder-[#6B7F96] focus:outline-none focus:border-[#014BAA]/50 transition-colors font-light"
+                className="w-full px-4 py-3 rounded-xl border border-[#014BAA]/12 bg-brand-surface-alt text-[#0A1C33] text-[12px] placeholder-[#6B7F96] focus:outline-none focus:border-[#014BAA]/50 transition-colors font-light"
               />
             </div>
 
@@ -125,11 +125,11 @@ export default function GarbageLogin() {
             <div className="flex justify-center w-full pt-4">
               <button
                 type="submit"
-                className="flex items-center gap-3 pl-6 pr-1.5 py-1.5 rounded-full bg-[#014BAA] text-white text-xs font-medium hover:opacity-90 transition-all shadow-md shadow-[#014BAA]/20 transform active:scale-95 duration-150"
+                className="flex items-center gap-3 pl-6 pr-1.5 py-[7px] rounded-full bg-[#014BAA] text-white text-[16px] font-medium hover:opacity-90 transition-all shadow-md shadow-[#014BAA]/20 transform active:scale-95 duration-150"
               >
                 <span>Access Portal</span>
-                <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[#FAF6F3] text-[#014BAA]">
-                  <LogIn size={12} />
+                <span className="flex items-center justify-center w-14 h-14 rounded-full bg-[#FAF6F3] text-[#014BAA] min-h-[56px] min-w-[56px]">
+                  <LogIn size={22} />
                 </span>
               </button>
             </div>
@@ -138,8 +138,8 @@ export default function GarbageLogin() {
 
         {/* Quick Autofill Tools */}
         <div className="mt-8 pt-6 border-t border-[#014BAA]/8">
-          <p className="text-[11px] font-medium text-[#4A607A] uppercase tracking-wider mb-3 flex items-center gap-1.5">
-            <HelpCircle size={11} className="text-[#014BAA]" />
+          <p className="text-[12px] font-medium text-[#4A607A] uppercase tracking-wider mb-3 flex items-center gap-1.5">
+            <HelpCircle size={13} className="text-[#014BAA]" />
             <span>Autofill Demo Roles</span>
           </p>
           <div className="grid grid-cols-2 gap-2.5">
@@ -148,10 +148,10 @@ export default function GarbageLogin() {
                 key={r}
                 type="button"
                 onClick={() => autofill(r)}
-                className="px-3.5 py-2.5 rounded-xl border border-[#014BAA]/12 bg-brand-surface-alt hover:bg-[#E5EFFC] hover:border-[#014BAA]/30 text-left transition-all min-h-[44px]"
+                className="px-3.5 py-[11px] rounded-xl border border-[#014BAA]/12 bg-brand-surface-alt hover:bg-[#E5EFFC] hover:border-[#014BAA]/30 text-left transition-all min-h-[46px]"
               >
-                <div className="text-[11px] font-medium text-[#0A1C33] capitalize">{r}</div>
-                <div className="text-[11px] font-light text-[#4A607A] truncate">{r}42 / demo</div>
+                <div className="text-[12px] font-medium text-[#0A1C33] capitalize">{r}</div>
+                <div className="text-[12px] font-light text-[#4A607A] truncate">{r}42 / demo</div>
               </button>
             ))}
           </div>

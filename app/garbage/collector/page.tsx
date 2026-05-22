@@ -101,18 +101,18 @@ export default function CollectorShift() {
 
       {/* Title */}
       <div className="space-y-1">
-        <h2 className="text-lg font-medium text-brand-text flex items-center gap-2">
+        <h2 className="text-[16px] font-medium text-brand-text flex items-center gap-2">
           <span className={`w-2.5 h-2.5 rounded-full ${shiftStarted ? 'bg-brand-success animate-ping' : 'bg-brand-warning'}`}></span>
           GCS Collector Console
         </h2>
-        <p className="text-xs font-light text-brand-text-muted">
+        <p className="text-[12px] font-light text-brand-text-muted">
           Rajesh Kumar • Daily Route Crew ID #C042
         </p>
       </div>
 
       {/* Main Action Hub */}
       <div className="w-full rounded-2xl glass-panel p-5 border border-brand-accent/20 flex flex-col space-y-5">
-        <h3 className="text-xs font-medium text-brand-text flex items-center gap-1.5">
+        <h3 className="text-[16px] font-medium text-brand-text flex items-center gap-1.5">
           <ShieldCheck size={14} className="text-brand-accent" />
           Shift Controller
         </h3>
@@ -123,11 +123,11 @@ export default function CollectorShift() {
             <video ref={videoRef} className="w-full h-full object-cover scale-x-[-1]" playsInline />
             <button
               onClick={handleCaptureSelfie}
-              className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2 pl-4 pr-1.5 py-1.5 rounded-full bg-[#014BAA] text-white text-[11px] font-medium hover:opacity-90 transition-all shadow-md shadow-[#014BAA]/20"
+              className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-3 pl-6 pr-1.5 py-[7px] rounded-full bg-[#014BAA] text-white text-[12px] font-medium hover:opacity-90 transition-all shadow-md shadow-[#014BAA]/20"
             >
               <span>Verify Check-in Selfie</span>
-              <span className="flex items-center justify-center w-5 h-5 rounded-full bg-[#FAF6F3] text-[#014BAA]">
-                <Camera size={10} />
+              <span className="flex items-center justify-center w-14 h-14 rounded-full bg-[#FAF6F3] text-[#014BAA] min-h-[56px] min-w-[56px]">
+                <Camera size={22} />
               </span>
             </button>
           </div>
@@ -138,7 +138,7 @@ export default function CollectorShift() {
             <div className="w-10 h-10 rounded-full bg-brand-accent/5 flex items-center justify-center mx-auto text-brand-accent">
               <Camera size={18} />
             </div>
-            <p className="text-[11px] font-light text-brand-text-muted">
+            <p className="text-[12px] font-light text-brand-text-muted">
               Start your shift by logging your selfie check-in and GPS coordinates.
             </p>
           </div>
@@ -149,8 +149,8 @@ export default function CollectorShift() {
             <div className="w-10 h-10 rounded-full bg-brand-success/15 flex items-center justify-center mx-auto text-brand-success">
               <ShieldCheck size={18} />
             </div>
-            <p className="text-xs font-medium text-brand-text">Active Shift Checklist</p>
-            <p className="text-[11px] font-light text-brand-text-muted">
+            <p className="text-[16px] font-medium text-brand-text">Active Shift Checklist</p>
+            <p className="text-[12px] font-light text-brand-text-muted">
               Verified: Selfie Checked In • GPS Logged
             </p>
           </div>
@@ -162,11 +162,11 @@ export default function CollectorShift() {
             <div className="col-span-2 flex justify-center">
               <button
                 onClick={handleStartShift}
-                className="flex items-center gap-3 pl-6 pr-1.5 py-1.5 rounded-full bg-[#014BAA] text-white text-xs font-medium hover:opacity-90 transition-all shadow-md shadow-[#014BAA]/20 transform active:scale-95 duration-150"
+                className="flex items-center gap-3 pl-6 pr-1.5 py-[7px] rounded-full bg-[#014BAA] text-white text-[16px] font-medium hover:opacity-90 transition-all shadow-md shadow-[#014BAA]/20 transform active:scale-95 duration-150"
               >
                 <span>Start Shift</span>
-                <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[#FAF6F3] text-[#014BAA]">
-                  <Play size={12} />
+                <span className="flex items-center justify-center w-14 h-14 rounded-full bg-[#FAF6F3] text-[#014BAA] min-h-[56px] min-w-[56px]">
+                  <Play size={22} />
                 </span>
               </button>
             </div>
@@ -175,20 +175,20 @@ export default function CollectorShift() {
               <button
                 onClick={handleStampGps}
                 disabled={gpsStamped}
-                className={`flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-lg border text-xs font-medium transition-colors ${
+                className={`flex items-center justify-center gap-1.5 px-3 py-[11px] rounded-lg border text-[12px] font-medium transition-colors ${
                   gpsStamped
                     ? 'border-brand-success/30 bg-brand-success/10 text-brand-success'
                     : 'border-brand-accent/20 bg-brand-bg text-brand-accent hover:bg-brand-surface-alt'
                 }`}
               >
-                <MapPin size={13} />
+                <MapPin size={16} />
                 <span>{gpsStamped ? 'GPS Stamped' : 'Stamp GPS'}</span>
               </button>
               <button
                 onClick={handleEndShift}
-                className="flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-lg border border-brand-warning/20 bg-brand-bg text-brand-warning text-xs font-medium hover:bg-brand-warning/10 transition-colors"
+                className="flex items-center justify-center gap-1.5 px-3 py-[11px] rounded-lg border border-brand-warning/20 bg-brand-bg text-brand-warning text-[12px] font-medium hover:bg-brand-warning/10 transition-colors"
               >
-                <Square size={13} />
+                <Square size={16} />
                 <span>End Shift</span>
               </button>
             </>
@@ -200,8 +200,8 @@ export default function CollectorShift() {
       <div className="p-4 rounded-xl border border-brand-surface-alt bg-brand-surface-alt/10 flex items-start gap-3">
         <AlertCircle className="text-brand-accent shrink-0 mt-0.5" size={15} />
         <div className="space-y-0.5">
-          <h4 className="text-[11px] font-medium text-brand-text">Municipal Anti-Fraud System</h4>
-          <p className="text-[11px] font-light text-brand-text-muted leading-relaxed">
+          <h4 className="text-[12px] font-medium text-brand-text">Municipal Anti-Fraud System</h4>
+          <p className="text-[12px] font-light text-brand-text-muted leading-relaxed">
             Scanning resident houses requires validation of collector coordinates matching a 15-meter range of the household address.
           </p>
         </div>
@@ -211,13 +211,13 @@ export default function CollectorShift() {
       {shiftStarted && (
         <button
           onClick={() => router.push('/garbage/collector/map')}
-          className="w-full flex items-center justify-between p-4 rounded-xl glass-panel border border-brand-accent/25 hover:border-brand-accent/50 group transition-all text-left"
+          className="w-full flex items-center justify-between py-[17px] px-4 rounded-xl glass-panel border border-brand-accent/25 hover:border-brand-accent/50 group transition-all text-left"
         >
           <div className="space-y-0.5">
-            <span className="text-xs font-medium text-brand-accent group-hover:underline">
+            <span className="text-[16px] font-medium text-brand-accent group-hover:underline">
               Daily Checklist & Map Route
             </span>
-            <p className="text-[11px] font-light text-brand-text-muted">
+            <p className="text-[12px] font-light text-brand-text-muted">
               Access the 20 pending households on today's route.
             </p>
           </div>
