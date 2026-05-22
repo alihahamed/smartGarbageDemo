@@ -123,9 +123,12 @@ export default function CollectorShift() {
             <video ref={videoRef} className="w-full h-full object-cover scale-x-[-1]" playsInline />
             <button
               onClick={handleCaptureSelfie}
-              className="absolute bottom-3 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-brand-accent text-brand-bg text-[10px] font-medium rounded-full hover:bg-brand-accent/90"
+              className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2 pl-4 pr-1.5 py-1.5 rounded-full bg-[#014BAA] text-white text-[11px] font-medium hover:opacity-90 transition-all shadow-md shadow-[#014BAA]/20"
             >
-              Verify Check-in Selfie
+              <span>Verify Check-in Selfie</span>
+              <span className="flex items-center justify-center w-5 h-5 rounded-full bg-[#FAF6F3] text-[#014BAA]">
+                <Camera size={10} />
+              </span>
             </button>
           </div>
         )}
@@ -135,7 +138,7 @@ export default function CollectorShift() {
             <div className="w-10 h-10 rounded-full bg-brand-accent/5 flex items-center justify-center mx-auto text-brand-accent">
               <Camera size={18} />
             </div>
-            <p className="text-[10px] font-light text-brand-text-muted">
+            <p className="text-[11px] font-light text-brand-text-muted">
               Start your shift by logging your selfie check-in and GPS coordinates.
             </p>
           </div>
@@ -147,7 +150,7 @@ export default function CollectorShift() {
               <ShieldCheck size={18} />
             </div>
             <p className="text-xs font-medium text-brand-text">Active Shift Checklist</p>
-            <p className="text-[10px] font-light text-brand-text-muted">
+            <p className="text-[11px] font-light text-brand-text-muted">
               Verified: Selfie Checked In • GPS Logged
             </p>
           </div>
@@ -156,13 +159,17 @@ export default function CollectorShift() {
         {/* Action Controls */}
         <div className="grid grid-cols-2 gap-3">
           {!shiftStarted ? (
-            <button
-              onClick={handleStartShift}
-              className="col-span-2 flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-brand-accent text-brand-bg text-xs font-medium hover:bg-brand-accent/90 transition-colors shadow-lg shadow-brand-accent/15"
-            >
-              <Play size={14} />
-              <span>Start Shift</span>
-            </button>
+            <div className="col-span-2 flex justify-center">
+              <button
+                onClick={handleStartShift}
+                className="flex items-center gap-3 pl-6 pr-1.5 py-1.5 rounded-full bg-[#014BAA] text-white text-xs font-medium hover:opacity-90 transition-all shadow-md shadow-[#014BAA]/20 transform active:scale-95 duration-150"
+              >
+                <span>Start Shift</span>
+                <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[#FAF6F3] text-[#014BAA]">
+                  <Play size={12} />
+                </span>
+              </button>
+            </div>
           ) : (
             <>
               <button
@@ -193,8 +200,8 @@ export default function CollectorShift() {
       <div className="p-4 rounded-xl border border-brand-surface-alt bg-brand-surface-alt/10 flex items-start gap-3">
         <AlertCircle className="text-brand-accent shrink-0 mt-0.5" size={15} />
         <div className="space-y-0.5">
-          <h4 className="text-[10px] font-medium text-brand-text">Municipal Anti-Fraud System</h4>
-          <p className="text-[9px] font-light text-brand-text-muted leading-relaxed">
+          <h4 className="text-[11px] font-medium text-brand-text">Municipal Anti-Fraud System</h4>
+          <p className="text-[11px] font-light text-brand-text-muted leading-relaxed">
             Scanning resident houses requires validation of collector coordinates matching a 15-meter range of the household address.
           </p>
         </div>
@@ -210,7 +217,7 @@ export default function CollectorShift() {
             <span className="text-xs font-medium text-brand-accent group-hover:underline">
               Daily Checklist & Map Route
             </span>
-            <p className="text-[9px] font-light text-brand-text-muted">
+            <p className="text-[11px] font-light text-brand-text-muted">
               Access the 20 pending households on today's route.
             </p>
           </div>

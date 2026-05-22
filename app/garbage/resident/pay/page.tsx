@@ -113,13 +113,13 @@ export default function ResidentPay() {
 
         {/* Amount Box */}
         <div className="bg-brand-surface-alt/45 p-6 rounded-xl border border-brand-accent/15 text-center space-y-1">
-          <span className="text-[10px] font-medium text-brand-text-muted uppercase tracking-wider block">
+          <span className="text-[11px] font-medium text-brand-text-muted uppercase tracking-wider block">
             Amount Outstanding
           </span>
           <span className="text-3xl font-medium text-brand-accent block">
             {userHouse?.status === 'done' ? '₹0.00' : '₹15.00'}
           </span>
-          <span className="text-[9px] font-light text-brand-text-muted block">
+          <span className="text-[11px] font-light text-brand-text-muted block">
             {userHouse?.status === 'done' ? 'All dues settled' : 'Due date: End of Month'}
           </span>
         </div>
@@ -128,7 +128,7 @@ export default function ResidentPay() {
           <div className="space-y-4">
             {/* Pay methods list */}
             <div className="space-y-2">
-              <label className="text-[10px] font-medium text-brand-text uppercase tracking-wider block">
+              <label className="text-[11px] font-medium text-brand-text uppercase tracking-wider block">
                 Select Payment Mode
               </label>
 
@@ -148,7 +148,7 @@ export default function ResidentPay() {
                 >
                   <div className="space-y-0.5">
                     <span className="text-xs font-medium text-brand-text">{method.label}</span>
-                    <p className="text-[9px] font-light text-brand-text-muted">{method.desc}</p>
+                    <p className="text-[11px] font-light text-brand-text-muted">{method.desc}</p>
                   </div>
                   <div className={`w-3.5 h-3.5 rounded-full border flex items-center justify-center ${
                     paymentMode === method.id ? 'border-brand-accent' : 'border-brand-text-muted/30'
@@ -160,20 +160,24 @@ export default function ResidentPay() {
             </div>
 
             {/* Submit button */}
-            <button
-              onClick={handlePay}
-              disabled={paying}
-              className="w-full py-3 rounded-lg bg-brand-accent text-brand-bg text-xs font-medium hover:bg-brand-accent/90 disabled:opacity-50 transition-colors flex items-center justify-center gap-1.5 shadow-lg shadow-brand-accent/15"
-            >
-              <CreditCard size={14} />
-              <span>{paying ? 'Processing Gateway...' : 'Pay Fee Online'}</span>
-            </button>
+            <div className="flex justify-center w-full pt-2">
+              <button
+                onClick={handlePay}
+                disabled={paying}
+                className="flex items-center gap-3 pl-6 pr-1.5 py-1.5 rounded-full bg-[#014BAA] text-white text-xs font-medium hover:opacity-90 disabled:opacity-50 transition-all shadow-md shadow-[#014BAA]/20 transform active:scale-95 duration-150"
+              >
+                <span>{paying ? 'Processing Gateway...' : 'Pay Fee Online'}</span>
+                <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[#FAF6F3] text-[#014BAA]">
+                  <CreditCard size={12} />
+                </span>
+              </button>
+            </div>
           </div>
         ) : (
           <div className="p-4 rounded-xl border border-brand-success/20 bg-brand-success/5 text-center space-y-1.5">
             <CheckCircle2 className="text-brand-success mx-auto" size={20} />
             <h4 className="text-xs font-medium text-brand-text">Fee Settled Successfully</h4>
-            <p className="text-[10px] font-light text-brand-text-muted">
+            <p className="text-[11px] font-light text-brand-text-muted">
               Thank you! Your payment receipt has been recorded in your portal logs.
             </p>
           </div>
@@ -181,7 +185,7 @@ export default function ResidentPay() {
       </div>
 
       {/* Trust seal */}
-      <div className="flex items-center justify-center gap-1.5 text-[9px] font-light text-brand-text-muted">
+      <div className="flex items-center justify-center gap-1.5 text-[11px] font-light text-brand-text-muted">
         <ShieldCheck size={11} className="text-brand-accent" />
         <span>Secured by Kerala Municipal Financial Services Gateway</span>
       </div>

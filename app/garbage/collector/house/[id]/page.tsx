@@ -200,7 +200,7 @@ export default function HouseAction() {
         </div>
         <div className="space-y-0.5 min-w-0">
           <h3 className="text-sm font-medium text-brand-text truncate">{house.address}</h3>
-          <div className="flex items-center gap-1.5 text-[9px] font-light text-brand-text-muted">
+          <div className="flex items-center gap-1.5 text-[11px] font-light text-brand-text-muted">
             <Navigation size={9} />
             <span>Ward 1 Route • Latitude Stamp 10.85"</span>
           </div>
@@ -209,7 +209,7 @@ export default function HouseAction() {
 
       {/* House Collection Status Details */}
       <div className="p-4 rounded-xl border border-brand-surface-alt bg-brand-surface-alt/10 space-y-3">
-        <h4 className="text-[10px] font-medium text-brand-text-muted uppercase tracking-wider">
+        <h4 className="text-[11px] font-medium text-brand-text-muted uppercase tracking-wider">
           Household Audit Log
         </h4>
         <div className="space-y-2">
@@ -254,7 +254,7 @@ export default function HouseAction() {
               </div>
               <div className="space-y-0.5">
                 <span className="text-xs font-medium text-brand-text">Someone Home</span>
-                <p className="text-[9px] font-light text-brand-text-muted">Verify Resident QR & log payment.</p>
+                <p className="text-[11px] font-light text-brand-text-muted">Verify Resident QR & log payment.</p>
               </div>
             </div>
             <span className="text-brand-accent text-xs font-medium">Verify Pass →</span>
@@ -270,7 +270,7 @@ export default function HouseAction() {
               </div>
               <div className="space-y-0.5">
                 <span className="text-xs font-medium text-brand-text">No One Home</span>
-                <p className="text-[9px] font-light text-brand-text-muted">Log attendance attempt with photo.</p>
+                <p className="text-[11px] font-light text-brand-text-muted">Log attendance attempt with photo.</p>
               </div>
             </div>
             <span className="text-brand-text-muted text-xs">Upload Photo →</span>
@@ -280,7 +280,7 @@ export default function HouseAction() {
         <div className="p-6 rounded-xl border border-brand-success/15 bg-brand-success/5 text-center space-y-2">
           <CheckCircle className="text-brand-success mx-auto" size={24} />
           <h3 className="text-xs font-medium text-brand-text">Household Processed</h3>
-          <p className="text-[10px] font-light text-brand-text-muted max-w-[240px] mx-auto leading-relaxed">
+          <p className="text-[11px] font-light text-brand-text-muted max-w-[240px] mx-auto leading-relaxed">
             This residence is already logged for today's collection cycle.
           </p>
         </div>
@@ -300,14 +300,14 @@ export default function HouseAction() {
           {/* Animated Glowing Scan Reticle */}
           <div className="w-40 h-40 rounded-xl border-2 border-brand-accent/40 bg-brand-surface-alt/35 flex items-center justify-center relative overflow-hidden">
             <Smartphone size={40} className="text-brand-accent/50 animate-bounce" />
-            <div className="absolute inset-x-0 top-0 h-0.5 bg-brand-accent shadow-[0_0_10px_#BEF000] animate-[pulse_1.5s_infinite]" />
+            <div className="absolute inset-x-0 top-0 h-0.5 bg-brand-accent shadow-[0_0_10px_#FF5A36] animate-[pulse_1.5s_infinite]" />
           </div>
 
           <div className="space-y-1">
             <p className={`text-xs font-medium ${scannerSuccess ? 'text-brand-success' : 'text-brand-text'}`}>
               {scannerStatus}
             </p>
-            <p className="text-[10px] font-light text-brand-text-muted">
+            <p className="text-[11px] font-light text-brand-text-muted">
               {scannerMessage}
             </p>
           </div>
@@ -333,7 +333,7 @@ export default function HouseAction() {
             >
               <Smartphone size={16} />
               <span className="text-xs font-medium">Online Paid</span>
-              <span className="text-[8px] font-light opacity-80">Pre-settled online</span>
+              <span className="text-[11px] font-light opacity-80">Pre-settled online</span>
             </button>
 
             <button
@@ -342,13 +342,13 @@ export default function HouseAction() {
             >
               <UserCheck size={16} className="text-brand-text-muted" />
               <span className="text-xs font-medium">Collect Cash</span>
-              <span className="text-[8px] font-light opacity-80">Collect at doorstep</span>
+              <span className="text-[11px] font-light opacity-80">Collect at doorstep</span>
             </button>
           </div>
 
           {showCashInput && (
             <div className="p-4 rounded-xl border border-brand-surface-alt bg-brand-bg/40 space-y-3 animate-fade-in">
-              <label className="text-[10px] font-medium text-brand-text uppercase tracking-wider block">
+              <label className="text-[11px] font-medium text-brand-text uppercase tracking-wider block">
                 Enter Cash Amount Collected (₹)
               </label>
               <div className="flex gap-2">
@@ -361,7 +361,7 @@ export default function HouseAction() {
                 />
                 <button
                   onClick={() => handleLogPayment('Cash')}
-                  className="px-4 bg-brand-accent text-brand-bg text-xs font-medium rounded-lg hover:bg-brand-accent/90"
+                  className="px-4 bg-[#014BAA] hover:opacity-90 text-white text-xs font-medium rounded-lg"
                 >
                   Confirm Cash
                 </button>
@@ -388,22 +388,26 @@ export default function HouseAction() {
             ) : (
               <div className="space-y-1">
                 <Camera size={24} className="text-brand-text-muted mx-auto" />
-                <span className="text-[9px] font-light text-brand-text-muted block">Simulating Camera Feed</span>
+                <span className="text-[11px] font-light text-brand-text-muted block">Simulating Camera Feed</span>
               </div>
             )}
           </div>
 
-          <p className="text-[10px] font-light text-brand-text-muted leading-normal max-w-[300px] mx-auto">
+          <p className="text-[11px] font-light text-brand-text-muted leading-normal max-w-[300px] mx-auto">
             Ensure the locked house gate/door is fully visible in frame. GPS location stamp will be permanently locked on log.
           </p>
 
-          <button
-            onClick={handleCaptureDoorPhoto}
-            className="w-full py-2.5 rounded-lg bg-brand-accent text-brand-bg text-xs font-medium hover:bg-brand-accent/90 transition-colors flex items-center justify-center gap-1.5 shadow-md"
-          >
-            <Camera size={14} />
-            <span>Capture Photo & Log Attempt</span>
-          </button>
+          <div className="flex justify-center w-full">
+            <button
+              onClick={handleCaptureDoorPhoto}
+              className="flex items-center gap-3 pl-6 pr-1.5 py-1.5 rounded-full bg-[#014BAA] text-white text-xs font-medium hover:opacity-90 transition-all shadow-md shadow-[#014BAA]/20 transform active:scale-95 duration-150"
+            >
+              <span>Capture Photo & Log Attempt</span>
+              <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[#FAF6F3] text-[#014BAA]">
+                <Camera size={12} />
+              </span>
+            </button>
+          </div>
         </div>
       </Modal>
     </div>

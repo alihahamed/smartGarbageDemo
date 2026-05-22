@@ -74,7 +74,7 @@ export default function WardDashboard() {
       ) : (
         <>
           {/* Donut Chart Visual & Numeric stats */}
-          <div className="p-5 rounded-2xl glass-panel border border-brand-accent/20 flex items-center justify-between gap-6">
+          <div className="p-5 rounded-2xl glass-panel border border-[#014BAA]/15 flex items-center justify-between gap-6">
             <div className="relative w-28 h-28 flex items-center justify-center shrink-0">
               <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
                 {/* Background Ring */}
@@ -83,7 +83,7 @@ export default function WardDashboard() {
                   cy="50"
                   r={radius}
                   fill="transparent"
-                  stroke="rgba(22, 46, 35, 0.6)"
+                  stroke="rgba(1, 75, 170, 0.08)"
                   strokeWidth="8"
                 />
                 {/* Progress Ring */}
@@ -92,7 +92,7 @@ export default function WardDashboard() {
                   cy="50"
                   r={radius}
                   fill="transparent"
-                  stroke="#BEF000"
+                  stroke="#014BAA"
                   strokeWidth="8"
                   strokeDasharray={strokeCircumference}
                   strokeDashoffset={strokeDashoffset}
@@ -103,19 +103,19 @@ export default function WardDashboard() {
               {/* Inner readout */}
               <div className="absolute inset-0 flex flex-col items-center justify-center space-y-0.5">
                 <span className="text-xl font-medium text-brand-text leading-none">{coveragePercent}%</span>
-                <span className="text-[8px] font-light text-brand-text-muted uppercase tracking-wider">Cleared</span>
+                <span className="text-[11px] font-light text-brand-text-muted uppercase tracking-wider">Cleared</span>
               </div>
             </div>
 
             <div className="space-y-3 flex-1 min-w-0">
               <div className="space-y-0.5">
                 <h3 className="text-xs font-medium text-brand-text">Coverage Summary</h3>
-                <p className="text-[10px] font-light text-brand-text-muted">
+                <p className="text-[11px] font-light text-brand-text-muted">
                   Daily route tracking index.
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 gap-2 text-[10px]">
+              <div className="grid grid-cols-2 gap-2 text-[11px]">
                 <div className="space-y-0.5 border-l border-brand-success/40 pl-2">
                   <span className="text-brand-text-muted block">Cleaned</span>
                   <strong className="text-brand-success text-xs font-medium">{collectedCount} Houses</strong>
@@ -131,10 +131,12 @@ export default function WardDashboard() {
           {/* Export Report Actions */}
           <button
             onClick={handleExport}
-            className="w-full flex items-center justify-center gap-2 py-3 rounded-lg bg-brand-accent text-brand-bg text-xs font-medium hover:bg-brand-accent/90 transition-colors shadow-md shadow-brand-accent/10"
+            className="w-full flex items-center justify-center gap-3 pl-6 pr-1.5 py-1.5 rounded-full bg-[#014BAA] text-white text-xs font-medium hover:opacity-90 transition-all shadow-md shadow-[#014BAA]/20 transform active:scale-95 duration-150"
           >
-            <Download size={14} />
             <span>Export Ward Audit Report</span>
+            <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[#FAF6F3] text-[#014BAA]">
+              <Download size={12} />
+            </span>
           </button>
 
           {/* Pending houses list */}
@@ -156,11 +158,11 @@ export default function WardDashboard() {
                     <div key={h.id} className="p-3.5 flex items-start justify-between gap-3 bg-brand-surface-alt/10">
                       <div className="space-y-0.5 min-w-0">
                         <span className="text-xs font-medium text-brand-text block">{h.houseNo}</span>
-                        <p className="text-[10px] font-light text-brand-text-muted truncate leading-relaxed">
+                        <p className="text-[11px] font-light text-brand-text-muted truncate leading-relaxed">
                           {h.address}
                         </p>
                       </div>
-                      <span className={`text-[8px] font-medium uppercase tracking-wider px-1.5 py-0.5 rounded border shrink-0 ${
+                      <span className={`text-[11px] font-medium uppercase tracking-wider px-1.5 py-0.5 rounded border shrink-0 ${
                         h.status === 'attempted'
                           ? 'bg-brand-warning/10 text-brand-warning border-brand-warning/20'
                           : 'bg-brand-text-muted/10 text-brand-text-muted border-brand-text-muted/20'

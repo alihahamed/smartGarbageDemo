@@ -45,7 +45,7 @@ export default function GarbageLogin() {
   };
 
   return (
-    <div className="flex-1 flex flex-col -mx-4 -mt-6 -mb-28 min-h-[calc(100vh+28px)] bg-[#F8FAFC] pb-24 overflow-y-auto select-none">
+    <div className="flex-1 flex flex-col -mx-4 -mt-6 -mb-28 min-h-[calc(100vh+28px)] bg-brand-bg pb-24 overflow-y-auto select-none">
       {toastMessage && (
         <Toast 
           message={toastMessage} 
@@ -61,36 +61,36 @@ export default function GarbageLogin() {
           alt="Login Background" 
           className="w-full h-full object-cover"
         />
-        {/* Gradient overlay to blend bottom of background image with white sheet */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#F8FAFC] via-[#F8FAFC]/20 to-transparent" />
+        {/* Gradient overlay to blend bottom of background image with light cream sheet */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#F8F3F0] via-[#F8F3F0]/20 to-transparent" />
         
         {/* Back Button (Top Right) */}
         <button
           onClick={() => router.push('/')}
-          className="absolute top-6 right-6 flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full bg-white/80 border border-[#0F6441]/15 text-[#0A3D2A] hover:bg-white transition-colors shadow-md min-h-[36px] backdrop-blur-sm"
+          className="absolute top-6 right-6 flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full bg-white/80 border border-[#014BAA]/15 text-[#0A1C33] hover:bg-white transition-colors shadow-md min-h-[36px] backdrop-blur-sm"
           aria-label="Back to home"
         >
-          <ArrowLeft size={14} className="text-[#0F6441]" />
-          <span className="text-[10px] font-medium uppercase tracking-wider">Back</span>
+          <ArrowLeft size={14} className="text-[#014BAA]" />
+          <span className="text-[11px] font-medium uppercase tracking-wider">Back</span>
         </button>
       </div>
 
       {/* Curved Bottom Sheet Form container */}
-      <div className="flex-1 -mt-8 relative z-10 w-full rounded-t-[32px] bg-white border-t border-[#0F6441]/10 px-6 pt-8 pb-10 flex flex-col justify-between shadow-[0_-8px_30px_rgba(15,100,65,0.04)]">
+      <div className="flex-1 -mt-8 relative z-10 w-full rounded-t-[32px] bg-white border-t border-[#014BAA]/10 px-6 pt-8 pb-10 flex flex-col justify-between shadow-[0_-8px_30px_rgba(1,75,170,0.04)]">
         <div>
           {/* Title */}
           <div className="text-center mb-6">
-            <h2 className="text-lg font-medium text-[#0A3D2A] tracking-wide">Garbage Portal Sign-In</h2>
+            <h2 className="text-lg font-medium text-[#0A1C33] tracking-wide">Garbage Portal Sign-In</h2>
           </div>
 
           {/* Form */}
           <form onSubmit={handleLogin} className="space-y-4">
             <div className="space-y-1.5">
-              <label className="text-[10px] font-medium uppercase tracking-wider text-[#3D7A5F]">Select Role</label>
+              <label className="text-[11px] font-medium uppercase tracking-wider text-[#4A607A]">Select Role</label>
               <select
                 value={role}
                 onChange={(e) => setRole(e.target.value as any)}
-                className="w-full px-4 py-3 rounded-xl border border-[#0F6441]/12 bg-[#F0F7F4] text-[#0A3D2A] text-xs focus:outline-none focus:border-[#0F6441]/50 transition-colors font-light"
+                className="w-full px-4 py-3 rounded-xl border border-[#014BAA]/12 bg-brand-surface-alt text-[#0A1C33] text-xs focus:outline-none focus:border-[#014BAA]/50 transition-colors font-light"
               >
                 <option value="resident">Resident</option>
                 <option value="collector">Collector</option>
@@ -100,35 +100,35 @@ export default function GarbageLogin() {
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-[10px] font-medium uppercase tracking-wider text-[#3D7A5F]">Username</label>
+              <label className="text-[11px] font-medium uppercase tracking-wider text-[#4A607A]">Username</label>
               <input
                 type="text"
                 placeholder="e.g. resident42"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-[#0F6441]/12 bg-[#F0F7F4] text-[#0A3D2A] text-xs placeholder-[#7BAF96] focus:outline-none focus:border-[#0F6441]/50 transition-colors font-light"
+                className="w-full px-4 py-3 rounded-xl border border-[#014BAA]/12 bg-brand-surface-alt text-[#0A1C33] text-xs placeholder-[#6B7F96] focus:outline-none focus:border-[#014BAA]/50 transition-colors font-light"
               />
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-[10px] font-medium uppercase tracking-wider text-[#3D7A5F]">Password</label>
+              <label className="text-[11px] font-medium uppercase tracking-wider text-[#4A607A]">Password</label>
               <input
                 type="password"
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-[#0F6441]/12 bg-[#F0F7F4] text-[#0A3D2A] text-xs placeholder-[#7BAF96] focus:outline-none focus:border-[#0F6441]/50 transition-colors font-light"
+                className="w-full px-4 py-3 rounded-xl border border-[#014BAA]/12 bg-brand-surface-alt text-[#0A1C33] text-xs placeholder-[#6B7F96] focus:outline-none focus:border-[#014BAA]/50 transition-colors font-light"
               />
             </div>
 
-            {/* Submit Button (Pill shaped with trailing green circle icon wrapper) */}
+            {/* Submit Button (Pill shaped with trailing dark blue circle icon wrapper) */}
             <div className="flex justify-center w-full pt-4">
               <button
                 type="submit"
-                className="flex items-center gap-3 pl-6 pr-1.5 py-1.5 rounded-full bg-[#BEF000] text-[#0A3D2A] text-xs font-medium hover:bg-[#BEF000]/90 transition-all shadow-md shadow-[#BEF000]/10 transform active:scale-95 duration-150"
+                className="flex items-center gap-3 pl-6 pr-1.5 py-1.5 rounded-full bg-[#014BAA] text-white text-xs font-medium hover:opacity-90 transition-all shadow-md shadow-[#014BAA]/20 transform active:scale-95 duration-150"
               >
                 <span>Access Portal</span>
-                <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[#0F6441] text-[#BEF000]">
+                <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[#FAF6F3] text-[#014BAA]">
                   <LogIn size={12} />
                 </span>
               </button>
@@ -137,9 +137,9 @@ export default function GarbageLogin() {
         </div>
 
         {/* Quick Autofill Tools */}
-        <div className="mt-8 pt-6 border-t border-[#0F6441]/8">
-          <p className="text-[10px] font-medium text-[#3D7A5F] uppercase tracking-wider mb-3 flex items-center gap-1.5">
-            <HelpCircle size={11} className="text-[#0F6441]" />
+        <div className="mt-8 pt-6 border-t border-[#014BAA]/8">
+          <p className="text-[11px] font-medium text-[#4A607A] uppercase tracking-wider mb-3 flex items-center gap-1.5">
+            <HelpCircle size={11} className="text-[#014BAA]" />
             <span>Autofill Demo Roles</span>
           </p>
           <div className="grid grid-cols-2 gap-2.5">
@@ -148,10 +148,10 @@ export default function GarbageLogin() {
                 key={r}
                 type="button"
                 onClick={() => autofill(r)}
-                className="px-3.5 py-2.5 rounded-xl border border-[#0F6441]/12 bg-[#F0F7F4] hover:bg-[#E0F0E8] hover:border-[#0F6441]/30 text-left transition-all min-h-[44px]"
+                className="px-3.5 py-2.5 rounded-xl border border-[#014BAA]/12 bg-brand-surface-alt hover:bg-[#E5EFFC] hover:border-[#014BAA]/30 text-left transition-all min-h-[44px]"
               >
-                <div className="text-[10px] font-medium text-[#0A3D2A] capitalize">{r}</div>
-                <div className="text-[9px] font-light text-[#3D7A5F] truncate">{r}42 / demo</div>
+                <div className="text-[11px] font-medium text-[#0A1C33] capitalize">{r}</div>
+                <div className="text-[11px] font-light text-[#4A607A] truncate">{r}42 / demo</div>
               </button>
             ))}
           </div>

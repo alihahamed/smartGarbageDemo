@@ -75,7 +75,7 @@ export default function ResidentDashboard() {
           <div className="p-2 rounded-lg bg-brand-accent/10 text-brand-accent group-hover:scale-105 transition-transform">
             <QrCode size={18} />
           </div>
-          <span className="text-[10px] font-medium text-brand-text block">Resident Pass</span>
+          <span className="text-[11px] font-medium text-brand-text block">Resident Pass</span>
         </Link>
 
         <Link
@@ -85,7 +85,7 @@ export default function ResidentDashboard() {
           <div className="p-2 rounded-lg bg-brand-surface-alt border border-brand-accent/10 text-brand-accent group-hover:scale-105 transition-transform">
             <CreditCard size={18} />
           </div>
-          <span className="text-[10px] font-medium text-brand-text block">Pay Dues</span>
+          <span className="text-[11px] font-medium text-brand-text block">Pay Dues</span>
         </Link>
 
         <Link
@@ -95,7 +95,7 @@ export default function ResidentDashboard() {
           <div className="p-2 rounded-lg bg-brand-surface-alt border border-brand-accent/10 text-brand-accent group-hover:scale-105 transition-transform">
             <History size={18} />
           </div>
-          <span className="text-[10px] font-medium text-brand-text block">Receipts</span>
+          <span className="text-[11px] font-medium text-brand-text block">Receipts</span>
         </Link>
       </div>
 
@@ -112,10 +112,10 @@ export default function ResidentDashboard() {
             <>
               <CheckCircle className="text-brand-success shrink-0 mt-0.5" size={16} />
               <div className="space-y-0.5">
-                <span className="text-[10px] font-medium text-brand-success uppercase tracking-wide block">
+                <span className="text-[11px] font-medium text-brand-success uppercase tracking-wide block">
                   Collection Processed
                 </span>
-                <p className="text-[9px] font-light text-brand-text-muted leading-normal">
+                <p className="text-[11px] font-light text-brand-text-muted leading-normal">
                   Your waste collection was successfully logged at {userHouse.visitTimestamp || 'today'}. Receipt generated.
                 </p>
               </div>
@@ -124,10 +124,10 @@ export default function ResidentDashboard() {
             <>
               <AlertCircle className="text-brand-warning shrink-0 mt-0.5" size={16} />
               <div className="space-y-0.5">
-                <span className="text-[10px] font-medium text-brand-warning uppercase tracking-wide block">
+                <span className="text-[11px] font-medium text-brand-warning uppercase tracking-wide block">
                   Collector Attempt Missed
                 </span>
-                <p className="text-[9px] font-light text-brand-text-muted leading-normal">
+                <p className="text-[11px] font-light text-brand-text-muted leading-normal">
                   Rajesh Kumar attempted verification at your door. Please keep your QR pass ready next cycle.
                 </p>
               </div>
@@ -136,10 +136,10 @@ export default function ResidentDashboard() {
             <>
               <Clock className="text-brand-accent shrink-0 mt-0.5 animate-pulse" size={16} />
               <div className="space-y-0.5">
-                <span className="text-[10px] font-medium text-brand-accent uppercase tracking-wide block">
+                <span className="text-[11px] font-medium text-brand-accent uppercase tracking-wide block">
                   Pending Collection
                 </span>
-                <p className="text-[9px] font-light text-brand-text-muted leading-normal">
+                <p className="text-[11px] font-light text-brand-text-muted leading-normal">
                    Rajesh Kumar is currently on route. Please ensure waste bins are sorted and QR pass is visible.
                 </p>
               </div>
@@ -159,11 +159,11 @@ export default function ResidentDashboard() {
           <div className="flex-1 overflow-y-auto divide-y divide-brand-surface-alt">
             {inbox.map((msg, index) => (
               <div key={index} className="p-3.5 space-y-1.5 bg-brand-surface-alt/15">
-                <div className="flex items-center justify-between text-[8px] font-medium text-brand-accent uppercase tracking-wider">
+                <div className="flex items-center justify-between text-[11px] font-medium text-brand-accent uppercase tracking-wider">
                   <span>Alert {index + 1}</span>
                   <span className="text-brand-text-muted font-normal lowercase">{index === 0 ? 'now' : 'today'}</span>
                 </div>
-                <p className="text-[10.5px] font-light text-brand-text leading-relaxed">
+                <p className="text-[11px] font-light text-brand-text leading-relaxed">
                   {msg}
                 </p>
               </div>

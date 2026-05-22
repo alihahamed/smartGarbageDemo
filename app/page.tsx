@@ -20,8 +20,8 @@ export default function Home() {
       desc: 'Verify routes, QR checks & receipts.',
       image: '/garbage-illust.png',
       href: '/garbage',
-      gradient: 'from-[#059669] to-[#047857]', // Emerald/Teal
-      glow: 'shadow-emerald-950/40 border-emerald-400/20'
+      gradient: 'from-[#014BAA] to-[#0A3366]', // Royal Blue/Dark Blue
+      glow: 'shadow-blue-950/40 border-blue-400/20'
     },
     {
       title: 'Service Hub',
@@ -151,7 +151,7 @@ export default function Home() {
             <span 
               className="bg-clip-text text-transparent inline-block pb-0.5"
               style={{
-                backgroundImage: 'linear-gradient(to top, #0F6441 0%, #16A34A 15%, #0F172A 40%, #0F172A 100%)',
+                backgroundImage: 'linear-gradient(to top, #014BAA 0%, #FF5A36 15%, #0A1C33 40%, #0A1C33 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
               }}
@@ -161,7 +161,7 @@ export default function Home() {
             <span 
               className="bg-clip-text text-transparent inline-block"
               style={{
-                backgroundImage: 'linear-gradient(to top, #0F6441 10%, #16A34A 25%, #0F172A 76%, #0F172A 100%)',
+                backgroundImage: 'linear-gradient(to top, #014BAA 10%, #FF5A36 25%, #0A1C33 76%, #0A1C33 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
               }}
@@ -257,7 +257,7 @@ export default function Home() {
       <div className="flex items-center justify-between px-6 mt-2 mb-2">
         <button
           onClick={prevSlide}
-          className="flex items-center justify-center w-11 h-11 rounded-full border border-[#0F6441]/20 bg-brand-surface-alt text-[#0F6441] hover:bg-brand-surface transition-all active:scale-95 duration-100 shadow-sm"
+          className="flex items-center justify-center w-11 h-11 rounded-full border border-[#014BAA]/20 bg-brand-surface-alt text-[#014BAA] hover:bg-brand-surface transition-all active:scale-95 duration-100 shadow-sm"
           aria-label="Previous Slide"
         >
           <ChevronLeft size={20} />
@@ -269,7 +269,7 @@ export default function Home() {
               key={idx}
               onClick={() => setActiveIndex(idx)}
               className={`h-2 rounded-full transition-all duration-300 ${
-                idx === activeIndex ? 'w-6 bg-[#0F6441]' : 'w-2 bg-brand-text-muted/30'
+                idx === activeIndex ? 'w-6 bg-[#014BAA]' : 'w-2 bg-brand-text-muted/30'
               }`}
               aria-label={`Go to slide ${idx + 1}`}
             />
@@ -278,7 +278,7 @@ export default function Home() {
 
         <button
           onClick={nextSlide}
-          className="flex items-center justify-center w-11 h-11 rounded-full border border-[#0F6441]/20 bg-brand-surface-alt text-[#0F6441] hover:bg-brand-surface transition-all active:scale-95 duration-100 shadow-sm"
+          className="flex items-center justify-center w-11 h-11 rounded-full border border-[#014BAA]/20 bg-brand-surface-alt text-[#014BAA] hover:bg-brand-surface transition-all active:scale-95 duration-100 shadow-sm"
           aria-label="Next Slide"
         >
           <ChevronRight size={20} />

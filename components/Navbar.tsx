@@ -46,18 +46,18 @@ export default function Navbar() {
   if (isHome || isLogin) return null;
 
   return (
-    <nav className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2.5rem)] max-w-[380px] bg-white/95 border border-[#0F6441]/10 backdrop-blur-md rounded-full shadow-lg p-1.5 flex items-center justify-between">
-      {/* Left: Back Button (Deep green color, light slate bg, fully rounded) */}
+    <nav className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2.5rem)] max-w-[380px] bg-white/95 border border-[#014BAA]/10 backdrop-blur-md rounded-full shadow-lg p-1.5 flex items-center justify-between">
+      {/* Left: Back Button (Royal blue color, warm cream bg, fully rounded) */}
       <button
         onClick={handleBack}
-        className="flex items-center justify-center w-11 h-11 rounded-full bg-[#F0F7F4] border border-[#0F6441]/12 text-[#0F6441] hover:bg-[#E0F0E8] transition-colors shadow-sm min-h-[44px] min-w-[44px]"
+        className="flex items-center justify-center w-11 h-11 rounded-full bg-brand-surface-alt border border-[#014BAA]/12 text-[#014BAA] hover:bg-[#E5EFFC] transition-colors shadow-sm min-h-[44px] min-w-[44px]"
         aria-label="Go Back"
       >
         <ArrowLeft size={18} />
       </button>
 
       {/* Middle: Dashboard Text */}
-      <span className="text-[10px] font-medium tracking-[0.12em] text-[#0F6441] uppercase select-none px-4 text-center">
+      <span className="text-[10px] font-medium tracking-[0.12em] text-[#014BAA] uppercase select-none px-4 text-center">
         {pathname === '/garbage/admin/status' ? 'collection' : 'dashboard'}
       </span>
 

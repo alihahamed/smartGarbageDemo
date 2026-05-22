@@ -4,20 +4,31 @@ This document defines the visual design system, color palette, typography guidel
 
 ---
 
-## 1. Color Palette (Dark Theme / Glassmorphism)
+## 1. Color Palette (SaaS Light Mode / Royal Blue & Light Cream Identity)
 
-Based on the **Leafy Lemon** and **Greenish Black** palette, the app will use a premium, high-contrast dark theme inspired by organic modernism and glowing civic UI elements.
+The app uses a clean, premium **light SaaS theme** with a strong **Royal Blue and Light Cream identity**. All text, borders, and backgrounds carry blue and cream tints instead of neutral greys.
 
-| Color Token | Hex / HSL | Usage | Role |
+| Color Token | Hex | Usage | Role |
 | :--- | :--- | :--- | :--- |
-| **Primary Accent (Leafy Lemon)** | `#BEF000` / `hsl(72, 100%, 47%)` | Buttons, Active states, Highlights, Focus borders | High-visibility CTA |
-| **Base Background (Pitch Black)**  | `#000000` / `hsl(0, 0%, 0%)`   | App background | Pure screen depth |
-| **Surface Dark (Greenish Black)** | `#0F6441` / `hsl(156, 74%, 22%)` | Card backgrounds, panels, navigation containers | Secondary structure |
-| **Surface Medium (Moss Slate)** | `#162E23` / `hsl(154, 35%, 14%)` | Card borders, secondary actions, inputs | Tertiary utility |
-| **Text Primary (Snow)** | `#F0FDF4` / `hsl(133, 60%, 97%)` | Large headings, critical labels | High contrast |
-| **Text Secondary (Sage)** | `#8FA399` / `hsl(150, 11%, 60%)` | Descriptions, captions, helper texts | Subtext |
-| **Warning/Alert (Tangerine)** | `#FB8500` / `hsl(32, 100%, 49%)` | Missed collections, failed GPS checks | Status |
-| **Success Alert (Lime Glow)** | `#2BE080` / `hsl(148, 74%, 52%)` | Done status, paid checkmarks | Status |
+| **Primary Accent (Vibrant Coral)** | `#FF5A36` | CTA button fills, active badges with light/dark text | High-visibility CTA |
+| **App Background** | `#F8F3F0` | Page backdrop | Clean Light Cream base |
+| **Card Surface** | `#FFFFFF` | Card/panel backgrounds | Primary surface |
+| **Surface Alt (Cream Sage)** | `#EFEAE6` | Input backgrounds, borders, dividers, secondary fills | Cream-tinted neutral |
+| **Text Primary (Deep Navy)** | `#0A1C33` | Headings, values, primary labels | High contrast navy |
+| **Text Secondary (Steel Blue)** | `#4A607A` | Descriptions, captions, muted labels | Subtext blue-grey |
+| **Royal Blue** | `#014BAA` | Section headers, icon accents, active nav text, borders | Brand identity |
+| **Dark Blue** | `#0A3366` | Body text in cards, message content | Reading blue |
+| **Placeholder (Steel)** | `#6B7F96` | Input placeholders | Subtle blue-grey hint |
+| **Tint Background** | `#FAF6F3` | Input fills, autofill card fills, log panel backgrounds | Soft cream wash |
+| **Hover Tint** | `#E5EFFC` | Button/card hover state backgrounds | Interactive feedback |
+| **Warning/Alert (Red)** | `#EF4444` | Missed collections, failed GPS checks | Status |
+| **Success Alert (Green)** | `#10B981` | Done status, paid checkmarks | Status |
+
+### Contrast Guard Rules
+
+- **Vibrant Coral (`#FF5A36`)** is **only** used as a **filled background** with high-contrast text (e.g., CTA buttons, active status badges). Never use as text color on light backgrounds.
+- All text accents, active indicators, and icon highlights use **Royal Blue (`#014BAA`)** or **Deep Navy (`#0A1C33`)**.
+- Borders use `#014BAA` with low opacity (`/8`, `/10`, `/12`) instead of grey `border-slate-*` classes.
 
 ---
 
@@ -45,7 +56,7 @@ We use the Google Font **"DM Sans"** for a clean, friendly, geometric sans-serif
 
 The demo is optimized for mobile-first interactions simulating a citizen's or field collector's smartphone.
 
-* **App Shell Max-Width:** `480px` (centered on desktop viewports with a deep `#000000` backdrop to mimic a phone device body).
+* **App Shell Max-Width:** `480px` (centered on desktop viewports with a soft `#F8FAFC` backdrop).
 * **Grid Layouts:**
   - **Home Screen Tile Grid:** `2x2` columns (`grid-template-columns: repeat(2, 1fr)`), Gap: `1rem` (16px).
   - **Stats & Dashboard Lists:** Stacked vertical list structure, Gap: `0.75rem` (12px).
@@ -56,19 +67,21 @@ The demo is optimized for mobile-first interactions simulating a citizen's or fi
 
 ---
 
-## 4. Visual Tokens & Glassmorphism
+## 4. Visual Tokens & Glass Panels
 
-To give the app a premium, glowing, high-fidelity appearance:
+To give the app a premium, clean, SaaS-grade appearance:
 
 * **Corner Radius (Rounding):**
-  - **Large Panels & Screens:** `24px` (`1.5rem`) - Matches the organic roundness in the Leafy Lemon color card.
+  - **Large Panels & Screens:** `24px` (`1.5rem`)
   - **Cards & Modals:** `20px` (`1.25rem`)
   - **Buttons & Inputs:** `12px` (`0.75rem`)
   - **Badges:** `6px` (`0.375rem`)
 * **Borders:**
-  - Standard card borders: `1px solid rgba(190, 240, 0, 0.15)` (Leafy Lemon with low opacity over Greenish Black).
-  - Active/Focus state borders: `1.5px solid #BEF000` (Glow accent).
-* **Gradients & Shadows:**
-  - Main background gradient: `radial-gradient(circle at top left, #0F6441 0%, #000000 80%)`.
-  - Accent card gradient: `linear-gradient(135deg, rgba(15, 100, 65, 0.4) 0%, rgba(5, 15, 11, 0.9) 100%)`.
-  - Glow Shadow: `box-shadow: 0 0 20px rgba(190, 240, 0, 0.12)`.
+  - Standard card borders: `1px solid rgba(1, 75, 170, 0.08)` (Royal Blue low opacity).
+  - Active/Focus state borders: `1px solid rgba(1, 75, 170, 0.5)`.
+  - Element borders: `border-[#014BAA]/10` or `border-[#014BAA]/12`.
+* **Glass Panel:**
+  - Background: `linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 243, 240, 0.95) 100%)`
+  - Border: `1px solid rgba(1, 75, 170, 0.08)`
+  - Shadow: `0 10px 25px -5px rgba(1, 75, 170, 0.05), 0 8px 16px -6px rgba(0, 0, 0, 0.03)`
+* **Scrollbars:** Blue-tinted thumbs (`#B4C6D8` / `#7FA3C7` on hover).

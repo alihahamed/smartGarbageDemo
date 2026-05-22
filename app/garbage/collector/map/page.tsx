@@ -104,7 +104,7 @@ export default function CollectorMap() {
 
       {/* Progress Card */}
       <div className="p-4 rounded-xl glass-panel border border-brand-accent/15 space-y-3">
-        <div className="flex justify-between items-center text-[10px] text-brand-text-muted">
+        <div className="flex justify-between items-center text-[11px] text-brand-text-muted">
           <span className="font-medium uppercase tracking-wider">Route Progress (Ward 1)</span>
           <span className="text-brand-accent">{coveragePercent}% Coverage</span>
         </div>
@@ -118,15 +118,15 @@ export default function CollectorMap() {
         <div className="grid grid-cols-3 gap-2 text-center pt-1">
           <div className="bg-brand-bg/40 p-1.5 rounded border border-brand-surface-alt">
             <div className="text-[14px] font-medium text-brand-success">{collectedCount}</div>
-            <div className="text-[8px] font-light text-brand-text-muted">Done</div>
+            <div className="text-[11px] font-light text-brand-text-muted">Done</div>
           </div>
           <div className="bg-brand-bg/40 p-1.5 rounded border border-brand-surface-alt">
             <div className="text-[14px] font-medium text-brand-warning">{attemptedCount}</div>
-            <div className="text-[8px] font-light text-brand-text-muted">Attempted</div>
+            <div className="text-[11px] font-light text-brand-text-muted">Attempted</div>
           </div>
           <div className="bg-brand-bg/40 p-1.5 rounded border border-brand-surface-alt">
             <div className="text-[14px] font-medium text-brand-text-muted">{pendingCount}</div>
-            <div className="text-[8px] font-light text-brand-text-muted">Pending</div>
+            <div className="text-[11px] font-light text-brand-text-muted">Pending</div>
           </div>
         </div>
       </div>
@@ -150,26 +150,26 @@ export default function CollectorMap() {
                       {house.houseNo}
                     </span>
                     {house.status === 'done' && (
-                      <span className="text-[8px] font-medium uppercase tracking-wider text-brand-success px-1.5 py-0.5 rounded bg-brand-success/10 border border-brand-success/20 flex items-center gap-0.5">
-                        <CheckCircle2 size={8} /> Done
+                      <span className="text-[11px] font-medium uppercase tracking-wider text-brand-success px-1.5 py-0.5 rounded bg-brand-success/10 border border-brand-success/20 flex items-center gap-0.5">
+                        <CheckCircle2 size={11} /> Done
                       </span>
                     )}
                     {house.status === 'attempted' && (
-                      <span className="text-[8px] font-medium uppercase tracking-wider text-brand-warning px-1.5 py-0.5 rounded bg-brand-warning/10 border border-brand-warning/20 flex items-center gap-0.5">
-                        <AlertCircle size={8} /> Attempt
+                      <span className="text-[11px] font-medium uppercase tracking-wider text-brand-warning px-1.5 py-0.5 rounded bg-brand-warning/10 border border-brand-warning/20 flex items-center gap-0.5">
+                        <AlertCircle size={11} /> Attempt
                       </span>
                     )}
                     {house.status === 'pending' && (
-                      <span className="text-[8px] font-medium uppercase tracking-wider text-brand-text-muted px-1.5 py-0.5 rounded bg-brand-surface-alt/60 border border-brand-surface-alt flex items-center gap-0.5">
-                        <HelpCircle size={8} /> Pending
+                      <span className="text-[11px] font-medium uppercase tracking-wider text-brand-text-muted px-1.5 py-0.5 rounded bg-brand-surface-alt/60 border border-brand-surface-alt flex items-center gap-0.5">
+                        <HelpCircle size={11} /> Pending
                       </span>
                     )}
                   </div>
-                  <p className="text-[10px] font-light text-brand-text-muted truncate">
+                  <p className="text-[11px] font-light text-brand-text-muted truncate">
                     {house.address}
                   </p>
                 </div>
-                <div className="text-[9px] font-medium text-brand-accent group-hover:translate-x-0.5 transition-transform shrink-0">
+                <div className="text-[11px] font-medium text-brand-accent group-hover:translate-x-0.5 transition-transform shrink-0">
                   Manage →
                 </div>
               </button>
@@ -178,7 +178,7 @@ export default function CollectorMap() {
         ) : (
           /* High-Fidelity SVG Route Map */
           <div className="w-full flex-1 flex flex-col justify-between p-4 rounded-xl border border-brand-surface-alt bg-brand-surface-alt/20">
-            <div className="flex items-center justify-between text-[10px] text-brand-text-muted mb-2">
+            <div className="flex items-center justify-between text-[11px] text-brand-text-muted mb-2">
               <span className="flex items-center gap-1">
                 <Compass size={12} className="animate-spin" style={{ animationDuration: '6s' }} />
                 Interactive Route Map
@@ -221,13 +221,13 @@ export default function CollectorMap() {
                 );
               })}
 
-              <div className="absolute top-2 right-2 bg-brand-surface-alt/90 px-2 py-1 rounded text-[8px] font-light flex items-center gap-1 border border-brand-accent/20">
+              <div className="absolute top-2 right-2 bg-brand-surface-alt/90 px-2 py-1 rounded text-[11px] font-light flex items-center gap-1 border border-brand-accent/20">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-ping" />
                 <span>Your Location</span>
               </div>
             </div>
 
-            <p className="text-[9px] font-light text-brand-text-muted text-center mt-3">
+            <p className="text-[11px] font-light text-brand-text-muted text-center mt-3">
               Tap dots on map to scan household QR codes or log check-ins directly.
             </p>
           </div>

@@ -41,8 +41,8 @@ export default function ResidentQr() {
           width: 200,
           margin: 1,
           color: {
-            dark: '#000000', // Base Background (Dark)
-            light: '#F0FDF4' // Snow (Light text)
+            dark: '#0A1C33', // Deep Navy
+            light: '#FAF6F3' // Soft cream wash
           }
         },
         (error) => {
@@ -74,7 +74,7 @@ export default function ResidentQr() {
       </div>
 
       {/* Main QR Card */}
-      <div className="w-full rounded-2xl glass-panel p-6 border border-brand-accent/25 flex flex-col items-center space-y-6 text-center">
+      <div className="w-full rounded-2xl glass-panel p-6 border border-[#014BAA]/12 flex flex-col items-center space-y-6 text-center">
         <div className="space-y-1">
           <h2 className="text-base font-medium text-brand-text">Resident Collection Pass</h2>
           <p className="text-xs font-light text-brand-text-muted">
@@ -83,7 +83,7 @@ export default function ResidentQr() {
         </div>
 
         {/* QR Container Canvas */}
-        <div className="p-4 rounded-2xl bg-[#F0FDF4] shadow-xl shadow-black/25 flex items-center justify-center">
+        <div className="p-4 rounded-2xl bg-[#FAF6F3] border border-[#014BAA]/8 shadow-xl shadow-[#014BAA]/5 flex items-center justify-center">
           <canvas ref={canvasRef} className="w-[200px] h-[200px]" />
         </div>
 
@@ -92,7 +92,7 @@ export default function ResidentQr() {
             <span className="text-xs font-medium text-brand-accent uppercase tracking-wider block">
               House {userHouse.houseNo}
             </span>
-            <p className="text-[10px] font-light text-brand-text-muted leading-relaxed max-w-[240px] mx-auto">
+            <p className="text-[11px] font-light text-brand-text-muted leading-relaxed max-w-[240px] mx-auto">
               {userHouse.address}
             </p>
           </div>
@@ -103,8 +103,8 @@ export default function ResidentQr() {
       <div className="p-4 rounded-xl border border-brand-surface-alt bg-brand-surface-alt/10 flex items-start gap-3">
         <ShieldCheck className="text-brand-accent shrink-0 mt-0.5" size={15} />
         <div className="space-y-0.5">
-          <h4 className="text-[10px] font-medium text-brand-text">Anti-Fraud Protection</h4>
-          <p className="text-[9px] font-light text-brand-text-muted leading-relaxed">
+          <h4 className="text-[11px] font-medium text-brand-text">Anti-Fraud Protection</h4>
+          <p className="text-[11px] font-light text-brand-text-muted leading-relaxed">
             The collector must be within 15 meters of your household GPS marker to log verification of this QR pass.
           </p>
         </div>
