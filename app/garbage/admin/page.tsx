@@ -2,12 +2,12 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Megaphone, Bell, Calendar, Clock } from 'lucide-react';
+import { ArrowRight, Megaphone, Bell, Calendar, Clock, Download, AlertTriangle, CheckCircle2, PieChart as PieIcon } from 'lucide-react';
 import { fetchBroadcasts, fetchResidents, addBroadcast, Broadcast, House } from '@/lib/api/garbage';
 import Toast from '@/components/Toast';
 import Skeleton from '@/components/Skeleton';
 import gsap from 'gsap';
-import { BarChart as RechartsChart, Bar as RechartsBar, ResponsiveContainer } from 'recharts';
+import { BarChart as RechartsChart, Bar as RechartsBar, ResponsiveContainer, PieChart, Pie, Cell, Tooltip } from 'recharts';
 
 // Custom components for Premium SVG data visuals
 const BarChart = ({ percentage }: { percentage: number }) => {
@@ -89,7 +89,7 @@ const RouteIllustration = () => {
         </g>
         
         {/* Node 3: End destination */}
-        <circle cx={92} cy={18} r={3} fill="#EFEAE6" stroke="#4A607A" strokeWidth={1} />
+        <circle cx={92} cy={18} r={3} fill="#EFEAE6" stroke="#000000" strokeWidth={1} />
       </svg>
     </div>
   );
@@ -102,6 +102,14 @@ export default function GarbageAdmin() {
   const [broadcastText, setBroadcastText] = useState('');
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [toastType, setToastType] = useState<'success' | 'warning' | 'info'>('success');
+  const [activeTab, setActiveTab] = useState<'overview' | 'ward'>('overview');
+
+  useEffect(() => {
+    const role = localStorage.getItem('sgcs_role');
+    if (role === 'ward') {
+      setActiveTab('ward');
+    }
+  }, []);
 
   // Carousel control states & references
   const [activeSlide, setActiveSlide] = useState(0);
@@ -177,7 +185,19 @@ export default function GarbageAdmin() {
   };
 
   const collectedCount = houses.filter(h => h.status === 'done').length;
-  const coveragePercent = houses.length > 0 ? Math.round((collectedCount / houses.length) * 100) : 0;
+  const attemptedCount = houses.filter(h => h.status === 'attempted').length;
+  const pendingCount = houses.filter(h => h.status === 'pending').length;
+  const totalCount = houses.length;
+  const coveragePercent = totalCount > 0 ? Math.round((collectedCount / totalCount) * 100) : 0;
+
+  const handleExport = () => {
+    setToastMessage('Exporting PDF Sanitation Audit Report for Ward 1...');
+    setToastType('success');
+    setTimeout(() => {
+      setToastMessage('Download initiated! Check your browser downloads.');
+      setToastType('success');
+    }, 1500);
+  };
 
   if (loading) {
     return (
@@ -198,193 +218,348 @@ export default function GarbageAdmin() {
         />
       )}
 
-      {/* Profile Header */}
-      <div className="flex items-center justify-between py-1">
-        <div className="flex items-center gap-3">
-          <div className="relative w-13 h-13 rounded-full overflow-hidden border border-[#014BAA]/20">
-            <img 
-              src="/avatar.png" 
-              alt="Sajibur Rahman" 
-              className="w-full h-full object-cover" 
-            />
+      {/* Top Banner Section with Royal Blue Gradient & Curved Bottom */}
+      <div className="-mx-4 -mt-8 px-4 pt-8 pb-6 rounded-b-[40px] bg-gradient-to-b from-[#014BAA] via-[#014BAA] to-[#0A3366] shadow-lg shadow-[#014BAA]/10 flex flex-col space-y-5">
+        {/* Profile Header */}
+        <div className="flex items-center justify-between py-1 text-white">
+          <div className="flex items-center gap-3">
+            <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-white/20">
+              <img 
+                src="/avatar.png" 
+                alt="Sajibur Rahman" 
+                className="w-full h-full object-cover" 
+              />
+            </div>
+            <div className="space-y-0.5">
+              <p className="text-[16px] font-light text-white/80">Good morning!</p>
+              <h2 className="text-[24px] font-medium text-white tracking-tight">Sajibur Rahman</h2>
+            </div>
           </div>
-          <div className="space-y-0.5">
-            <p className="text-[14px] font-light text-[#4A607A]">Good morning!</p>
-            <h2 className="text-[20px] font-medium text-[#0A1C33] tracking-tight">Sajibur Rahman</h2>
+          
+          <div className="flex items-center gap-2">
+            {/* Calendar Button */}
+            <button 
+              type="button"
+              className="flex items-center justify-center w-13 h-13 rounded-full bg-white/10 border border-white/15 hover:bg-white/20 text-white transition-all min-h-[50px] min-w-[50px]"
+              aria-label="Calendar Schedule"
+            >
+              <Calendar size={22} />
+            </button>
+            {/* Notification Button */}
+            <button 
+              type="button"
+              className="relative flex items-center justify-center w-13 h-13 rounded-full bg-white/10 border border-white/15 hover:bg-white/20 text-white transition-all min-h-[50px] min-w-[50px]"
+              aria-label="Notifications"
+            >
+              <Bell size={22} />
+              <span className="absolute top-3.5 right-3.5 w-2 h-2 rounded-full bg-[#FF5A36] ring-2 ring-[#014BAA]" />
+            </button>
           </div>
         </div>
-        
-        <div className="flex items-center gap-2">
-          {/* Calendar Button */}
-          <button 
-            type="button"
-            className="flex items-center justify-center w-14 h-14 rounded-full bg-white border border-[#014BAA]/12 hover:border-[#014BAA]/30 text-[#4A607A] hover:text-[#014BAA] transition-all min-h-[50px] min-w-[50px]"
-            aria-label="Calendar Schedule"
-          >
-            <Calendar size={22} />
-          </button>
-          {/* Notification Button */}
-          <button 
-            type="button"
-            className="relative flex items-center justify-center w-14 h-14 rounded-full bg-white border border-[#014BAA]/12 hover:border-[#014BAA]/30 text-[#4A607A] hover:text-[#014BAA] transition-all min-h-[50px] min-w-[50px]"
-            aria-label="Notifications"
-          >
-            <Bell size={22} />
-            <span className="absolute top-3.5 right-3.5 w-2 h-2 rounded-full bg-[#FF5A36]" />
-          </button>
-        </div>
-      </div>
 
-      {/* Horizontal Stats Carousel */}
-      <div 
-        className="relative w-full overflow-hidden py-1 cursor-grab active:cursor-grabbing select-none"
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-      >
+        {/* Horizontal Stats Carousel */}
         <div 
-          ref={trackRef}
-          className="flex w-full"
-          style={{ transform: 'translateX(0%)' }}
+          className="relative w-full overflow-hidden py-1 cursor-grab active:cursor-grabbing select-none"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
         >
-          {/* Slide 1: Collection Rate */}
-          <div className="w-full flex-shrink-0 pr-1">
-            <div className="p-4 h-32 rounded-xl glass-panel border border-[#014BAA]/10 flex items-center justify-between">
-              <div className="flex flex-col justify-between h-full">
-                <span className="text-[12px] font-medium tracking-wider uppercase text-[#4A607A]">
-                  Collection Rate
-                </span>
-                <div className="space-y-0.5">
-                  <span className="text-3xl font-medium text-[#0A1C33]">{coveragePercent}%</span>
-                  <p className="text-[12px] font-light text-[#4A607A]">
-                    {collectedCount} of {houses.length} houses logged
-                  </p>
+          <div 
+            ref={trackRef}
+            className="flex w-full"
+            style={{ transform: 'translateX(0%)' }}
+          >
+            {/* Slide 1: Collection Rate */}
+            <div className="w-full flex-shrink-0 pr-1">
+              <div className="p-4 h-32 rounded-xl glass-panel border border-[#014BAA]/10 flex items-center justify-between">
+                <div className="flex flex-col justify-between h-full">
+                  <span className="text-[12px] font-medium tracking-wider uppercase text-black">
+                    Collection Rate
+                  </span>
+                  <div className="space-y-0.5">
+                    <span className="text-3xl font-medium text-[#0A1C33]">{coveragePercent}%</span>
+                    <p className="text-[12px] font-light text-black">
+                      {collectedCount} of {houses.length} houses logged
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center justify-center pl-2">
+                  <BarChart percentage={coveragePercent} />
                 </div>
               </div>
-              <div className="flex items-center justify-center pl-2">
-                <BarChart percentage={coveragePercent} />
+            </div>
+            
+            {/* Slide 2: Active Route */}
+            <div className="w-full flex-shrink-0 pl-1">
+              <div className="p-4 h-32 rounded-xl glass-panel border border-[#014BAA]/10 flex items-center justify-between">
+                <div className="flex flex-col justify-between h-full">
+                  <span className="text-[12px] font-medium tracking-wider uppercase text-black">
+                    Active Route
+                  </span>
+                  <div className="space-y-0.5">
+                    <span className="text-3xl font-medium text-[#0A1C33]">Ward 1</span>
+                    <p className="text-[13px] font-light text-black">
+                      Collector: Rajesh Kumar
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center justify-center pl-2">
+                  <RouteIllustration />
+                </div>
               </div>
             </div>
           </div>
           
-          {/* Slide 2: Active Route */}
-          <div className="w-full flex-shrink-0 pl-1">
-            <div className="p-4 h-32 rounded-xl glass-panel border border-[#014BAA]/10 flex items-center justify-between">
-              <div className="flex flex-col justify-between h-full">
-                <span className="text-[12px] font-medium tracking-wider uppercase text-[#4A607A]">
-                  Active Route
-                </span>
-                <div className="space-y-0.5">
-                  <span className="text-3xl font-medium text-[#0A1C33]">Ward 1</span>
-                  <p className="text-[12px] font-light text-[#4A607A]">
-                    Collector: Rajesh Kumar
-                  </p>
-                </div>
+          {/* Carousel Index Dots */}
+          <div className="flex justify-center gap-1.5 mt-2.5">
+            <button 
+              type="button"
+              onClick={() => setActiveSlide(0)}
+              className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${activeSlide === 0 ? 'w-4 bg-white' : 'bg-white/40'}`}
+              aria-label="Collection rate stats"
+            />
+            <button 
+              type="button"
+              onClick={() => setActiveSlide(1)}
+              className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${activeSlide === 1 ? 'w-4 bg-white' : 'bg-white/40'}`}
+              aria-label="Active route tracking"
+            />
+          </div>
+        </div>
+
+        {/* Dynamic Tab Switcher inside the blue banner */}
+        <div className="flex justify-center p-1 bg-white/10 border border-white/15 backdrop-blur-md rounded-full w-[90%] mx-auto shadow-inner mt-2">
+          <button
+            type="button"
+            onClick={() => setActiveTab('overview')}
+            className={`flex-1 py-2.5 px-4 rounded-full text-[16px] transition-all cursor-pointer ${
+              activeTab === 'overview'
+                ? 'bg-white text-[#014BAA] font-medium shadow-md'
+                : 'text-white/80 font-light hover:text-white hover:bg-white/5'
+            }`}
+          >
+            Overview
+          </button>
+          <button
+            type="button"
+            onClick={() => setActiveTab('ward')}
+            className={`flex-1 py-2.5 px-4 rounded-full text-[16px] transition-all cursor-pointer ${
+              activeTab === 'ward'
+                ? 'bg-white text-[#014BAA] font-medium shadow-md'
+                : 'text-white/80 font-light hover:text-white hover:bg-white/5'
+            }`}
+          >
+            Ward Monitor
+          </button>
+        </div>
+      </div>
+
+      {activeTab === 'overview' ? (
+        <>
+          {/* Send Notification Broadcast (Taller text area, centered pill CTA button) */}
+          <div className="py-6 px-5 rounded-xl glass-panel border border-[#014BAA]/10 space-y-5">
+            <h3 className="text-[21px] font-medium text-black flex items-center justify-center gap-1.5">
+              <Megaphone size={20} className="text-black mr-2" />
+              Broadcast to Ward Residents
+            </h3>
+            
+            <form onSubmit={handleBroadcast} className="space-y-5 flex flex-col">
+              <textarea
+                value={broadcastText}
+                onChange={(e) => setBroadcastText(e.target.value)}
+                placeholder="Write announcement (e.g. Collection delayed today due to rain)..."
+                className="w-full h-40 p-3 rounded-lg border border-[#014BAA]/12 bg-white text-[#0A1C33] text-[15px] font-light placeholder-[#6B7F96] focus:outline-none focus:border-[#014BAA]/50 transition-colors resize-none"
+              />
+              <div className="flex justify-center w-full">
+                <button
+                  type="submit"
+                  className="flex items-center gap-3 pl-6 pr-1.5 py-[5px] rounded-full bg-[#014BAA] text-white text-[15px] font-medium hover:opacity-90 transition-all shadow-md shadow-[#014BAA]/20 transform active:scale-95 duration-150"
+                >
+                  <span>Send Broadcast</span>
+                  <span className="flex items-center justify-center w-13 h-13 rounded-full bg-[#FAF6F3] text-[#014BAA] min-h-[50px] min-w-[50px]">
+                    <Megaphone size={22} />
+                  </span>
+                </button>
               </div>
-              <div className="flex items-center justify-center pl-2">
-                <RouteIllustration />
+            </form>
+          </div>
+
+          {/* Quick Navigation Panel */}
+          <Link
+            href="/garbage/admin/status"
+            className="flex items-center justify-between p-4 rounded-xl glass-panel border border-[#014BAA]/10 border-l-[3px] border-l-[#014BAA] hover:border-[#014BAA]/20 hover:shadow-[0_4px_12px_rgba(1,75,170,0.04)] group transition-all"
+          >
+            <div className="space-y-0.5">
+              <h3 className="text-[18px] font-medium text-[#014BAA] group-hover:text-brand-text transition-colors">
+                House Status Dashboard
+              </h3>
+              <p className="text-[12px] font-light text-black">
+                Monitor real-time route checklist status of households.
+              </p>
+            </div>
+            <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#014BAA] border border-[#014BAA]/12 group-hover:bg-[#014BAA] text-white group-hover:text-white transition-all">
+              <ArrowRight size={17} className="group-hover:translate-x-0.5 transition-transform" />
+            </div>
+          </Link>
+
+          {/* Broadcast Log (Reduced width and centered) */}
+          <div className="flex-1 space-y-3 min-h-0 w-[88%] mx-auto">
+            <h3 className="text-[20px] font-medium text-black flex items-center justify-center gap-1.5">
+              <Bell size={20} className="text-yellow-600" />
+              Recent Broadcast Logs
+            </h3>
+
+            <div className="rounded-xl border border-[#014BAA]/10 overflow-hidden bg-[#FAF6F3]">
+              <div className="max-h-[160px] overflow-y-auto divide-y divide-[#014BAA]/8">
+                {broadcasts.length === 0 ? (
+                  <div className="p-4 text-center text-[14px] font-light text-black">
+                    No announcements broadcasted yet.
+                  </div>
+                ) : (
+                  broadcasts.map((b, idx) => (
+                    <div key={idx} className="p-4 flex items-start gap-3">
+                      <div className="p-1.5 rounded bg-[#FAF6F3] text-[#014BAA]">
+                        <Clock size={18} className="text-[#014BAA]" />
+                      </div>
+                      <div className="flex-1 space-y-1">
+                        <div className="flex justify-between items-center text-[16px]">
+                          <span className="font-medium text-[#014BAA]">{b.actor}</span>
+                          <span className="font-light text-black">{b.time}</span>
+                        </div>
+                        <p className="text-[14px] font-light text-[#0A3366] leading-relaxed">
+                          {b.message}
+                        </p>
+                      </div>
+                    </div>
+                  ))
+                )}
               </div>
             </div>
           </div>
-        </div>
-        
-        {/* Carousel Index Dots */}
-        <div className="flex justify-center gap-1.5 mt-2.5">
-          <button 
-            type="button"
-            onClick={() => setActiveSlide(0)}
-            className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${activeSlide === 0 ? 'w-4 bg-[#014BAA]' : 'bg-[#4A607A]/40'}`}
-            aria-label="Collection rate stats"
-          />
-          <button 
-            type="button"
-            onClick={() => setActiveSlide(1)}
-            className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${activeSlide === 1 ? 'w-4 bg-[#014BAA]' : 'bg-[#4A607A]/40'}`}
-            aria-label="Active route tracking"
-          />
-        </div>
-      </div>
+        </>
+      ) : (
+        <>
+          {/* Recharts Pie Chart Visual & Numeric stats */}
+          <div className="p-5 rounded-2xl glass-panel border border-[#014BAA]/15 flex items-center justify-between gap-6">
+            <div className="relative w-[130px] h-[130px] flex items-center justify-center shrink-0">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={[
+                      { name: 'Cleaned', value: collectedCount, color: '#10B981' },
+                      { name: 'Missed', value: attemptedCount, color: '#EF4444' },
+                      { name: 'Pending', value: pendingCount, color: '#6B7F96' }
+                    ]}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={42}
+                    outerRadius={56}
+                    paddingAngle={3}
+                    dataKey="value"
+                  >
+                    {[
+                      { name: 'Cleaned', value: collectedCount, color: '#10B981' },
+                      { name: 'Missed', value: attemptedCount, color: '#EF4444' },
+                      { name: 'Pending', value: pendingCount, color: '#6B7F96' }
+                    ].map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                  </Pie>
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: '#FAF6F3',
+                      borderColor: 'rgba(1, 75, 170, 0.15)',
+                      borderRadius: '12px',
+                      fontFamily: 'DM Sans, sans-serif',
+                      fontSize: '12px',
+                      fontWeight: 500
+                    }}
+                  />
+                </PieChart>
+              </ResponsiveContainer>
+              {/* Inner readout */}
+              <div className="absolute inset-0 flex flex-col items-center justify-center space-y-0.5 pointer-events-none">
+                <span className="text-[22px] font-medium text-[#0A1C33] leading-none">{coveragePercent}%</span>
+                <span className="text-[12px] font-light text-[#0A3366]/60 uppercase tracking-wider">Cleared</span>
+              </div>
+            </div>
 
-      {/* Send Notification Broadcast (Taller text area, centered pill CTA button) */}
-      <div className="py-6 px-5 rounded-xl glass-panel border border-[#014BAA]/10 space-y-5">
-        <h3 className="text-[16px] font-medium text-[#014BAA] flex items-center gap-1.5">
-          <Megaphone size={13} className="text-[#014BAA]" />
-          Broadcast to Ward Residents
-        </h3>
-        
-        <form onSubmit={handleBroadcast} className="space-y-5 flex flex-col">
-          <textarea
-            value={broadcastText}
-            onChange={(e) => setBroadcastText(e.target.value)}
-            placeholder="Write announcement (e.g. Collection delayed today due to rain)..."
-            className="w-full h-40 p-3 rounded-lg border border-[#014BAA]/12 bg-white text-[#0A1C33] text-[12px] font-light placeholder-[#6B7F96] focus:outline-none focus:border-[#014BAA]/50 transition-colors resize-none"
-          />
+            <div className="space-y-3 flex-1 min-w-0">
+              <div className="space-y-0.5">
+                <h3 className="text-[18px] font-medium text-[#0A1C33]">Coverage Summary</h3>
+                <p className="text-[14px] font-light text-[#000000]/60">
+                  Daily route tracking index.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-2 text-[15px]">
+                <div className="space-y-0.5 border-l border-[#10B981]/40 pl-2">
+                  <span className="text-[#000000]/60 block font-light">Cleaned</span>
+                  <span className="text-[#10B981] text-[12px] font-medium block">{collectedCount} Houses</span>
+                </div>
+                <div className="space-y-0.5 border-l border-[#EF4444]/40 pl-2">
+                  <span className="text-[#000000]/60 block font-light">Missed</span>
+                  <span className="text-[#EF4444] text-[12px] font-medium block">{attemptedCount} Houses</span>
+                </div>
+                <div className="space-y-0.5 border-l border-[#6B7F96]/40 col-span-2 pl-2">
+                  <span className="text-[#000000]/60 block font-light">Pending</span>
+                  <span className="text-[#6B7F96] text-[12px] font-medium block">{pendingCount} Houses</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Export Report Action */}
           <div className="flex justify-center w-full">
             <button
-              type="submit"
-              className="flex items-center gap-3 pl-6 pr-1.5 py-[4px] rounded-full bg-[#014BAA] text-white text-[15px] font-medium hover:opacity-90 transition-all shadow-md shadow-[#014BAA]/20 transform active:scale-95 duration-150"
+              onClick={handleExport}
+              className="flex items-center gap-3 pl-6 pr-1.5 py-[5px] rounded-full bg-[#014BAA] text-white text-[15px] font-medium hover:opacity-90 transition-all shadow-md shadow-[#014BAA]/20 transform active:scale-95 duration-150 cursor-pointer"
             >
-              <span>Send Broadcast</span>
-              <span className="flex items-center justify-center w-13 h-13 rounded-full bg-[#FAF6F3] text-[#014BAA] min-h-[56px] min-w-[56px]">
-                <Megaphone size={22} />
+              <span>Export Ward Audit Report</span>
+              <span className="flex items-center justify-center w-13 h-13 rounded-full bg-[#FAF6F3] text-[#014BAA] min-h-[50px] min-w-[50px]">
+                <Download size={22} />
               </span>
             </button>
           </div>
-        </form>
-      </div>
 
-      {/* Quick Navigation Panel */}
-      <Link
-        href="/garbage/admin/status"
-        className="flex items-center justify-between p-4 rounded-xl glass-panel border border-[#014BAA]/10 border-l-[3px] border-l-[#014BAA] hover:border-[#014BAA]/20 hover:shadow-[0_4px_12px_rgba(1,75,170,0.04)] group transition-all"
-      >
-        <div className="space-y-0.5">
-          <h3 className="text-[16px] font-medium text-[#014BAA] group-hover:text-brand-text transition-colors">
-            House Status Dashboard
-          </h3>
-          <p className="text-[12px] font-light text-[#4A607A]">
-            Monitor real-time route checklist status of households.
-          </p>
-        </div>
-        <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#014BAA] border border-[#014BAA]/12 group-hover:bg-[#014BAA] text-white group-hover:text-white transition-all">
-          <ArrowRight size={17} className="group-hover:translate-x-0.5 transition-transform" />
-        </div>
-      </Link>
+          {/* Pending & Missed Houses list */}
+          <div className="flex-1 space-y-3 min-h-0 flex flex-col text-black">
+            <h3 className="text-[20px] font-medium text-[#0A1C33] flex items-center justify-center gap-1.5 shrink-0">
+              <AlertTriangle size={13} className="text-[#EF4444] shrink-0" />
+              <span>Pending & Missed Houses ({pendingCount + attemptedCount})</span>
+            </h3>
 
-      {/* Broadcast Log (Reduced width and centered) */}
-      <div className="flex-1 space-y-3 min-h-0 w-[84%] mx-auto">
-        <h3 className="text-[16px] font-medium text-[#014BAA] flex items-center gap-1.5">
-          <Bell size={13} className="text-[#4A607A]" />
-          Recent Broadcast Logs
-        </h3>
-
-        <div className="rounded-xl border border-[#014BAA]/10 overflow-hidden bg-[#FAF6F3]">
-          <div className="max-h-[160px] overflow-y-auto divide-y divide-[#014BAA]/8">
-            {broadcasts.length === 0 ? (
-              <div className="p-4 text-center text-[12px] font-light text-[#4A607A]">
-                No announcements broadcasted yet.
-              </div>
-            ) : (
-              broadcasts.map((b, idx) => (
-                <div key={idx} className="p-3 flex items-start gap-3">
-                  <div className="p-1.5 rounded bg-[#FAF6F3] text-[#014BAA]">
-                    <Clock size={16} className="text-[#014BAA]" />
+            <div className="flex-1 rounded-xl border border-[#014BAA]/10 bg-[#FAF6F3]/50 overflow-hidden flex flex-col">
+              <div className="max-h-[220px] overflow-y-auto divide-y divide-[#014BAA]/8">
+                {houses.filter(h => h.status !== 'done').length === 0 ? (
+                  <div className="p-8 text-center text-[12px] font-light text-[#000000]/60 flex flex-col items-center justify-center h-full gap-1.5">
+                    <CheckCircle2 size={24} className="text-[#10B981]" />
+                    <p>100% Ward Coverage Achieved!</p>
                   </div>
-                  <div className="flex-1 space-y-1">
-                    <div className="flex justify-between items-center text-[12px]">
-                      <span className="font-medium text-[#014BAA]">{b.actor}</span>
-                      <span className="font-light text-[#4A607A]">{b.time}</span>
+                ) : (
+                  houses.filter(h => h.status !== 'done').map((h) => (
+                    <div key={h.id} className="p-3.5 flex items-start justify-between gap-3 bg-[#FAF6F3]/30">
+                      <div className="space-y-0.5 min-w-0">
+                        <span className="text-[18px] font-medium text-[#0A1C33] block">{h.houseNo}</span>
+                        <p className="text-[14px] font-light text-[#000000]/60 truncate leading-relaxed">
+                          {h.address}
+                        </p>
+                      </div>
+                      <span className={`text-[12px] font-medium uppercase tracking-wider px-1.5 py-0.5 rounded border shrink-0 ${
+                        h.status === 'attempted'
+                          ? 'bg-[#EF4444]/10 text-[#EF4444] border-[#EF4444]/20'
+                          : 'bg-[#6B7F96]/10 text-[#6B7F96] border-[#6B7F96]/20'
+                      }`}>
+                        {h.status === 'attempted' ? 'Missed' : 'Pending'}
+                      </span>
                     </div>
-                    <p className="text-[12px] font-light text-[#0A3366] leading-relaxed">
-                      {b.message}
-                    </p>
-                  </div>
-                </div>
-              ))
-            )}
+                  ))
+                )}
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </>
+      )}
     </div>
   );
 }

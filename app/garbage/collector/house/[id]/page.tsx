@@ -3,11 +3,12 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
-import { ArrowLeft, UserCheck, UserMinus, ShieldAlert, CheckCircle, Navigation, Camera, Smartphone, AlertTriangle } from 'lucide-react';
+import { UserCheck, UserMinus, CheckCircle, Navigation, Camera, Smartphone, AlertTriangle, Clock, MapPin, CreditCard, QrCode } from 'lucide-react';
 import { fetchResidents, updateHouseStatus, logPayment, House } from '@/lib/api/garbage';
 import Toast from '@/components/Toast';
 import Skeleton from '@/components/Skeleton';
 import Modal from '@/components/Modal';
+import { Field, FieldLabel } from '@/components/ui/field';
 
 export default function HouseAction() {
   const params = useParams();
@@ -79,13 +80,21 @@ export default function HouseAction() {
     return (
       <div className="flex-1 flex flex-col items-center justify-center p-6 text-center">
         <AlertTriangle size={24} className="text-brand-warning mb-2" />
-        <p className="text-[12px] font-light text-brand-text-muted mb-4">Household records could not be resolved.</p>
-        <Link href="/garbage/collector/map" className="text-[12px] text-brand-accent hover:underline">
+        <p className="text-[13px] font-light text-brand-text-muted mb-4">Household records could not be resolved.</p>
+        <Link href="/garbage/collector/map" className="text-[13px] text-brand-accent hover:underline">
           Return to Checklist
         </Link>
       </div>
     );
   }
+
+  // Status helpers
+  const statusConfig = {
+    pending: { label: 'Pending', color: '#94A3B8', bg: 'bg-slate-100', text: 'text-slate-500', border: 'border-slate-200' },
+    done: { label: 'Collected', color: '#10B981', bg: 'bg-emerald-50', text: 'text-emerald-600', border: 'border-emerald-200' },
+    attempted: { label: 'Attempted', color: '#F59E0B', bg: 'bg-amber-50', text: 'text-amber-600', border: 'border-amber-200' },
+  };
+  const sc = statusConfig[house.status];
 
   // Action paths
   const handleSomeoneHome = () => {
@@ -94,9 +103,8 @@ export default function HouseAction() {
     setScannerMessage('Aim camera at the resident pass...');
     setScannerSuccess(false);
 
-    // Simulate scanning and 15m GPS radius check
     timerRef.current = setTimeout(() => {
-      setScannerStatus('Gps coordinates matched.');
+      setScannerStatus('GPS coordinates matched.');
       setScannerMessage(`Successfully validated Resident Pass ${house.houseNo}`);
       setScannerSuccess(true);
 
@@ -132,7 +140,6 @@ export default function HouseAction() {
     }
     setPhotoCaptured(true);
     
-    // Log household as attempted
     const updated = await updateHouseStatus(house.id, 'attempted', {
       photoUrl: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=500&auto=format&fit=crop&q=60'
     });
@@ -173,7 +180,7 @@ export default function HouseAction() {
   };
 
   return (
-    <div className="flex-1 flex flex-col justify-between py-2 space-y-6">
+    <div className="flex-1 flex flex-col justify-start py-2 space-y-4">
       {toastMessage && (
         <Toast 
           message={toastMessage} 
@@ -182,111 +189,136 @@ export default function HouseAction() {
         />
       )}
 
-      {/* Back button */}
-      <div>
-        <Link 
-          href="/garbage/collector/map" 
-          className="inline-flex items-center gap-1 text-[12px] text-brand-accent hover:underline"
-        >
-          <ArrowLeft size={14} />
-          <span>Back to Checklist</span>
-        </Link>
-      </div>
+      {/* ── Blue Header Banner ── */}
+      <div className="-mx-4 -mt-8 px-6 pt-8 pb-5 rounded-b-[40px] bg-gradient-to-br from-[#014BAA] via-[#014BAA] to-[#0A3366] shadow-lg shadow-[#014BAA]/10">
+        {/* House number + status row */}
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-3">
+            {/* House icon */}
+            <div className="flex items-center justify-center overflow-hidden">
+              <img src="/home-icon.png" alt="Home" className="w-15 h-15 object-contain" />
+            </div>
+            <div>
+              <h2 className="text-[26px] font-medium text-white tracking-tight leading-none">{house.houseNo}</h2>
+              <p className="text-[13px] font-light text-white/70 mt-0.5">Ward 1 Route</p>
+            </div>
+          </div>
 
-      {/* House Profile Header */}
-      <div className="p-4 rounded-xl glass-panel border border-brand-accent/20 flex gap-4 items-center">
-        <div className="w-12 h-12 rounded-xl bg-brand-accent/5 border border-brand-accent/20 flex items-center justify-center text-brand-accent text-lg font-medium shrink-0">
-          {house.houseNo}
+          {/* Status pill */}
+          <span className={`px-3 py-1.5 rounded-full text-[14px] font-medium ${sc.bg} ${sc.text} ${sc.border} border`}>
+            {sc.label}
+          </span>
         </div>
-        <div className="space-y-0.5 min-w-0">
-          <h3 className="text-[16px] font-medium text-brand-text truncate">{house.address}</h3>
-          <div className="flex items-center gap-1.5 text-[12px] font-light text-brand-text-muted">
-            <Navigation size={9} />
-            <span>Ward 1 Route • Latitude Stamp 10.85"</span>
+
+        {/* Address card */}
+        <div className="p-3.5 rounded-xl bg-white/10 border border-white/10 space-y-1.5">
+          <p className="text-[18px] font-medium text-white leading-snug">{house.address}</p>
+          <div className="flex items-center gap-3 text-[12px] text-white/60">
+            <span className="flex items-center gap-1">
+              <MapPin size={10} />
+              Lat 10.85°N
+            </span>
+            <span className="flex items-center gap-1">
+              <Navigation size={10} />
+              GPS Verified
+            </span>
           </div>
         </div>
       </div>
 
-      {/* House Collection Status Details */}
-      <div className="p-4 rounded-xl border border-brand-surface-alt bg-brand-surface-alt/10 space-y-3">
-        <h4 className="text-[12px] font-medium text-brand-text-muted uppercase tracking-wider">
-          Household Audit Log
-        </h4>
-        <div className="space-y-2">
-          <div className="flex justify-between text-[12px] font-light">
-            <span className="text-brand-text-muted">Status</span>
-            <span className={`font-medium capitalize ${
-              house.status === 'done' ? 'text-brand-success' :
-              house.status === 'attempted' ? 'text-brand-warning' : 'text-brand-text'
-            }`}>{house.status}</span>
-          </div>
+      {/* ── Audit Log (compact inline) ── */}
+      <div className="p-4 rounded-xl border border-[#014BAA]/8 bg-white space-y-2.5">
+        <div className="flex items-center justify-between">
+          <h4 className="text-[16px] font-medium text-brand-text-muted uppercase tracking-wider">Collection Log</h4>
           {house.visitTimestamp && (
-            <div className="flex justify-between text-[12px] font-light">
-              <span className="text-brand-text-muted">Visit Checked</span>
-              <span className="text-brand-text">{house.visitTimestamp}</span>
-            </div>
+            <span className="text-[16px] font-light text-brand-text-muted flex items-center gap-1">
+              <Clock size={10} />
+              {house.visitTimestamp}
+            </span>
           )}
-          {house.paymentMode && (
-            <div className="flex justify-between text-[12px] font-light">
-              <span className="text-brand-text-muted">Payment Type</span>
-              <span className="text-brand-text">{house.paymentMode}</span>
+        </div>
+
+        <div className="flex gap-2">
+          {/* Status chip */}
+          <div className={`flex-1 p-3 rounded-lg ${sc.bg} ${sc.border} border text-center`}>
+            <div className={`text-[14px] font-medium ${sc.text} capitalize`}>{house.status}</div>
+            <div className="text-[11px] font-light text-brand-text-muted mt-0.5">Status</div>
+          </div>
+
+          {/* Payment chip */}
+          <div className="flex-1 p-3 rounded-lg bg-brand-surface-alt/30 border border-brand-surface-alt text-center">
+            <div className="text-[14px] font-medium text-brand-text">
+              {house.paymentMode || '—'}
             </div>
-          )}
-          {house.amount && (
-            <div className="flex justify-between text-[12px] font-light">
-              <span className="text-brand-text-muted">Amount Settled</span>
-              <span className="text-brand-accent font-medium text-[16px]">₹{house.amount}</span>
+            <div className="text-[11px] font-light text-brand-text-muted mt-0.5">Payment</div>
+          </div>
+
+          {/* Amount chip */}
+          <div className="flex-1 p-3 rounded-lg bg-brand-surface-alt/30 border border-brand-surface-alt text-center">
+            <div className="text-[14px] font-medium text-[#014BAA]">
+              {house.amount ? `₹${house.amount}` : '—'}
             </div>
-          )}
+            <div className="text-[11px] font-light text-brand-text-muted mt-0.5">Amount</div>
+          </div>
         </div>
       </div>
 
-      {/* Interactive Actions Flow */}
+      {/* ── Actions ── */}
       {house.status === 'pending' ? (
         <div className="space-y-3">
-          <button
-            onClick={handleSomeoneHome}
-            className="w-full flex items-center justify-between py-[17px] px-4 rounded-xl border border-brand-accent/20 bg-brand-accent/5 hover:bg-brand-accent/10 transition-colors text-left"
-          >
-            <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-brand-accent/10 text-brand-accent">
-                <UserCheck size={16} />
+          <div className="grid grid-cols-2 gap-3">
+            {/* Someone Home — QR scan card */}
+            <button
+              onClick={handleSomeoneHome}
+              className="aspect-square rounded-2xl bg-gradient-to-br from-[#014BAA] to-[#0A3366] flex flex-col items-center justify-between p-5 transition-all hover:shadow-lg hover:shadow-[#014BAA]/20 active:scale-[0.97] group"
+            >
+              <div className="flex-1 flex items-center justify-center">
+                <QrCode size={95} className="text-white/90 group-hover:scale-105 transition-transform" />
               </div>
-              <div className="space-y-0.5">
-                <span className="text-[16px] font-medium text-brand-text">Someone Home</span>
-                <p className="text-[12px] font-light text-brand-text-muted">Verify Resident QR & log payment.</p>
-              </div>
-            </div>
-            <span className="text-brand-accent text-[12px] font-medium">Verify Pass →</span>
-          </button>
+              <span className="text-[14px] font-medium text-white">Someone Home</span>
+            </button>
 
-          <button
-            onClick={handleNoOneHome}
-            className="w-full flex items-center justify-between py-[17px] px-4 rounded-xl border border-brand-surface-alt bg-brand-bg hover:bg-brand-surface-alt/30 transition-colors text-left"
-          >
-            <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-brand-surface-alt text-brand-text-muted">
-                <UserMinus size={16} />
+            {/* No One Home — camera card */}
+            <button
+              onClick={handleNoOneHome}
+              className="aspect-square rounded-2xl bg-white border border-brand-surface-alt flex flex-col items-center justify-between p-5 transition-all hover:border-[#014BAA]/20 hover:shadow-sm active:scale-[0.97] group"
+            >
+              <div className="flex-1 flex items-center justify-center">
+                <Camera size={95} className="text-black group-hover:text-brand-text-muted group-hover:scale-105 transition-all" />
               </div>
-              <div className="space-y-0.5">
-                <span className="text-[16px] font-medium text-brand-text">No One Home</span>
-                <p className="text-[12px] font-light text-brand-text-muted">Log attendance attempt with photo.</p>
-              </div>
-            </div>
-            <span className="text-brand-text-muted text-[12px]">Upload Photo →</span>
-          </button>
+              <span className="text-[14px] font-medium text-brand-text">No One Home</span>
+            </button>
+          </div>
+
+          {/* Anti-fraud note */}
+          <div className="flex items-start gap-2 px-3 py-2.5 rounded-lg bg-amber-50/60 border border-amber-200/40">
+            <AlertTriangle size={12} className="text-amber-500 mt-0.5 shrink-0" />
+            <p className="text-[14px] font-light text-amber-700 leading-relaxed">
+              GPS coordinates must match within 15m of registered address. Discrepancies are flagged automatically.
+            </p>
+          </div>
         </div>
       ) : (
-        <div className="p-6 rounded-xl border border-brand-success/15 bg-brand-success/5 text-center space-y-2">
-          <CheckCircle className="text-brand-success mx-auto" size={24} />
-          <h3 className="text-[16px] font-medium text-brand-text">Household Processed</h3>
-          <p className="text-[12px] font-light text-brand-text-muted max-w-[240px] mx-auto leading-relaxed">
-            This residence is already logged for today's collection cycle.
+        /* Completed state */
+        <div className="p-5 rounded-2xl border border-emerald-200/60 bg-gradient-to-br from-emerald-50 to-white text-center space-y-2">
+          <div className="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center mx-auto">
+            <CheckCircle className="text-emerald-500" size={22} />
+          </div>
+          <h3 className="text-[18px] font-medium text-brand-text">Household Processed</h3>
+          <p className="text-[14px] font-light text-brand-text-muted max-w-[260px] mx-auto leading-relaxed">
+            This residence has been logged for today&apos;s collection cycle.
           </p>
+          {house.receiptId && (
+            <span className="inline-block mt-1 px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 text-[12px] font-medium">
+              Receipt: {house.receiptId}
+            </span>
+          )}
         </div>
       )}
 
-      {/* 1. Modal: QR Scanner Simulator */}
+      {/* ── Modals ── */}
+
+      {/* 1. QR Scanner */}
       <Modal
         isOpen={activeModal === 'scanner'}
         onClose={() => {
@@ -297,14 +329,13 @@ export default function HouseAction() {
         subtitle={house.houseNo}
       >
         <div className="flex flex-col items-center justify-center p-4 space-y-5 text-center">
-          {/* Animated Glowing Scan Reticle */}
-          <div className="w-40 h-40 rounded-xl border-2 border-brand-accent/40 bg-brand-surface-alt/35 flex items-center justify-center relative overflow-hidden">
-            <Smartphone size={40} className="text-brand-accent/50 animate-bounce" />
-            <div className="absolute inset-x-0 top-0 h-0.5 bg-brand-accent shadow-[0_0_10px_#FF5A36] animate-[pulse_1.5s_infinite]" />
+          <div className="w-40 h-40 rounded-xl border-2 border-[#014BAA]/30 bg-[#014BAA]/5 flex items-center justify-center relative overflow-hidden">
+            <QrCode size={40} className="text-[#014BAA]/40 animate-pulse" />
+            <div className="absolute inset-x-0 top-0 h-0.5 bg-[#014BAA] shadow-[0_0_10px_#014BAA] animate-[pulse_1.5s_infinite]" />
           </div>
 
           <div className="space-y-1">
-            <p className={`text-[12px] font-medium ${scannerSuccess ? 'text-brand-success' : 'text-brand-text'}`}>
+            <p className={`text-[13px] font-medium ${scannerSuccess ? 'text-brand-success' : 'text-brand-text'}`}>
               {scannerStatus}
             </p>
             <p className="text-[12px] font-light text-brand-text-muted">
@@ -314,7 +345,7 @@ export default function HouseAction() {
         </div>
       </Modal>
 
-      {/* 2. Modal: Payment Selector */}
+      {/* 2. Payment Selector */}
       <Modal
         isOpen={activeModal === 'payment'}
         onClose={() => setActiveModal('none')}
@@ -322,64 +353,66 @@ export default function HouseAction() {
         subtitle={`${house.houseNo} • Monthly Fee: ₹15`}
       >
         <div className="space-y-4">
-          <p className="text-[12px] font-light text-brand-text-muted leading-relaxed">
-            Resident details match. Select a collection method to issue receipts and close route point.
+          <p className="text-[13px] font-light text-brand-text-muted leading-relaxed">
+            Resident verified. Select payment method to issue receipt.
           </p>
 
           <div className="grid grid-cols-2 gap-3">
             <button
               onClick={() => handleLogPayment('Online')}
-              className="py-[13px] px-4 rounded-lg bg-brand-accent/10 border border-brand-accent/30 text-brand-accent hover:bg-brand-accent/20 transition-all text-center flex flex-col items-center gap-1.5"
+              className="py-4 px-4 rounded-xl bg-[#014BAA]/5 border border-[#014BAA]/15 text-[#014BAA] hover:bg-[#014BAA]/10 transition-all text-center flex flex-col items-center gap-2"
             >
-              <Smartphone size={16} />
-              <span className="text-[12px] font-medium">Online Paid</span>
-              <span className="text-[12px] font-light opacity-80">Pre-settled online</span>
+              <Smartphone size={20} />
+              <span className="text-[13px] font-medium">Online Paid</span>
+              <span className="text-[11px] font-light opacity-70">Pre-settled</span>
             </button>
 
             <button
               onClick={() => setShowCashInput(!showCashInput)}
-              className="py-[13px] px-4 rounded-lg bg-brand-bg border border-brand-surface-alt text-brand-text hover:bg-brand-surface-alt/40 transition-all text-center flex flex-col items-center gap-1.5"
+              className="py-4 px-4 rounded-xl bg-white border border-brand-surface-alt text-brand-text hover:bg-brand-surface-alt/30 transition-all text-center flex flex-col items-center gap-2"
             >
-              <UserCheck size={16} className="text-brand-text-muted" />
-              <span className="text-[12px] font-medium">Collect Cash</span>
-              <span className="text-[12px] font-light opacity-80">Collect at doorstep</span>
+              <CreditCard size={20} className="text-brand-text-muted" />
+              <span className="text-[13px] font-medium">Collect Cash</span>
+              <span className="text-[11px] font-light opacity-70">At doorstep</span>
             </button>
           </div>
 
           {showCashInput && (
             <div className="p-4 rounded-xl border border-brand-surface-alt bg-brand-bg/40 space-y-3 animate-fade-in">
-              <label className="text-[12px] font-medium text-brand-text uppercase tracking-wider block">
-                Enter Cash Amount Collected (₹)
-              </label>
-              <div className="flex gap-2">
-                <input
-                  type="number"
-                  value={cashAmount}
-                  onChange={(e) => setCashAmount(e.target.value)}
-                  className="flex-1 px-3 py-2 rounded-lg border border-brand-surface-alt bg-brand-bg text-brand-text text-[12px] focus:outline-none focus:border-brand-accent/40"
-                  placeholder="e.g. 15"
-                />
-                <button
-                  onClick={() => handleLogPayment('Cash')}
-                  className="px-4 py-[9px] bg-[#014BAA] hover:opacity-90 text-white text-[12px] font-medium rounded-lg"
-                >
-                  Confirm Cash
-                </button>
-              </div>
+              <Field className="space-y-1">
+                <FieldLabel className="text-[12px] font-medium text-brand-text uppercase tracking-wider block">
+                  Cash Amount (₹)
+                </FieldLabel>
+                <div className="flex gap-2">
+                  <input
+                    type="number"
+                    value={cashAmount}
+                    onChange={(e) => setCashAmount(e.target.value)}
+                    className="flex-1 px-3 py-2.5 rounded-lg border border-brand-surface-alt bg-brand-bg text-brand-text text-[14px] focus:outline-none focus:border-[#014BAA]/40"
+                    placeholder="e.g. 15"
+                  />
+                  <button
+                    onClick={() => handleLogPayment('Cash')}
+                    className="px-4 py-[9px] bg-[#014BAA] hover:opacity-90 text-white text-[13px] font-medium rounded-lg"
+                  >
+                    Confirm
+                  </button>
+                </div>
+              </Field>
             </div>
           )}
         </div>
       </Modal>
 
-      {/* 3. Modal: Door Photo Capture */}
+      {/* 3. Door Photo */}
       <Modal
         isOpen={activeModal === 'photo'}
         onClose={() => {
           if (cameraStream) cameraStream.getTracks().forEach(t => t.stop());
           setActiveModal('none');
         }}
-        title="Unreachable Household Check-in"
-        subtitle="Log door photo to verify location status"
+        title="Absent Household Log"
+        subtitle="GPS-stamped photo evidence"
       >
         <div className="space-y-4 text-center">
           <div className="w-full aspect-video rounded-xl border border-brand-surface-alt bg-black overflow-hidden relative flex items-center justify-center">
@@ -394,17 +427,17 @@ export default function HouseAction() {
           </div>
 
           <p className="text-[12px] font-light text-brand-text-muted leading-normal max-w-[300px] mx-auto">
-            Ensure the locked house gate/door is fully visible in frame. GPS location stamp will be permanently locked on log.
+            Ensure the house gate/door is fully visible. GPS stamp will be locked permanently.
           </p>
 
           <div className="flex justify-center w-full">
             <button
               onClick={handleCaptureDoorPhoto}
-              className="flex items-center gap-3 pl-6 pr-1.5 py-[7px] rounded-full bg-[#014BAA] text-white text-[16px] font-medium hover:opacity-90 transition-all shadow-md shadow-[#014BAA]/20 transform active:scale-95 duration-150"
+              className="flex items-center gap-3 pl-6 pr-1.5 py-[3px] rounded-full bg-[#014BAA] text-white text-[15px] font-medium hover:opacity-90 transition-all shadow-md shadow-[#014BAA]/20 transform active:scale-95 duration-150"
             >
-              <span>Capture Photo & Log Attempt</span>
-              <span className="flex items-center justify-center w-14 h-14 rounded-full bg-[#FAF6F3] text-[#014BAA] min-h-[56px] min-w-[56px]">
-                <Camera size={22} />
+              <span>Capture & Log</span>
+              <span className="flex items-center justify-center w-11 h-11 rounded-full bg-[#FAF6F3] text-[#014BAA] min-h-[44px] min-w-[44px]">
+                <Camera size={18} />
               </span>
             </button>
           </div>

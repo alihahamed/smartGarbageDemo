@@ -151,7 +151,7 @@ export default function Home() {
             <span 
               className="bg-clip-text text-transparent inline-block pb-0.5"
               style={{
-                backgroundImage: 'linear-gradient(to top, #014BAA 0%, #FF5A36 15%, #0A1C33 40%, #0A1C33 100%)',
+                backgroundImage: 'linear-gradient(to top, #014BAA 0%, #014BAA 30%, #0A1C33 90%, #0A1C33 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
               }}
@@ -161,7 +161,7 @@ export default function Home() {
             <span 
               className="bg-clip-text text-transparent inline-block"
               style={{
-                backgroundImage: 'linear-gradient(to top, #014BAA 10%, #FF5A36 25%, #0A1C33 76%, #0A1C33 100%)',
+                backgroundImage: 'linear-gradient(to top, #014BAA 0%, #014BAA 40%, #0A1C33 85%, #0A1C33 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
               }}
@@ -219,7 +219,7 @@ export default function Home() {
                           {m.title}
                         </h3>
                       </div>
-                      <p className="text-xs font-light text-white/90 leading-relaxed max-w-[220px]">
+                      <p className="text-sm font-light text-white/90 leading-relaxed max-w-[220px]">
                         {m.desc}
                       </p>
                     </div>
@@ -234,7 +234,7 @@ export default function Home() {
                     </div>
 
                     {/* Bottom Left: Navigation CTA */}
-                    <div className="flex items-center gap-1 text-[11px] font-medium text-white/90">
+                    <div className="flex items-center gap-1 text-[13px] font-medium text-white/90">
                       <span>Open Module</span>
                       <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
                     </div>
@@ -247,7 +247,7 @@ export default function Home() {
 
         {/* Instruction label (Faint & Centered, Standard case, Tight spacing) */}
         <div className="text-center mt-2 select-none">
-          <span className="text-xs font-light text-brand-text-muted/40">
+          <span className="text-sm font-light text-brand-text-black">
             Select a module
           </span>
         </div>

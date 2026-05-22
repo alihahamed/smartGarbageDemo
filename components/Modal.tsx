@@ -34,9 +34,9 @@ export default function Modal({ isOpen, onClose, title, subtitle, children }: Mo
         {/* Modal Header */}
         <div className="flex items-start justify-between gap-4 p-4 border-b border-brand-surface-alt bg-brand-surface-alt/45">
           <div className="min-w-0">
-            <h3 className="text-base font-medium text-brand-text truncate">{title}</h3>
+            <h3 className="text-[16px] font-medium text-brand-text truncate">{title}</h3>
             {subtitle && (
-              <p className="text-xs font-light text-brand-text-muted mt-0.5 leading-relaxed truncate">
+              <p className="text-[12px] font-light text-brand-text-muted mt-0.5 leading-relaxed truncate">
                 {subtitle}
               </p>
             )}

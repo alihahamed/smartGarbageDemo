@@ -1,0 +1,1876 @@
+﻿commit d962f7d2de9dbbd3ee68a528e993bd3e6edc5fa5
+Author: Ali Ahmed <aliahmedyus@gmail.com>
+Date:   Fri May 22 11:23:29 2026 +0530
+
+    test update font size
+
+diff --git a/.agent/mobile-typo.md b/.agent/mobile-typo.md
+new file mode 100644
+index 0000000..3e9df83
+--- /dev/null
++++ b/.agent/mobile-typo.md
+@@ -0,0 +1,433 @@
++# Mobile Typography Reference
++
++> Type scale, system fonts, Dynamic Type, accessibility, and dark mode typography.
++> **Typography failures are the #1 cause of unreadable mobile apps.**
++
++---
++
++## 1. Mobile Typography Fundamentals
++
++### Why Mobile Type is Different
++
++```
++DESKTOP:                        MOBILE:
++Γö£ΓöÇΓöÇ 20-30" viewing distance     Γö£ΓöÇΓöÇ 12-15" viewing distance
++Γö£ΓöÇΓöÇ Large viewport              Γö£ΓöÇΓöÇ Small viewport, narrow
++Γö£ΓöÇΓöÇ Hover for details           Γö£ΓöÇΓöÇ Tap/scroll for details
++Γö£ΓöÇΓöÇ Controlled lighting         Γö£ΓöÇΓöÇ Variable (outdoor, etc.)
++Γö£ΓöÇΓöÇ Fixed font size             Γö£ΓöÇΓöÇ User-controlled sizing
++ΓööΓöÇΓöÇ Long reading sessions       ΓööΓöÇΓöÇ Quick scanning
++```
++
++### Mobile Type Rules
++
++| Rule | Desktop | Mobile |
++|------|---------|--------|
++| **Minimum body size** | 14px | 16px (14pt/14sp) |
++| **Maximum line length** | 75 characters | 40-60 characters |
++| **Line height** | 1.4-1.5 | 1.4-1.6 (more generous) |
++| **Font weight** | Varies | Regular dominant, bold sparingly |
++| **Contrast** | AA (4.5:1) | AA minimum, AAA preferred |
++
++---
++
++## 2. System Fonts
++
++### iOS: SF Pro Family
++
++```
++San Francisco (SF) Family:
++Γö£ΓöÇΓöÇ SF Pro Display: Large text (ΓëÑ 20pt)
++Γö£ΓöÇΓöÇ SF Pro Text: Body text (< 20pt)
++Γö£ΓöÇΓöÇ SF Pro Rounded: Friendly contexts
++Γö£ΓöÇΓöÇ SF Mono: Monospace
++ΓööΓöÇΓöÇ SF Compact: Apple Watch, compact UI
++
++Features:
++Γö£ΓöÇΓöÇ Optical sizing (auto-adjusts)
++Γö£ΓöÇΓöÇ Dynamic tracking (spacing)
++Γö£ΓöÇΓöÇ Tabular/proportional figures
++Γö£ΓöÇΓöÇ Excellent legibility
++```
++
++### Android: Roboto Family
++
++```
++Roboto Family:
++Γö£ΓöÇΓöÇ Roboto: Default sans-serif
++Γö£ΓöÇΓöÇ Roboto Flex: Variable font
++Γö£ΓöÇΓöÇ Roboto Serif: Serif option
++Γö£ΓöÇΓöÇ Roboto Mono: Monospace
++Γö£ΓöÇΓöÇ Roboto Condensed: Narrow spaces
++
++Features:
++Γö£ΓöÇΓöÇ Optimized for screens
++Γö£ΓöÇΓöÇ Wide language support
++Γö£ΓöÇΓöÇ Multiple weights
++Γö£ΓöÇΓöÇ Good at small sizes
++```
++
++### When to Use System Fonts
++
++```
++Γ£à USE system fonts when:
++Γö£ΓöÇΓöÇ Brand doesn't mandate custom font
++Γö£ΓöÇΓöÇ Reading efficiency is priority
++Γö£ΓöÇΓöÇ App feels native/integrated important
++Γö£ΓöÇΓöÇ Performance is critical
++Γö£ΓöÇΓöÇ Wide language support needed
++
++Γ¥î AVOID system fonts when:
++Γö£ΓöÇΓöÇ Brand identity requires custom
++Γö£ΓöÇΓöÇ Design differentiation needed
++Γö£ΓöÇΓöÇ Editorial/magazine style
++ΓööΓöÇΓöÇ (But still support accessibility)
++```
++
++### Custom Font Considerations
++
++```
++If using custom fonts:
++Γö£ΓöÇΓöÇ Include all weights needed
++Γö£ΓöÇΓöÇ Subset for file size
++Γö£ΓöÇΓöÇ Test at all Dynamic Type sizes
++Γö£ΓöÇΓöÇ Provide fallback to system
++Γö£ΓöÇΓöÇ Test rendering quality
++ΓööΓöÇΓöÇ Check language support
++```
++
++---
++
++## 3. Type Scale
++
++### iOS Type Scale (Built-in)
++
++| Style | Size | Weight | Line Height |
++|-------|------|--------|-------------|
++| Large Title | 34pt | Bold | 41pt |
++| Title 1 | 28pt | Bold | 34pt |
++| Title 2 | 22pt | Bold | 28pt |
++| Title 3 | 20pt | Semibold | 25pt |
++| Headline | 17pt | Semibold | 22pt |
++| Body | 17pt | Regular | 22pt |
++| Callout | 16pt | Regular | 21pt |
++| Subhead | 15pt | Regular | 20pt |
++| Footnote | 13pt | Regular | 18pt |
++| Caption 1 | 12pt | Regular | 16pt |
++| Caption 2 | 11pt | Regular | 13pt |
++
++### Android Type Scale (Material 3)
++
++| Role | Size | Weight | Line Height |
++|------|------|--------|-------------|
++| Display Large | 57sp | 400 | 64sp |
++| Display Medium | 45sp | 400 | 52sp |
++| Display Small | 36sp | 400 | 44sp |
++| Headline Large | 32sp | 400 | 40sp |
++| Headline Medium | 28sp | 400 | 36sp |
++| Headline Small | 24sp | 400 | 32sp |
++| Title Large | 22sp | 400 | 28sp |
++| Title Medium | 16sp | 500 | 24sp |
++| Title Small | 14sp | 500 | 20sp |
++| Body Large | 16sp | 400 | 24sp |
++| Body Medium | 14sp | 400 | 20sp |
++| Body Small | 12sp | 400 | 16sp |
++| Label Large | 14sp | 500 | 20sp |
++| Label Medium | 12sp | 500 | 16sp |
++| Label Small | 11sp | 500 | 16sp |
++
++### Creating Custom Scale
++
++```
++If creating custom scale, use modular ratio:
++
++Recommended ratios:
++Γö£ΓöÇΓöÇ 1.125 (Major second): Dense UI
++Γö£ΓöÇΓöÇ 1.200 (Minor third): Compact
++Γö£ΓöÇΓöÇ 1.250 (Major third): Balanced (common)
++Γö£ΓöÇΓöÇ 1.333 (Perfect fourth): Spacious
++ΓööΓöÇΓöÇ 1.500 (Perfect fifth): Dramatic
++
++Example with 1.25 ratio, 16px base:
++Γö£ΓöÇΓöÇ xs: 10px (16 ├╖ 1.25 ├╖ 1.25)
++Γö£ΓöÇΓöÇ sm: 13px (16 ├╖ 1.25)
++Γö£ΓöÇΓöÇ base: 16px
++Γö£ΓöÇΓöÇ lg: 20px (16 ├ù 1.25)
++Γö£ΓöÇΓöÇ xl: 25px (16 ├ù 1.25 ├ù 1.25)
++Γö£ΓöÇΓöÇ 2xl: 31px
++Γö£ΓöÇΓöÇ 3xl: 39px
++ΓööΓöÇΓöÇ 4xl: 49px
++```
++
++---
++
++## 4. Dynamic Type / Text Scaling
++
++### iOS Dynamic Type (MANDATORY)
++
++```swift
++// Γ¥î WRONG: Fixed size (doesn't scale)
++Text("Hello")
++    .font(.system(size: 17))
++
++// Γ£à CORRECT: Dynamic Type
++Text("Hello")
++    .font(.body) // Scales with user setting
++
++// Custom font with scaling
++Text("Hello")
++    .font(.custom("MyFont", size: 17, relativeTo: .body))
++```
++
++### Android Text Scaling (MANDATORY)
++
++```
++ALWAYS use sp for text:
++Γö£ΓöÇΓöÇ sp = Scale-independent pixels
++Γö£ΓöÇΓöÇ Scales with user font preference
++Γö£ΓöÇΓöÇ dp does NOT scale (don't use for text)
++
++User can scale from 85% to 200%:
++Γö£ΓöÇΓöÇ Default (100%): 14sp = 14dp
++Γö£ΓöÇΓöÇ Largest (200%): 14sp = 28dp
++
++Test at 200%!
++```
++
++### Scaling Challenges
++
++```
++Problems at large text sizes:
++Γö£ΓöÇΓöÇ Text overflows containers
++Γö£ΓöÇΓöÇ Buttons become too tall
++Γö£ΓöÇΓöÇ Icons look small relative to text
++Γö£ΓöÇΓöÇ Layouts break
++
++Solutions:
++Γö£ΓöÇΓöÇ Use flexible containers (not fixed height)
++Γö£ΓöÇΓöÇ Allow text wrapping
++Γö£ΓöÇΓöÇ Scale icons with text
++Γö£ΓöÇΓöÇ Test at extremes during development
++Γö£ΓöÇΓöÇ Use scrollable containers for long text
++```
++
++---
++
++## 5. Typography Accessibility
++
++### Minimum Sizes
++
++| Element | Minimum | Recommended |
++|---------|---------|-------------|
++| Body text | 14px/pt/sp | 16px/pt/sp |
++| Secondary text | 12px/pt/sp | 13-14px/pt/sp |
++| Captions | 11px/pt/sp | 12px/pt/sp |
++| Buttons | 14px/pt/sp | 14-16px/pt/sp |
++| **Nothing smaller** | 11px | - |
++
++### Contrast Requirements (WCAG)
++
++```
++Normal text (< 18pt or < 14pt bold):
++Γö£ΓöÇΓöÇ AA: 4.5:1 ratio minimum
++Γö£ΓöÇΓöÇ AAA: 7:1 ratio recommended
++
++Large text (ΓëÑ 18pt or ΓëÑ 14pt bold):
++Γö£ΓöÇΓöÇ AA: 3:1 ratio minimum
++Γö£ΓöÇΓöÇ AAA: 4.5:1 ratio recommended
++
++Logos/decorative: No requirement
++```
++
++### Line Height for Accessibility
++
++```
++WCAG Success Criterion 1.4.12:
++
++Line height (line spacing): ΓëÑ 1.5├ù
++Paragraph spacing: ΓëÑ 2├ù font size
++Letter spacing: ΓëÑ 0.12├ù font size
++Word spacing: ΓëÑ 0.16├ù font size
++
++Mobile recommendation:
++Γö£ΓöÇΓöÇ Body: 1.4-1.6 line height
++Γö£ΓöÇΓöÇ Headings: 1.2-1.3 line height
++Γö£ΓöÇΓöÇ Never below 1.2
++```
++
++---
++
++## 6. Dark Mode Typography
++
++### Color Adjustments
++
++```
++Light Mode:               Dark Mode:
++Γö£ΓöÇΓöÇ Black text (#000)     Γö£ΓöÇΓöÇ White/light gray (#E0E0E0)
++Γö£ΓöÇΓöÇ High contrast         Γö£ΓöÇΓöÇ Slightly reduced contrast
++Γö£ΓöÇΓöÇ Full saturation       Γö£ΓöÇΓöÇ Desaturated colors
++ΓööΓöÇΓöÇ Dark = emphasis       ΓööΓöÇΓöÇ Light = emphasis
++
++RULE: Don't use pure white (#FFF) on dark.
++Use off-white (#E0E0E0 to #F0F0F0) to reduce eye strain.
++```
++
++### Dark Mode Hierarchy
++
++| Level | Light Mode | Dark Mode |
++|-------|------------|-----------|
++| Primary text | #000000 | #E8E8E8 |
++| Secondary text | #666666 | #A0A0A0 |
++| Tertiary text | #999999 | #707070 |
++| Disabled text | #CCCCCC | #505050 |
++
++### Weight in Dark Mode
++
++```
++Dark mode text appears thinner due to halation
++(light bleeding into dark background)
++
++Consider:
++Γö£ΓöÇΓöÇ Using medium weight for body (instead of regular)
++Γö£ΓöÇΓöÇ Increasing letter-spacing slightly
++Γö£ΓöÇΓöÇ Testing on actual OLED displays
++ΓööΓöÇΓöÇ Using slightly bolder weight than light mode
++```
++
++---
++
++## 7. Typography Anti-Patterns
++
++### Γ¥î Common Mistakes
++
++| Mistake | Problem | Fix |
++|---------|---------|-----|
++| **Fixed font sizes** | Ignores accessibility | Use dynamic sizing |
++| **Too small text** | Unreadable | Min 14pt/sp |
++| **Low contrast** | Invisible in sunlight | Min 4.5:1 |
++| **Long lines** | Hard to track | Max 60 chars |
++| **Tight line height** | Cramped, hard to read | Min 1.4├ù |
++| **Too many sizes** | Visual chaos | Max 5-7 sizes |
++| **All caps body** | Hard to read | Headlines only |
++| **Light gray on white** | Impossible in bright light | Higher contrast |
++
++### Γ¥î AI Typography Mistakes
++
++```
++AI tends to:
++Γö£ΓöÇΓöÇ Use fixed px values instead of pt/sp
++Γö£ΓöÇΓöÇ Skip Dynamic Type support
++Γö£ΓöÇΓöÇ Use too small text (12-14px body)
++Γö£ΓöÇΓöÇ Ignore line height settings
++Γö£ΓöÇΓöÇ Use low contrast "aesthetic" grays
++Γö£ΓöÇΓöÇ Apply same scale to mobile as desktop
++ΓööΓöÇΓöÇ Skip testing at large text sizes
++
++RULE: Typography must SCALE.
++Test at smallest and largest settings.
++```
++
++---
++
++## 8. Font Loading & Performance
++
++### Font File Optimization
++
++```
++Font file sizes matter on mobile:
++Γö£ΓöÇΓöÇ Full font: 100-300KB per weight
++Γö£ΓöÇΓöÇ Subset (Latin): 15-40KB per weight
++Γö£ΓöÇΓöÇ Variable font: 100-200KB (all weights)
++
++Recommendations:
++Γö£ΓöÇΓöÇ Subset to needed characters
++Γö£ΓöÇΓöÇ Use WOFF2 format
++Γö£ΓöÇΓöÇ Max 2-3 font files
++Γö£ΓöÇΓöÇ Consider variable fonts
++Γö£ΓöÇΓöÇ Cache fonts appropriately
++```
++
++### Loading Strategy
++
++```
++1. SYSTEM FONT FALLBACK
++   Show system font ΓåÆ swap when custom loads
++   
++2. FONT DISPLAY SWAP
++   font-display: swap (CSS)
++   
++3. PRELOAD CRITICAL FONTS
++   Preload fonts needed above the fold
++   
++4. DON'T BLOCK RENDER
++   Don't wait for fonts to show content
++```
++
++---
++
++## 9. Typography Checklist
++
++### Before Any Text Design
++
++- [ ] Body text ΓëÑ 16px/pt/sp?
++- [ ] Line height ΓëÑ 1.4?
++- [ ] Line length Γëñ 60 chars?
++- [ ] Type scale defined (max 5-7 sizes)?
++- [ ] Using pt (iOS) or sp (Android)?
++
++### Before Release
++
++- [ ] Dynamic Type tested (iOS)?
++- [ ] Font scaling tested at 200% (Android)?
++- [ ] Dark mode contrast checked?
++- [ ] Sunlight readability tested?
++- [ ] All text has proper hierarchy?
++- [ ] Custom fonts have fallbacks?
++- [ ] Long text scrolls properly?
++
++---
++
++## 10. Quick Reference
++
++### Typography Tokens
++
++```
++// iOS
++.largeTitle  // 34pt, Bold
++.title       // 28pt, Bold
++.title2      // 22pt, Bold
++.title3      // 20pt, Semibold
++.headline    // 17pt, Semibold
++.body        // 17pt, Regular
++.subheadline // 15pt, Regular
++.footnote    // 13pt, Regular
++.caption     // 12pt, Regular
++
++// Android (Material 3)
++displayLarge   // 57sp
++headlineLarge  // 32sp
++titleLarge     // 22sp
++bodyLarge      // 16sp
++labelLarge     // 14sp
++```
++
++### Minimum Sizes
++
++```
++Body:       14-16pt/sp (16 preferred)
++Secondary:  12-13pt/sp
++Caption:    11-12pt/sp
++Nothing:    < 11pt/sp
++```
++
++### Line Height
++
++```
++Headings:  1.1-1.3
++Body:      1.4-1.6
++Long text: 1.5-1.75
++```
++
++---
++
++> **Remember:** If users can't read your text, your app is broken. Typography isn't decorationΓÇöit's the primary interface. Test on real devices, in real conditions, with accessibility settings enabled.
+\ No newline at end of file
+diff --git a/app/garbage/admin/page.tsx b/app/garbage/admin/page.tsx
+index bfe3467..05fe76c 100644
+--- a/app/garbage/admin/page.tsx
++++ b/app/garbage/admin/page.tsx
+@@ -39,7 +39,7 @@ const BarChart = ({ percentage }: { percentage: number }) => {
+           shape={(props: any) => {
+             const { x, y, width, height, index } = props;
+             const isCurrent = index === data.length - 1;
+-            const barFill = isCurrent ? '#0F6441' : '#E2E8F0';
++            const barFill = isCurrent ? '#014BAA' : '#EFEAE6';
+             return (
+               <rect
+                 x={x}
+@@ -66,7 +66,7 @@ const RouteIllustration = () => {
+         <path
+           d="M 8 35 Q 32 8 50 25 T 92 18"
+           fill="none"
+-          stroke="rgba(15, 100, 65, 0.12)"
++          stroke="rgba(1, 75, 170, 0.12)"
+           strokeWidth={3}
+           strokeLinecap="round"
+         />
+@@ -74,22 +74,22 @@ const RouteIllustration = () => {
+         <path
+           d="M 8 35 Q 32 8 50 25"
+           fill="none"
+-          stroke="#0F6441"
++          stroke="#014BAA"
+           strokeWidth={3}
+           strokeLinecap="round"
+           strokeDasharray="4 4"
+         />
+         {/* Node 1: Start */}
+-        <circle cx={8} cy={35} r={3} fill="#E2E8F0" stroke="#0F6441" strokeWidth={1} />
++        <circle cx={8} cy={35} r={3} fill="#EFEAE6" stroke="#014BAA" strokeWidth={1} />
+         
+         {/* Node 2: Intermediate/Current Collector location (pulsing) */}
+         <g>
+-          <circle cx={50} cy={25} r={6} fill="#16A34A" className="animate-ping opacity-75" />
+-          <circle cx={50} cy={25} r={3.5} fill="#0F6441" />
++          <circle cx={50} cy={25} r={6} fill="#FF5A36" className="animate-ping opacity-75" />
++          <circle cx={50} cy={25} r={3.5} fill="#014BAA" />
+         </g>
+         
+         {/* Node 3: End destination */}
+-        <circle cx={92} cy={18} r={3} fill="#E2E8F0" stroke="#64748B" strokeWidth={1} />
++        <circle cx={92} cy={18} r={3} fill="#EFEAE6" stroke="#4A607A" strokeWidth={1} />
+       </svg>
+     </div>
+   );
+@@ -201,7 +201,7 @@ export default function GarbageAdmin() {
+       {/* Profile Header */}
+       <div className="flex items-center justify-between py-1">
+         <div className="flex items-center gap-3">
+-          <div className="relative w-13 h-13 rounded-full overflow-hidden border border-[#0F6441]/20">
++          <div className="relative w-13 h-13 rounded-full overflow-hidden border border-[#014BAA]/20">
+             <img 
+               src="/avatar.png" 
+               alt="Sajibur Rahman" 
+@@ -209,8 +209,8 @@ export default function GarbageAdmin() {
+             />
+           </div>
+           <div className="space-y-0.5">
+-            <p className="text-[14px] font-light text-[#3D7A5F]">Good morning!</p>
+-            <h2 className="text-[20px] font-medium text-[#0A3D2A] tracking-tight">Sajibur Rahman</h2>
++            <p className="text-[14px] font-light text-[#4A607A]">Good morning!</p>
++            <h2 className="text-[20px] font-medium text-[#0A1C33] tracking-tight">Sajibur Rahman</h2>
+           </div>
+         </div>
+         
+@@ -218,7 +218,7 @@ export default function GarbageAdmin() {
+           {/* Calendar Button */}
+           <button 
+             type="button"
+-            className="flex items-center justify-center w-11 h-11 rounded-full bg-white border border-[#0F6441]/12 hover:border-[#0F6441]/30 text-[#3D7A5F] hover:text-[#0F6441] transition-all min-h-[44px] min-w-[44px]"
++            className="flex items-center justify-center w-11 h-11 rounded-full bg-white border border-[#014BAA]/12 hover:border-[#014BAA]/30 text-[#4A607A] hover:text-[#014BAA] transition-all min-h-[44px] min-w-[44px]"
+             aria-label="Calendar Schedule"
+           >
+             <Calendar size={16} />
+@@ -226,11 +226,11 @@ export default function GarbageAdmin() {
+           {/* Notification Button */}
+           <button 
+             type="button"
+-            className="relative flex items-center justify-center w-11 h-11 rounded-full bg-white border border-[#0F6441]/12 hover:border-[#0F6441]/30 text-[#3D7A5F] hover:text-[#0F6441] transition-all min-h-[44px] min-w-[44px]"
++            className="relative flex items-center justify-center w-11 h-11 rounded-full bg-white border border-[#014BAA]/12 hover:border-[#014BAA]/30 text-[#4A607A] hover:text-[#014BAA] transition-all min-h-[44px] min-w-[44px]"
+             aria-label="Notifications"
+           >
+             <Bell size={16} />
+-            <span className="absolute top-3.5 right-3.5 w-2 h-2 rounded-full bg-[#0F6441]" />
++            <span className="absolute top-3.5 right-3.5 w-2 h-2 rounded-full bg-[#FF5A36]" />
+           </button>
+         </div>
+       </div>
+@@ -249,14 +249,14 @@ export default function GarbageAdmin() {
+         >
+           {/* Slide 1: Collection Rate */}
+           <div className="w-full flex-shrink-0 pr-1">
+-            <div className="p-4 h-32 rounded-xl glass-panel border border-[#0F6441]/10 flex items-center justify-between">
++            <div className="p-4 h-32 rounded-xl glass-panel border border-[#014BAA]/10 flex items-center justify-between">
+               <div className="flex flex-col justify-between h-full">
+-                <span className="text-[10px] font-medium tracking-wider uppercase text-[#3D7A5F]">
++                <span className="text-[11px] font-medium tracking-wider uppercase text-[#4A607A]">
+                   Collection Rate
+                 </span>
+                 <div className="space-y-0.5">
+-                  <span className="text-3xl font-medium text-[#0A3D2A]">{coveragePercent}%</span>
+-                  <p className="text-[9px] font-light text-[#3D7A5F]">
++                  <span className="text-3xl font-medium text-[#0A1C33]">{coveragePercent}%</span>
++                  <p className="text-[11px] font-light text-[#4A607A]">
+                     {collectedCount} of {houses.length} houses logged
+                   </p>
+                 </div>
+@@ -269,14 +269,14 @@ export default function GarbageAdmin() {
+           
+           {/* Slide 2: Active Route */}
+           <div className="w-full flex-shrink-0 pl-1">
+-            <div className="p-4 h-32 rounded-xl glass-panel border border-[#0F6441]/10 flex items-center justify-between">
++            <div className="p-4 h-32 rounded-xl glass-panel border border-[#014BAA]/10 flex items-center justify-between">
+               <div className="flex flex-col justify-between h-full">
+-                <span className="text-[10px] font-medium tracking-wider uppercase text-[#3D7A5F]">
++                <span className="text-[11px] font-medium tracking-wider uppercase text-[#4A607A]">
+                   Active Route
+                 </span>
+                 <div className="space-y-0.5">
+-                  <span className="text-3xl font-medium text-[#0A3D2A]">Ward 1</span>
+-                  <p className="text-[9px] font-light text-[#3D7A5F]">
++                  <span className="text-3xl font-medium text-[#0A1C33]">Ward 1</span>
++                  <p className="text-[11px] font-light text-[#4A607A]">
+                     Collector: Rajesh Kumar
+                   </p>
+                 </div>
+@@ -293,22 +293,22 @@ export default function GarbageAdmin() {
+           <button 
+             type="button"
+             onClick={() => setActiveSlide(0)}
+-            className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${activeSlide === 0 ? 'w-4 bg-[#0F6441]' : 'bg-[#3D7A5F]/40'}`}
++            className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${activeSlide === 0 ? 'w-4 bg-[#014BAA]' : 'bg-[#4A607A]/40'}`}
+             aria-label="Collection rate stats"
+           />
+           <button 
+             type="button"
+             onClick={() => setActiveSlide(1)}
+-            className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${activeSlide === 1 ? 'w-4 bg-[#0F6441]' : 'bg-[#3D7A5F]/40'}`}
++            className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${activeSlide === 1 ? 'w-4 bg-[#014BAA]' : 'bg-[#4A607A]/40'}`}
+             aria-label="Active route tracking"
+           />
+         </div>
+       </div>
+ 
+       {/* Send Notification Broadcast (Taller text area, centered pill CTA button) */}
+-      <div className="py-6 px-5 rounded-xl glass-panel border border-[#0F6441]/10 space-y-5">
+-        <h3 className="text-xs font-medium text-[#0F6441] flex items-center gap-1.5">
+-          <Megaphone size={13} className="text-[#0F6441]" />
++      <div className="py-6 px-5 rounded-xl glass-panel border border-[#014BAA]/10 space-y-5">
++        <h3 className="text-xs font-medium text-[#014BAA] flex items-center gap-1.5">
++          <Megaphone size={13} className="text-[#014BAA]" />
+           Broadcast to Ward Residents
+         </h3>
+         
+@@ -317,15 +317,15 @@ export default function GarbageAdmin() {
+             value={broadcastText}
+             onChange={(e) => setBroadcastText(e.target.value)}
+             placeholder="Write announcement (e.g. Collection delayed today due to rain)..."
+-            className="w-full h-40 p-3 rounded-lg border border-[#0F6441]/12 bg-white text-[#0A3D2A] text-xs font-light placeholder-[#7BAF96] focus:outline-none focus:border-[#0F6441]/50 transition-colors resize-none"
++            className="w-full h-40 p-3 rounded-lg border border-[#014BAA]/12 bg-white text-[#0A1C33] text-xs font-light placeholder-[#6B7F96] focus:outline-none focus:border-[#014BAA]/50 transition-colors resize-none"
+           />
+           <div className="flex justify-center w-full">
+             <button
+               type="submit"
+-              className="flex items-center gap-3 pl-6 pr-1.5 py-1.5 rounded-full bg-[#BEF000] text-[#0A3D2A] text-xs font-medium hover:bg-[#BEF000]/90 transition-all shadow-md shadow-[#BEF000]/10 transform active:scale-95 duration-150"
++              className="flex items-center gap-3 pl-6 pr-1.5 py-1.5 rounded-full bg-[#014BAA] text-white text-xs font-medium hover:opacity-90 transition-all shadow-md shadow-[#014BAA]/20 transform active:scale-95 duration-150"
+             >
+               <span>Send Broadcast</span>
+-              <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[#0F6441] text-[#BEF000]">
++              <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[#FAF6F3] text-[#014BAA]">
+                 <Megaphone size={12} />
+               </span>
+             </button>
+@@ -336,46 +336,46 @@ export default function GarbageAdmin() {
+       {/* Quick Navigation Panel */}
+       <Link
+         href="/garbage/admin/status"
+-        className="flex items-center justify-between p-4 rounded-xl glass-panel border border-[#0F6441]/10 border-l-[3px] border-l-[#0F6441] hover:border-[#0F6441]/20 hover:shadow-[0_4px_12px_rgba(15,100,65,0.04)] group transition-all"
++        className="flex items-center justify-between p-4 rounded-xl glass-panel border border-[#014BAA]/10 border-l-[3px] border-l-[#014BAA] hover:border-[#014BAA]/20 hover:shadow-[0_4px_12px_rgba(1,75,170,0.04)] group transition-all"
+       >
+         <div className="space-y-0.5">
+-          <h3 className="text-xs font-medium text-[#0F6441] group-hover:text-[#0A3D2A] transition-colors">
++          <h3 className="text-xs font-medium text-[#014BAA] group-hover:text-brand-text transition-colors">
+             House Status Dashboard
+           </h3>
+-          <p className="text-[9px] font-light text-[#3D7A5F]">
++          <p className="text-[11px] font-light text-[#4A607A]">
+             Monitor real-time route checklist status of households.
+           </p>
+         </div>
+-        <div className="flex items-center justify-center w-7 h-7 rounded-full bg-[#0F6441]/8 border border-[#0F6441]/12 group-hover:bg-[#0F6441] text-[#0F6441] group-hover:text-white transition-all">
++        <div className="flex items-center justify-center w-7 h-7 rounded-full bg-[#014BAA] border border-[#014BAA]/12 group-hover:bg-[#014BAA] text-white group-hover:text-white transition-all">
+           <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
+         </div>
+       </Link>
+ 
+       {/* Broadcast Log (Reduced width and centered) */}
+       <div className="flex-1 space-y-3 min-h-0 w-[84%] mx-auto">
+-        <h3 className="text-xs font-medium text-[#0F6441] flex items-center gap-1.5">
+-          <Bell size={13} className="text-[#3D7A5F]" />
++        <h3 className="text-xs font-medium text-[#014BAA] flex items-center gap-1.5">
++          <Bell size={13} className="text-[#4A607A]" />
+           Recent Broadcast Logs
+         </h3>
+ 
+-        <div className="rounded-xl border border-[#0F6441]/10 overflow-hidden bg-[#F0F7F4]">
+-          <div className="max-h-[160px] overflow-y-auto divide-y divide-[#0F6441]/8">
++        <div className="rounded-xl border border-[#014BAA]/10 overflow-hidden bg-[#FAF6F3]">
++          <div className="max-h-[160px] overflow-y-auto divide-y divide-[#014BAA]/8">
+             {broadcasts.length === 0 ? (
+-              <div className="p-4 text-center text-[10px] font-light text-[#3D7A5F]">
++              <div className="p-4 text-center text-[11px] font-light text-[#4A607A]">
+                 No announcements broadcasted yet.
+               </div>
+             ) : (
+               broadcasts.map((b, idx) => (
+                 <div key={idx} className="p-3 flex items-start gap-3">
+-                  <div className="p-1.5 rounded bg-[#0F6441]/8">
+-                    <Clock size={11} className="text-[#3D7A5F]" />
++                  <div className="p-1.5 rounded bg-[#FAF6F3] text-[#014BAA]">
++                    <Clock size={11} className="text-[#014BAA]" />
+                   </div>
+                   <div className="flex-1 space-y-1">
+-                    <div className="flex justify-between items-center text-[9px]">
+-                      <span className="font-medium text-[#0F6441]">{b.actor}</span>
+-                      <span className="font-light text-[#3D7A5F]">{b.time}</span>
++                    <div className="flex justify-between items-center text-[11px]">
++                      <span className="font-medium text-[#014BAA]">{b.actor}</span>
++                      <span className="font-light text-[#4A607A]">{b.time}</span>
+                     </div>
+-                    <p className="text-[10px] font-light text-[#1A5C3A] leading-relaxed">
++                    <p className="text-[11px] font-light text-[#0A3366] leading-relaxed">
+                       {b.message}
+                     </p>
+                   </div>
+diff --git a/app/garbage/admin/status/page.tsx b/app/garbage/admin/status/page.tsx
+index 60a1e84..68ef963 100644
+--- a/app/garbage/admin/status/page.tsx
++++ b/app/garbage/admin/status/page.tsx
+@@ -51,14 +51,14 @@ export default function AdminStatus() {
+     switch (status) {
+       case 'done':
+         return (
+-          <span className="inline-flex items-center gap-1 text-[9px] font-medium uppercase tracking-wide px-2 py-0.5 rounded bg-brand-success/10 text-brand-success border border-brand-success/20">
++          <span className="inline-flex items-center gap-1 text-[11px] font-medium uppercase tracking-wide px-2 py-0.5 rounded bg-brand-success/10 text-brand-success border border-brand-success/20">
+             <CheckCircle2 size={10} />
+             Done
+           </span>
+         );
+       case 'attempted':
+         return (
+-          <span className="inline-flex items-center gap-1 text-[9px] font-medium uppercase tracking-wide px-2 py-0.5 rounded bg-brand-warning/10 text-brand-warning border border-brand-warning/20">
++          <span className="inline-flex items-center gap-1 text-[11px] font-medium uppercase tracking-wide px-2 py-0.5 rounded bg-brand-warning/10 text-brand-warning border border-brand-warning/20">
+             <AlertCircle size={10} />
+             Attempted
+           </span>
+@@ -66,7 +66,7 @@ export default function AdminStatus() {
+       case 'pending':
+       default:
+         return (
+-          <span className="inline-flex items-center gap-1 text-[9px] font-medium uppercase tracking-wide px-2 py-0.5 rounded bg-brand-text-muted/10 text-brand-text-muted border border-brand-text-muted/20">
++          <span className="inline-flex items-center gap-1 text-[11px] font-medium uppercase tracking-wide px-2 py-0.5 rounded bg-brand-text-muted/10 text-brand-text-muted border border-brand-text-muted/20">
+             <HelpCircle size={10} />
+             Pending
+           </span>
+@@ -88,7 +88,7 @@ export default function AdminStatus() {
+             className="w-full pl-10 pr-24 py-2.5 rounded-full border border-brand-surface-alt bg-brand-bg text-brand-text text-xs placeholder-brand-text-muted/40 focus:outline-none focus:border-brand-accent/50 transition-colors"
+           />
+           <Search size={14} className="absolute left-3.5 top-3.5 text-brand-text-muted/50" />
+-          <span className="absolute right-2 top-1.5 text-[9px] font-medium tracking-wide bg-brand-surface-alt border border-brand-accent/20 text-brand-accent px-2.5 py-1.5 rounded-full select-none">
++          <span className="absolute right-2 top-1.5 text-[11px] font-medium tracking-wide bg-brand-surface-alt border border-brand-accent/20 text-brand-accent px-2.5 py-1.5 rounded-full select-none">
+             {houses.length} Houses
+           </span>
+         </div>
+@@ -104,7 +104,7 @@ export default function AdminStatus() {
+             <button
+               key={opt.id}
+               onClick={() => setFilter(opt.id)}
+-              className={`px-3.5 py-1.5 rounded-full border text-[10px] font-medium transition-all ${
++              className={`px-3.5 py-1.5 rounded-full border text-[11px] font-medium transition-all ${
+                 filter === opt.id
+                   ? 'border-brand-accent bg-brand-accent/10 text-brand-accent'
+                   : 'border-brand-surface-alt bg-brand-surface-alt/40 text-brand-text-muted hover:bg-brand-surface-alt/80'
+@@ -125,7 +125,7 @@ export default function AdminStatus() {
+         ) : filteredHouses.length === 0 ? (
+           <div className="p-8 text-center text-xs font-light text-brand-text-muted space-y-1">
+             <p>No matching households found.</p>
+-            <p className="text-[10px]">Try adjusting your search or filters.</p>
++            <p className="text-[11px]">Try adjusting your search or filters.</p>
+           </div>
+         ) : (
+           filteredHouses.map((house) => (
+@@ -138,16 +138,16 @@ export default function AdminStatus() {
+                   <span className="text-xs font-medium text-brand-text">{house.houseNo}</span>
+                   {getStatusBadge(house.status)}
+                   {house.visitTimestamp && (
+-                    <span className="text-[8px] font-light text-brand-accent/70">
++                    <span className="text-[11px] font-light text-brand-accent/70">
+                       Visited at {house.visitTimestamp}
+                     </span>
+                   )}
+                 </div>
+-                <p className="text-[10px] font-light text-brand-text-muted truncate leading-relaxed">
++                <p className="text-[11px] font-light text-brand-text-muted truncate leading-relaxed">
+                   {house.address}
+                 </p>
+                 {house.visitTimestamp && house.paymentMode && (
+-                  <p className="text-[8px] font-light text-brand-text-muted opacity-80">
++                  <p className="text-[11px] font-light text-brand-text-muted opacity-80">
+                     Payment Mode: {house.paymentMode}
+                   </p>
+                 )}
+@@ -156,7 +156,7 @@ export default function AdminStatus() {
+               {house.amount && (
+                 <div className="text-right shrink-0">
+                   <div className="text-xs font-medium text-brand-accent">Γé╣{house.amount}</div>
+-                  <div className="text-[8px] font-light text-brand-text-muted opacity-50 truncate max-w-[60px]">
++                  <div className="text-[11px] font-light text-brand-text-muted opacity-50 truncate max-w-[60px]">
+                     {house.receiptId}
+                   </div>
+                 </div>
+diff --git a/app/garbage/collector/house/[id]/page.tsx b/app/garbage/collector/house/[id]/page.tsx
+index 673b2a4..c98d4be 100644
+--- a/app/garbage/collector/house/[id]/page.tsx
++++ b/app/garbage/collector/house/[id]/page.tsx
+@@ -200,7 +200,7 @@ export default function HouseAction() {
+         </div>
+         <div className="space-y-0.5 min-w-0">
+           <h3 className="text-sm font-medium text-brand-text truncate">{house.address}</h3>
+-          <div className="flex items-center gap-1.5 text-[9px] font-light text-brand-text-muted">
++          <div className="flex items-center gap-1.5 text-[11px] font-light text-brand-text-muted">
+             <Navigation size={9} />
+             <span>Ward 1 Route ΓÇó Latitude Stamp 10.85"</span>
+           </div>
+@@ -209,7 +209,7 @@ export default function HouseAction() {
+ 
+       {/* House Collection Status Details */}
+       <div className="p-4 rounded-xl border border-brand-surface-alt bg-brand-surface-alt/10 space-y-3">
+-        <h4 className="text-[10px] font-medium text-brand-text-muted uppercase tracking-wider">
++        <h4 className="text-[11px] font-medium text-brand-text-muted uppercase tracking-wider">
+           Household Audit Log
+         </h4>
+         <div className="space-y-2">
+@@ -254,7 +254,7 @@ export default function HouseAction() {
+               </div>
+               <div className="space-y-0.5">
+                 <span className="text-xs font-medium text-brand-text">Someone Home</span>
+-                <p className="text-[9px] font-light text-brand-text-muted">Verify Resident QR & log payment.</p>
++                <p className="text-[11px] font-light text-brand-text-muted">Verify Resident QR & log payment.</p>
+               </div>
+             </div>
+             <span className="text-brand-accent text-xs font-medium">Verify Pass ΓåÆ</span>
+@@ -270,7 +270,7 @@ export default function HouseAction() {
+               </div>
+               <div className="space-y-0.5">
+                 <span className="text-xs font-medium text-brand-text">No One Home</span>
+-                <p className="text-[9px] font-light text-brand-text-muted">Log attendance attempt with photo.</p>
++                <p className="text-[11px] font-light text-brand-text-muted">Log attendance attempt with photo.</p>
+               </div>
+             </div>
+             <span className="text-brand-text-muted text-xs">Upload Photo ΓåÆ</span>
+@@ -280,7 +280,7 @@ export default function HouseAction() {
+         <div className="p-6 rounded-xl border border-brand-success/15 bg-brand-success/5 text-center space-y-2">
+           <CheckCircle className="text-brand-success mx-auto" size={24} />
+           <h3 className="text-xs font-medium text-brand-text">Household Processed</h3>
+-          <p className="text-[10px] font-light text-brand-text-muted max-w-[240px] mx-auto leading-relaxed">
++          <p className="text-[11px] font-light text-brand-text-muted max-w-[240px] mx-auto leading-relaxed">
+             This residence is already logged for today's collection cycle.
+           </p>
+         </div>
+@@ -300,14 +300,14 @@ export default function HouseAction() {
+           {/* Animated Glowing Scan Reticle */}
+           <div className="w-40 h-40 rounded-xl border-2 border-brand-accent/40 bg-brand-surface-alt/35 flex items-center justify-center relative overflow-hidden">
+             <Smartphone size={40} className="text-brand-accent/50 animate-bounce" />
+-            <div className="absolute inset-x-0 top-0 h-0.5 bg-brand-accent shadow-[0_0_10px_#BEF000] animate-[pulse_1.5s_infinite]" />
++            <div className="absolute inset-x-0 top-0 h-0.5 bg-brand-accent shadow-[0_0_10px_#FF5A36] animate-[pulse_1.5s_infinite]" />
+           </div>
+ 
+           <div className="space-y-1">
+             <p className={`text-xs font-medium ${scannerSuccess ? 'text-brand-success' : 'text-brand-text'}`}>
+               {scannerStatus}
+             </p>
+-            <p className="text-[10px] font-light text-brand-text-muted">
++            <p className="text-[11px] font-light text-brand-text-muted">
+               {scannerMessage}
+             </p>
+           </div>
+@@ -333,7 +333,7 @@ export default function HouseAction() {
+             >
+               <Smartphone size={16} />
+               <span className="text-xs font-medium">Online Paid</span>
+-              <span className="text-[8px] font-light opacity-80">Pre-settled online</span>
++              <span className="text-[11px] font-light opacity-80">Pre-settled online</span>
+             </button>
+ 
+             <button
+@@ -342,13 +342,13 @@ export default function HouseAction() {
+             >
+               <UserCheck size={16} className="text-brand-text-muted" />
+               <span className="text-xs font-medium">Collect Cash</span>
+-              <span className="text-[8px] font-light opacity-80">Collect at doorstep</span>
++              <span className="text-[11px] font-light opacity-80">Collect at doorstep</span>
+             </button>
+           </div>
+ 
+           {showCashInput && (
+             <div className="p-4 rounded-xl border border-brand-surface-alt bg-brand-bg/40 space-y-3 animate-fade-in">
+-              <label className="text-[10px] font-medium text-brand-text uppercase tracking-wider block">
++              <label className="text-[11px] font-medium text-brand-text uppercase tracking-wider block">
+                 Enter Cash Amount Collected (Γé╣)
+               </label>
+               <div className="flex gap-2">
+@@ -361,7 +361,7 @@ export default function HouseAction() {
+                 />
+                 <button
+                   onClick={() => handleLogPayment('Cash')}
+-                  className="px-4 bg-brand-accent text-brand-bg text-xs font-medium rounded-lg hover:bg-brand-accent/90"
++                  className="px-4 bg-[#014BAA] hover:opacity-90 text-white text-xs font-medium rounded-lg"
+                 >
+                   Confirm Cash
+                 </button>
+@@ -388,22 +388,26 @@ export default function HouseAction() {
+             ) : (
+               <div className="space-y-1">
+                 <Camera size={24} className="text-brand-text-muted mx-auto" />
+-                <span className="text-[9px] font-light text-brand-text-muted block">Simulating Camera Feed</span>
++                <span className="text-[11px] font-light text-brand-text-muted block">Simulating Camera Feed</span>
+               </div>
+             )}
+           </div>
+ 
+-          <p className="text-[10px] font-light text-brand-text-muted leading-normal max-w-[300px] mx-auto">
++          <p className="text-[11px] font-light text-brand-text-muted leading-normal max-w-[300px] mx-auto">
+             Ensure the locked house gate/door is fully visible in frame. GPS location stamp will be permanently locked on log.
+           </p>
+ 
+-          <button
+-            onClick={handleCaptureDoorPhoto}
+-            className="w-full py-2.5 rounded-lg bg-brand-accent text-brand-bg text-xs font-medium hover:bg-brand-accent/90 transition-colors flex items-center justify-center gap-1.5 shadow-md"
+-          >
+-            <Camera size={14} />
+-            <span>Capture Photo & Log Attempt</span>
+-          </button>
++          <div className="flex justify-center w-full">
++            <button
++              onClick={handleCaptureDoorPhoto}
++              className="flex items-center gap-3 pl-6 pr-1.5 py-1.5 rounded-full bg-[#014BAA] text-white text-xs font-medium hover:opacity-90 transition-all shadow-md shadow-[#014BAA]/20 transform active:scale-95 duration-150"
++            >
++              <span>Capture Photo & Log Attempt</span>
++              <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[#FAF6F3] text-[#014BAA]">
++                <Camera size={12} />
++              </span>
++            </button>
++          </div>
+         </div>
+       </Modal>
+     </div>
+diff --git a/app/garbage/collector/map/page.tsx b/app/garbage/collector/map/page.tsx
+index 8394c8e..d1ec1be 100644
+--- a/app/garbage/collector/map/page.tsx
++++ b/app/garbage/collector/map/page.tsx
+@@ -104,7 +104,7 @@ export default function CollectorMap() {
+ 
+       {/* Progress Card */}
+       <div className="p-4 rounded-xl glass-panel border border-brand-accent/15 space-y-3">
+-        <div className="flex justify-between items-center text-[10px] text-brand-text-muted">
++        <div className="flex justify-between items-center text-[11px] text-brand-text-muted">
+           <span className="font-medium uppercase tracking-wider">Route Progress (Ward 1)</span>
+           <span className="text-brand-accent">{coveragePercent}% Coverage</span>
+         </div>
+@@ -118,15 +118,15 @@ export default function CollectorMap() {
+         <div className="grid grid-cols-3 gap-2 text-center pt-1">
+           <div className="bg-brand-bg/40 p-1.5 rounded border border-brand-surface-alt">
+             <div className="text-[14px] font-medium text-brand-success">{collectedCount}</div>
+-            <div className="text-[8px] font-light text-brand-text-muted">Done</div>
++            <div className="text-[11px] font-light text-brand-text-muted">Done</div>
+           </div>
+           <div className="bg-brand-bg/40 p-1.5 rounded border border-brand-surface-alt">
+             <div className="text-[14px] font-medium text-brand-warning">{attemptedCount}</div>
+-            <div className="text-[8px] font-light text-brand-text-muted">Attempted</div>
++            <div className="text-[11px] font-light text-brand-text-muted">Attempted</div>
+           </div>
+           <div className="bg-brand-bg/40 p-1.5 rounded border border-brand-surface-alt">
+             <div className="text-[14px] font-medium text-brand-text-muted">{pendingCount}</div>
+-            <div className="text-[8px] font-light text-brand-text-muted">Pending</div>
++            <div className="text-[11px] font-light text-brand-text-muted">Pending</div>
+           </div>
+         </div>
+       </div>
+@@ -150,26 +150,26 @@ export default function CollectorMap() {
+                       {house.houseNo}
+                     </span>
+                     {house.status === 'done' && (
+-                      <span className="text-[8px] font-medium uppercase tracking-wider text-brand-success px-1.5 py-0.5 rounded bg-brand-success/10 border border-brand-success/20 flex items-center gap-0.5">
+-                        <CheckCircle2 size={8} /> Done
++                      <span className="text-[11px] font-medium uppercase tracking-wider text-brand-success px-1.5 py-0.5 rounded bg-brand-success/10 border border-brand-success/20 flex items-center gap-0.5">
++                        <CheckCircle2 size={11} /> Done
+                       </span>
+                     )}
+                     {house.status === 'attempted' && (
+-                      <span className="text-[8px] font-medium uppercase tracking-wider text-brand-warning px-1.5 py-0.5 rounded bg-brand-warning/10 border border-brand-warning/20 flex items-center gap-0.5">
+-                        <AlertCircle size={8} /> Attempt
++                      <span className="text-[11px] font-medium uppercase tracking-wider text-brand-warning px-1.5 py-0.5 rounded bg-brand-warning/10 border border-brand-warning/20 flex items-center gap-0.5">
++                        <AlertCircle size={11} /> Attempt
+                       </span>
+                     )}
+                     {house.status === 'pending' && (
+-                      <span className="text-[8px] font-medium uppercase tracking-wider text-brand-text-muted px-1.5 py-0.5 rounded bg-brand-surface-alt/60 border border-brand-surface-alt flex items-center gap-0.5">
+-                        <HelpCircle size={8} /> Pending
++                      <span className="text-[11px] font-medium uppercase tracking-wider text-brand-text-muted px-1.5 py-0.5 rounded bg-brand-surface-alt/60 border border-brand-surface-alt flex items-center gap-0.5">
++                        <HelpCircle size={11} /> Pending
+                       </span>
+                     )}
+                   </div>
+-                  <p className="text-[10px] font-light text-brand-text-muted truncate">
++                  <p className="text-[11px] font-light text-brand-text-muted truncate">
+                     {house.address}
+                   </p>
+                 </div>
+-                <div className="text-[9px] font-medium text-brand-accent group-hover:translate-x-0.5 transition-transform shrink-0">
++                <div className="text-[11px] font-medium text-brand-accent group-hover:translate-x-0.5 transition-transform shrink-0">
+                   Manage ΓåÆ
+                 </div>
+               </button>
+@@ -178,7 +178,7 @@ export default function CollectorMap() {
+         ) : (
+           /* High-Fidelity SVG Route Map */
+           <div className="w-full flex-1 flex flex-col justify-between p-4 rounded-xl border border-brand-surface-alt bg-brand-surface-alt/20">
+-            <div className="flex items-center justify-between text-[10px] text-brand-text-muted mb-2">
++            <div className="flex items-center justify-between text-[11px] text-brand-text-muted mb-2">
+               <span className="flex items-center gap-1">
+                 <Compass size={12} className="animate-spin" style={{ animationDuration: '6s' }} />
+                 Interactive Route Map
+@@ -221,13 +221,13 @@ export default function CollectorMap() {
+                 );
+               })}
+ 
+-              <div className="absolute top-2 right-2 bg-brand-surface-alt/90 px-2 py-1 rounded text-[8px] font-light flex items-center gap-1 border border-brand-accent/20">
++              <div className="absolute top-2 right-2 bg-brand-surface-alt/90 px-2 py-1 rounded text-[11px] font-light flex items-center gap-1 border border-brand-accent/20">
+                 <span className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-ping" />
+                 <span>Your Location</span>
+               </div>
+             </div>
+ 
+-            <p className="text-[9px] font-light text-brand-text-muted text-center mt-3">
++            <p className="text-[11px] font-light text-brand-text-muted text-center mt-3">
+               Tap dots on map to scan household QR codes or log check-ins directly.
+             </p>
+           </div>
+diff --git a/app/garbage/collector/page.tsx b/app/garbage/collector/page.tsx
+index 5ee9ec5..d4b89bc 100644
+--- a/app/garbage/collector/page.tsx
++++ b/app/garbage/collector/page.tsx
+@@ -123,9 +123,12 @@ export default function CollectorShift() {
+             <video ref={videoRef} className="w-full h-full object-cover scale-x-[-1]" playsInline />
+             <button
+               onClick={handleCaptureSelfie}
+-              className="absolute bottom-3 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-brand-accent text-brand-bg text-[10px] font-medium rounded-full hover:bg-brand-accent/90"
++              className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2 pl-4 pr-1.5 py-1.5 rounded-full bg-[#014BAA] text-white text-[11px] font-medium hover:opacity-90 transition-all shadow-md shadow-[#014BAA]/20"
+             >
+-              Verify Check-in Selfie
++              <span>Verify Check-in Selfie</span>
++              <span className="flex items-center justify-center w-5 h-5 rounded-full bg-[#FAF6F3] text-[#014BAA]">
++                <Camera size={10} />
++              </span>
+             </button>
+           </div>
+         )}
+@@ -135,7 +138,7 @@ export default function CollectorShift() {
+             <div className="w-10 h-10 rounded-full bg-brand-accent/5 flex items-center justify-center mx-auto text-brand-accent">
+               <Camera size={18} />
+             </div>
+-            <p className="text-[10px] font-light text-brand-text-muted">
++            <p className="text-[11px] font-light text-brand-text-muted">
+               Start your shift by logging your selfie check-in and GPS coordinates.
+             </p>
+           </div>
+@@ -147,7 +150,7 @@ export default function CollectorShift() {
+               <ShieldCheck size={18} />
+             </div>
+             <p className="text-xs font-medium text-brand-text">Active Shift Checklist</p>
+-            <p className="text-[10px] font-light text-brand-text-muted">
++            <p className="text-[11px] font-light text-brand-text-muted">
+               Verified: Selfie Checked In ΓÇó GPS Logged
+             </p>
+           </div>
+@@ -156,13 +159,17 @@ export default function CollectorShift() {
+         {/* Action Controls */}
+         <div className="grid grid-cols-2 gap-3">
+           {!shiftStarted ? (
+-            <button
+-              onClick={handleStartShift}
+-              className="col-span-2 flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-brand-accent text-brand-bg text-xs font-medium hover:bg-brand-accent/90 transition-colors shadow-lg shadow-brand-accent/15"
+-            >
+-              <Play size={14} />
+-              <span>Start Shift</span>
+-            </button>
++            <div className="col-span-2 flex justify-center">
++              <button
++                onClick={handleStartShift}
++                className="flex items-center gap-3 pl-6 pr-1.5 py-1.5 rounded-full bg-[#014BAA] text-white text-xs font-medium hover:opacity-90 transition-all shadow-md shadow-[#014BAA]/20 transform active:scale-95 duration-150"
++              >
++                <span>Start Shift</span>
++                <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[#FAF6F3] text-[#014BAA]">
++                  <Play size={12} />
++                </span>
++              </button>
++            </div>
+           ) : (
+             <>
+               <button
+@@ -193,8 +200,8 @@ export default function CollectorShift() {
+       <div className="p-4 rounded-xl border border-brand-surface-alt bg-brand-surface-alt/10 flex items-start gap-3">
+         <AlertCircle className="text-brand-accent shrink-0 mt-0.5" size={15} />
+         <div className="space-y-0.5">
+-          <h4 className="text-[10px] font-medium text-brand-text">Municipal Anti-Fraud System</h4>
+-          <p className="text-[9px] font-light text-brand-text-muted leading-relaxed">
++          <h4 className="text-[11px] font-medium text-brand-text">Municipal Anti-Fraud System</h4>
++          <p className="text-[11px] font-light text-brand-text-muted leading-relaxed">
+             Scanning resident houses requires validation of collector coordinates matching a 15-meter range of the household address.
+           </p>
+         </div>
+@@ -210,7 +217,7 @@ export default function CollectorShift() {
+             <span className="text-xs font-medium text-brand-accent group-hover:underline">
+               Daily Checklist & Map Route
+             </span>
+-            <p className="text-[9px] font-light text-brand-text-muted">
++            <p className="text-[11px] font-light text-brand-text-muted">
+               Access the 20 pending households on today's route.
+             </p>
+           </div>
+diff --git a/app/garbage/login/page.tsx b/app/garbage/login/page.tsx
+index 3a76e28..af6dddd 100644
+--- a/app/garbage/login/page.tsx
++++ b/app/garbage/login/page.tsx
+@@ -45,7 +45,7 @@ export default function GarbageLogin() {
+   };
+ 
+   return (
+-    <div className="flex-1 flex flex-col -mx-4 -mt-6 -mb-28 min-h-[calc(100vh+28px)] bg-[#F8FAFC] pb-24 overflow-y-auto select-none">
++    <div className="flex-1 flex flex-col -mx-4 -mt-6 -mb-28 min-h-[calc(100vh+28px)] bg-brand-bg pb-24 overflow-y-auto select-none">
+       {toastMessage && (
+         <Toast 
+           message={toastMessage} 
+@@ -61,36 +61,36 @@ export default function GarbageLogin() {
+           alt="Login Background" 
+           className="w-full h-full object-cover"
+         />
+-        {/* Gradient overlay to blend bottom of background image with white sheet */}
+-        <div className="absolute inset-0 bg-gradient-to-t from-[#F8FAFC] via-[#F8FAFC]/20 to-transparent" />
++        {/* Gradient overlay to blend bottom of background image with light cream sheet */}
++        <div className="absolute inset-0 bg-gradient-to-t from-[#F8F3F0] via-[#F8F3F0]/20 to-transparent" />
+         
+         {/* Back Button (Top Right) */}
+         <button
+           onClick={() => router.push('/')}
+-          className="absolute top-6 right-6 flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full bg-white/80 border border-[#0F6441]/15 text-[#0A3D2A] hover:bg-white transition-colors shadow-md min-h-[36px] backdrop-blur-sm"
++          className="absolute top-6 right-6 flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full bg-white/80 border border-[#014BAA]/15 text-[#0A1C33] hover:bg-white transition-colors shadow-md min-h-[36px] backdrop-blur-sm"
+           aria-label="Back to home"
+         >
+-          <ArrowLeft size={14} className="text-[#0F6441]" />
+-          <span className="text-[10px] font-medium uppercase tracking-wider">Back</span>
++          <ArrowLeft size={14} className="text-[#014BAA]" />
++          <span className="text-[11px] font-medium uppercase tracking-wider">Back</span>
+         </button>
+       </div>
+ 
+       {/* Curved Bottom Sheet Form container */}
+-      <div className="flex-1 -mt-8 relative z-10 w-full rounded-t-[32px] bg-white border-t border-[#0F6441]/10 px-6 pt-8 pb-10 flex flex-col justify-between shadow-[0_-8px_30px_rgba(15,100,65,0.04)]">
++      <div className="flex-1 -mt-8 relative z-10 w-full rounded-t-[32px] bg-white border-t border-[#014BAA]/10 px-6 pt-8 pb-10 flex flex-col justify-between shadow-[0_-8px_30px_rgba(1,75,170,0.04)]">
+         <div>
+           {/* Title */}
+           <div className="text-center mb-6">
+-            <h2 className="text-lg font-medium text-[#0A3D2A] tracking-wide">Garbage Portal Sign-In</h2>
++            <h2 className="text-lg font-medium text-[#0A1C33] tracking-wide">Garbage Portal Sign-In</h2>
+           </div>
+ 
+           {/* Form */}
+           <form onSubmit={handleLogin} className="space-y-4">
+             <div className="space-y-1.5">
+-              <label className="text-[10px] font-medium uppercase tracking-wider text-[#3D7A5F]">Select Role</label>
++              <label className="text-[11px] font-medium uppercase tracking-wider text-[#4A607A]">Select Role</label>
+               <select
+                 value={role}
+                 onChange={(e) => setRole(e.target.value as any)}
+-                className="w-full px-4 py-3 rounded-xl border border-[#0F6441]/12 bg-[#F0F7F4] text-[#0A3D2A] text-xs focus:outline-none focus:border-[#0F6441]/50 transition-colors font-light"
++                className="w-full px-4 py-3 rounded-xl border border-[#014BAA]/12 bg-brand-surface-alt text-[#0A1C33] text-xs focus:outline-none focus:border-[#014BAA]/50 transition-colors font-light"
+               >
+                 <option value="resident">Resident</option>
+                 <option value="collector">Collector</option>
+@@ -100,35 +100,35 @@ export default function GarbageLogin() {
+             </div>
+ 
+             <div className="space-y-1.5">
+-              <label className="text-[10px] font-medium uppercase tracking-wider text-[#3D7A5F]">Username</label>
++              <label className="text-[11px] font-medium uppercase tracking-wider text-[#4A607A]">Username</label>
+               <input
+                 type="text"
+                 placeholder="e.g. resident42"
+                 value={username}
+                 onChange={(e) => setUsername(e.target.value)}
+-                className="w-full px-4 py-3 rounded-xl border border-[#0F6441]/12 bg-[#F0F7F4] text-[#0A3D2A] text-xs placeholder-[#7BAF96] focus:outline-none focus:border-[#0F6441]/50 transition-colors font-light"
++                className="w-full px-4 py-3 rounded-xl border border-[#014BAA]/12 bg-brand-surface-alt text-[#0A1C33] text-xs placeholder-[#6B7F96] focus:outline-none focus:border-[#014BAA]/50 transition-colors font-light"
+               />
+             </div>
+ 
+             <div className="space-y-1.5">
+-              <label className="text-[10px] font-medium uppercase tracking-wider text-[#3D7A5F]">Password</label>
++              <label className="text-[11px] font-medium uppercase tracking-wider text-[#4A607A]">Password</label>
+               <input
+                 type="password"
+                 placeholder="ΓÇóΓÇóΓÇóΓÇóΓÇóΓÇóΓÇóΓÇó"
+                 value={password}
+                 onChange={(e) => setPassword(e.target.value)}
+-                className="w-full px-4 py-3 rounded-xl border border-[#0F6441]/12 bg-[#F0F7F4] text-[#0A3D2A] text-xs placeholder-[#7BAF96] focus:outline-none focus:border-[#0F6441]/50 transition-colors font-light"
++                className="w-full px-4 py-3 rounded-xl border border-[#014BAA]/12 bg-brand-surface-alt text-[#0A1C33] text-xs placeholder-[#6B7F96] focus:outline-none focus:border-[#014BAA]/50 transition-colors font-light"
+               />
+             </div>
+ 
+-            {/* Submit Button (Pill shaped with trailing green circle icon wrapper) */}
++            {/* Submit Button (Pill shaped with trailing dark blue circle icon wrapper) */}
+             <div className="flex justify-center w-full pt-4">
+               <button
+                 type="submit"
+-                className="flex items-center gap-3 pl-6 pr-1.5 py-1.5 rounded-full bg-[#BEF000] text-[#0A3D2A] text-xs font-medium hover:bg-[#BEF000]/90 transition-all shadow-md shadow-[#BEF000]/10 transform active:scale-95 duration-150"
++                className="flex items-center gap-3 pl-6 pr-1.5 py-1.5 rounded-full bg-[#014BAA] text-white text-xs font-medium hover:opacity-90 transition-all shadow-md shadow-[#014BAA]/20 transform active:scale-95 duration-150"
+               >
+                 <span>Access Portal</span>
+-                <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[#0F6441] text-[#BEF000]">
++                <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[#FAF6F3] text-[#014BAA]">
+                   <LogIn size={12} />
+                 </span>
+               </button>
+@@ -137,9 +137,9 @@ export default function GarbageLogin() {
+         </div>
+ 
+         {/* Quick Autofill Tools */}
+-        <div className="mt-8 pt-6 border-t border-[#0F6441]/8">
+-          <p className="text-[10px] font-medium text-[#3D7A5F] uppercase tracking-wider mb-3 flex items-center gap-1.5">
+-            <HelpCircle size={11} className="text-[#0F6441]" />
++        <div className="mt-8 pt-6 border-t border-[#014BAA]/8">
++          <p className="text-[11px] font-medium text-[#4A607A] uppercase tracking-wider mb-3 flex items-center gap-1.5">
++            <HelpCircle size={11} className="text-[#014BAA]" />
+             <span>Autofill Demo Roles</span>
+           </p>
+           <div className="grid grid-cols-2 gap-2.5">
+@@ -148,10 +148,10 @@ export default function GarbageLogin() {
+                 key={r}
+                 type="button"
+                 onClick={() => autofill(r)}
+-                className="px-3.5 py-2.5 rounded-xl border border-[#0F6441]/12 bg-[#F0F7F4] hover:bg-[#E0F0E8] hover:border-[#0F6441]/30 text-left transition-all min-h-[44px]"
++                className="px-3.5 py-2.5 rounded-xl border border-[#014BAA]/12 bg-brand-surface-alt hover:bg-[#E5EFFC] hover:border-[#014BAA]/30 text-left transition-all min-h-[44px]"
+               >
+-                <div className="text-[10px] font-medium text-[#0A3D2A] capitalize">{r}</div>
+-                <div className="text-[9px] font-light text-[#3D7A5F] truncate">{r}42 / demo</div>
++                <div className="text-[11px] font-medium text-[#0A1C33] capitalize">{r}</div>
++                <div className="text-[11px] font-light text-[#4A607A] truncate">{r}42 / demo</div>
+               </button>
+             ))}
+           </div>
+diff --git a/app/garbage/resident/page.tsx b/app/garbage/resident/page.tsx
+index bf02dfa..efdf572 100644
+--- a/app/garbage/resident/page.tsx
++++ b/app/garbage/resident/page.tsx
+@@ -75,7 +75,7 @@ export default function ResidentDashboard() {
+           <div className="p-2 rounded-lg bg-brand-accent/10 text-brand-accent group-hover:scale-105 transition-transform">
+             <QrCode size={18} />
+           </div>
+-          <span className="text-[10px] font-medium text-brand-text block">Resident Pass</span>
++          <span className="text-[11px] font-medium text-brand-text block">Resident Pass</span>
+         </Link>
+ 
+         <Link
+@@ -85,7 +85,7 @@ export default function ResidentDashboard() {
+           <div className="p-2 rounded-lg bg-brand-surface-alt border border-brand-accent/10 text-brand-accent group-hover:scale-105 transition-transform">
+             <CreditCard size={18} />
+           </div>
+-          <span className="text-[10px] font-medium text-brand-text block">Pay Dues</span>
++          <span className="text-[11px] font-medium text-brand-text block">Pay Dues</span>
+         </Link>
+ 
+         <Link
+@@ -95,7 +95,7 @@ export default function ResidentDashboard() {
+           <div className="p-2 rounded-lg bg-brand-surface-alt border border-brand-accent/10 text-brand-accent group-hover:scale-105 transition-transform">
+             <History size={18} />
+           </div>
+-          <span className="text-[10px] font-medium text-brand-text block">Receipts</span>
++          <span className="text-[11px] font-medium text-brand-text block">Receipts</span>
+         </Link>
+       </div>
+ 
+@@ -112,10 +112,10 @@ export default function ResidentDashboard() {
+             <>
+               <CheckCircle className="text-brand-success shrink-0 mt-0.5" size={16} />
+               <div className="space-y-0.5">
+-                <span className="text-[10px] font-medium text-brand-success uppercase tracking-wide block">
++                <span className="text-[11px] font-medium text-brand-success uppercase tracking-wide block">
+                   Collection Processed
+                 </span>
+-                <p className="text-[9px] font-light text-brand-text-muted leading-normal">
++                <p className="text-[11px] font-light text-brand-text-muted leading-normal">
+                   Your waste collection was successfully logged at {userHouse.visitTimestamp || 'today'}. Receipt generated.
+                 </p>
+               </div>
+@@ -124,10 +124,10 @@ export default function ResidentDashboard() {
+             <>
+               <AlertCircle className="text-brand-warning shrink-0 mt-0.5" size={16} />
+               <div className="space-y-0.5">
+-                <span className="text-[10px] font-medium text-brand-warning uppercase tracking-wide block">
++                <span className="text-[11px] font-medium text-brand-warning uppercase tracking-wide block">
+                   Collector Attempt Missed
+                 </span>
+-                <p className="text-[9px] font-light text-brand-text-muted leading-normal">
++                <p className="text-[11px] font-light text-brand-text-muted leading-normal">
+                   Rajesh Kumar attempted verification at your door. Please keep your QR pass ready next cycle.
+                 </p>
+               </div>
+@@ -136,10 +136,10 @@ export default function ResidentDashboard() {
+             <>
+               <Clock className="text-brand-accent shrink-0 mt-0.5 animate-pulse" size={16} />
+               <div className="space-y-0.5">
+-                <span className="text-[10px] font-medium text-brand-accent uppercase tracking-wide block">
++                <span className="text-[11px] font-medium text-brand-accent uppercase tracking-wide block">
+                   Pending Collection
+                 </span>
+-                <p className="text-[9px] font-light text-brand-text-muted leading-normal">
++                <p className="text-[11px] font-light text-brand-text-muted leading-normal">
+                    Rajesh Kumar is currently on route. Please ensure waste bins are sorted and QR pass is visible.
+                 </p>
+               </div>
+@@ -159,11 +159,11 @@ export default function ResidentDashboard() {
+           <div className="flex-1 overflow-y-auto divide-y divide-brand-surface-alt">
+             {inbox.map((msg, index) => (
+               <div key={index} className="p-3.5 space-y-1.5 bg-brand-surface-alt/15">
+-                <div className="flex items-center justify-between text-[8px] font-medium text-brand-accent uppercase tracking-wider">
++                <div className="flex items-center justify-between text-[11px] font-medium text-brand-accent uppercase tracking-wider">
+                   <span>Alert {index + 1}</span>
+                   <span className="text-brand-text-muted font-normal lowercase">{index === 0 ? 'now' : 'today'}</span>
+                 </div>
+-                <p className="text-[10.5px] font-light text-brand-text leading-relaxed">
++                <p className="text-[11px] font-light text-brand-text leading-relaxed">
+                   {msg}
+                 </p>
+               </div>
+diff --git a/app/garbage/resident/pay/page.tsx b/app/garbage/resident/pay/page.tsx
+index ffd519a..13b2669 100644
+--- a/app/garbage/resident/pay/page.tsx
++++ b/app/garbage/resident/pay/page.tsx
+@@ -113,13 +113,13 @@ export default function ResidentPay() {
+ 
+         {/* Amount Box */}
+         <div className="bg-brand-surface-alt/45 p-6 rounded-xl border border-brand-accent/15 text-center space-y-1">
+-          <span className="text-[10px] font-medium text-brand-text-muted uppercase tracking-wider block">
++          <span className="text-[11px] font-medium text-brand-text-muted uppercase tracking-wider block">
+             Amount Outstanding
+           </span>
+           <span className="text-3xl font-medium text-brand-accent block">
+             {userHouse?.status === 'done' ? 'Γé╣0.00' : 'Γé╣15.00'}
+           </span>
+-          <span className="text-[9px] font-light text-brand-text-muted block">
++          <span className="text-[11px] font-light text-brand-text-muted block">
+             {userHouse?.status === 'done' ? 'All dues settled' : 'Due date: End of Month'}
+           </span>
+         </div>
+@@ -128,7 +128,7 @@ export default function ResidentPay() {
+           <div className="space-y-4">
+             {/* Pay methods list */}
+             <div className="space-y-2">
+-              <label className="text-[10px] font-medium text-brand-text uppercase tracking-wider block">
++              <label className="text-[11px] font-medium text-brand-text uppercase tracking-wider block">
+                 Select Payment Mode
+               </label>
+ 
+@@ -148,7 +148,7 @@ export default function ResidentPay() {
+                 >
+                   <div className="space-y-0.5">
+                     <span className="text-xs font-medium text-brand-text">{method.label}</span>
+-                    <p className="text-[9px] font-light text-brand-text-muted">{method.desc}</p>
++                    <p className="text-[11px] font-light text-brand-text-muted">{method.desc}</p>
+                   </div>
+                   <div className={`w-3.5 h-3.5 rounded-full border flex items-center justify-center ${
+                     paymentMode === method.id ? 'border-brand-accent' : 'border-brand-text-muted/30'
+@@ -160,20 +160,24 @@ export default function ResidentPay() {
+             </div>
+ 
+             {/* Submit button */}
+-            <button
+-              onClick={handlePay}
+-              disabled={paying}
+-              className="w-full py-3 rounded-lg bg-brand-accent text-brand-bg text-xs font-medium hover:bg-brand-accent/90 disabled:opacity-50 transition-colors flex items-center justify-center gap-1.5 shadow-lg shadow-brand-accent/15"
+-            >
+-              <CreditCard size={14} />
+-              <span>{paying ? 'Processing Gateway...' : 'Pay Fee Online'}</span>
+-            </button>
++            <div className="flex justify-center w-full pt-2">
++              <button
++                onClick={handlePay}
++                disabled={paying}
++                className="flex items-center gap-3 pl-6 pr-1.5 py-1.5 rounded-full bg-[#014BAA] text-white text-xs font-medium hover:opacity-90 disabled:opacity-50 transition-all shadow-md shadow-[#014BAA]/20 transform active:scale-95 duration-150"
++              >
++                <span>{paying ? 'Processing Gateway...' : 'Pay Fee Online'}</span>
++                <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[#FAF6F3] text-[#014BAA]">
++                  <CreditCard size={12} />
++                </span>
++              </button>
++            </div>
+           </div>
+         ) : (
+           <div className="p-4 rounded-xl border border-brand-success/20 bg-brand-success/5 text-center space-y-1.5">
+             <CheckCircle2 className="text-brand-success mx-auto" size={20} />
+             <h4 className="text-xs font-medium text-brand-text">Fee Settled Successfully</h4>
+-            <p className="text-[10px] font-light text-brand-text-muted">
++            <p className="text-[11px] font-light text-brand-text-muted">
+               Thank you! Your payment receipt has been recorded in your portal logs.
+             </p>
+           </div>
+@@ -181,7 +185,7 @@ export default function ResidentPay() {
+       </div>
+ 
+       {/* Trust seal */}
+-      <div className="flex items-center justify-center gap-1.5 text-[9px] font-light text-brand-text-muted">
++      <div className="flex items-center justify-center gap-1.5 text-[11px] font-light text-brand-text-muted">
+         <ShieldCheck size={11} className="text-brand-accent" />
+         <span>Secured by Kerala Municipal Financial Services Gateway</span>
+       </div>
+diff --git a/app/garbage/resident/qr/page.tsx b/app/garbage/resident/qr/page.tsx
+index d9b6749..90eaf87 100644
+--- a/app/garbage/resident/qr/page.tsx
++++ b/app/garbage/resident/qr/page.tsx
+@@ -41,8 +41,8 @@ export default function ResidentQr() {
+           width: 200,
+           margin: 1,
+           color: {
+-            dark: '#000000', // Base Background (Dark)
+-            light: '#F0FDF4' // Snow (Light text)
++            dark: '#0A1C33', // Deep Navy
++            light: '#FAF6F3' // Soft cream wash
+           }
+         },
+         (error) => {
+@@ -74,7 +74,7 @@ export default function ResidentQr() {
+       </div>
+ 
+       {/* Main QR Card */}
+-      <div className="w-full rounded-2xl glass-panel p-6 border border-brand-accent/25 flex flex-col items-center space-y-6 text-center">
++      <div className="w-full rounded-2xl glass-panel p-6 border border-[#014BAA]/12 flex flex-col items-center space-y-6 text-center">
+         <div className="space-y-1">
+           <h2 className="text-base font-medium text-brand-text">Resident Collection Pass</h2>
+           <p className="text-xs font-light text-brand-text-muted">
+@@ -83,7 +83,7 @@ export default function ResidentQr() {
+         </div>
+ 
+         {/* QR Container Canvas */}
+-        <div className="p-4 rounded-2xl bg-[#F0FDF4] shadow-xl shadow-black/25 flex items-center justify-center">
++        <div className="p-4 rounded-2xl bg-[#FAF6F3] border border-[#014BAA]/8 shadow-xl shadow-[#014BAA]/5 flex items-center justify-center">
+           <canvas ref={canvasRef} className="w-[200px] h-[200px]" />
+         </div>
+ 
+@@ -92,7 +92,7 @@ export default function ResidentQr() {
+             <span className="text-xs font-medium text-brand-accent uppercase tracking-wider block">
+               House {userHouse.houseNo}
+             </span>
+-            <p className="text-[10px] font-light text-brand-text-muted leading-relaxed max-w-[240px] mx-auto">
++            <p className="text-[11px] font-light text-brand-text-muted leading-relaxed max-w-[240px] mx-auto">
+               {userHouse.address}
+             </p>
+           </div>
+@@ -103,8 +103,8 @@ export default function ResidentQr() {
+       <div className="p-4 rounded-xl border border-brand-surface-alt bg-brand-surface-alt/10 flex items-start gap-3">
+         <ShieldCheck className="text-brand-accent shrink-0 mt-0.5" size={15} />
+         <div className="space-y-0.5">
+-          <h4 className="text-[10px] font-medium text-brand-text">Anti-Fraud Protection</h4>
+-          <p className="text-[9px] font-light text-brand-text-muted leading-relaxed">
++          <h4 className="text-[11px] font-medium text-brand-text">Anti-Fraud Protection</h4>
++          <p className="text-[11px] font-light text-brand-text-muted leading-relaxed">
+             The collector must be within 15 meters of your household GPS marker to log verification of this QR pass.
+           </p>
+         </div>
+diff --git a/app/garbage/resident/receipts/page.tsx b/app/garbage/resident/receipts/page.tsx
+index 74df4f0..f219bf2 100644
+--- a/app/garbage/resident/receipts/page.tsx
++++ b/app/garbage/resident/receipts/page.tsx
+@@ -59,7 +59,7 @@ export default function ResidentReceipts() {
+             <div className="p-8 text-center text-xs font-light text-brand-text-muted space-y-2 flex flex-col items-center justify-center h-full">
+               <FileText size={24} className="text-brand-text-muted/40" />
+               <p>No receipt history found.</p>
+-              <p className="text-[10px] max-w-[200px]">Once a collector validates your household or you pay dues online, your tax records will appear here.</p>
++              <p className="text-[11px] max-w-[200px]">Once a collector validates your household or you pay dues online, your tax records will appear here.</p>
+             </div>
+           ) : (
+             <div className="divide-y divide-brand-surface-alt">
+@@ -68,17 +68,17 @@ export default function ResidentReceipts() {
+                   <div className="space-y-1 min-w-0">
+                     <div className="flex items-center gap-2">
+                       <span className="text-xs font-medium text-brand-text">{rcpt.id}</span>
+-                      <span className="inline-flex items-center gap-0.5 text-[8px] font-medium uppercase tracking-wider px-1.5 py-0.5 rounded bg-brand-success/15 text-brand-success border border-brand-success/20">
+-                        <CheckCircle size={8} /> {rcpt.status}
++                      <span className="inline-flex items-center gap-0.5 text-[11px] font-medium uppercase tracking-wider px-1.5 py-0.5 rounded bg-brand-success/15 text-brand-success border border-brand-success/20">
++                        <CheckCircle size={11} /> {rcpt.status}
+                       </span>
+                     </div>
+-                    <p className="text-[10px] font-light text-brand-text-muted">
++                    <p className="text-[11px] font-light text-brand-text-muted">
+                       House {rcpt.house} ΓÇó Method: {rcpt.mode}
+                     </p>
+                   </div>
+                   <div className="text-right shrink-0">
+                     <div className="text-sm font-medium text-brand-accent">Γé╣{rcpt.amount}.00</div>
+-                    <span className="text-[8px] font-light text-brand-text-muted block">Verified TAX</span>
++                    <span className="text-[11px] font-light text-brand-text-muted block">Verified TAX</span>
+                   </div>
+                 </div>
+               ))}
+diff --git a/app/garbage/ward/page.tsx b/app/garbage/ward/page.tsx
+index 061c742..e432236 100644
+--- a/app/garbage/ward/page.tsx
++++ b/app/garbage/ward/page.tsx
+@@ -74,7 +74,7 @@ export default function WardDashboard() {
+       ) : (
+         <>
+           {/* Donut Chart Visual & Numeric stats */}
+-          <div className="p-5 rounded-2xl glass-panel border border-brand-accent/20 flex items-center justify-between gap-6">
++          <div className="p-5 rounded-2xl glass-panel border border-[#014BAA]/15 flex items-center justify-between gap-6">
+             <div className="relative w-28 h-28 flex items-center justify-center shrink-0">
+               <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                 {/* Background Ring */}
+@@ -83,7 +83,7 @@ export default function WardDashboard() {
+                   cy="50"
+                   r={radius}
+                   fill="transparent"
+-                  stroke="rgba(22, 46, 35, 0.6)"
++                  stroke="rgba(1, 75, 170, 0.08)"
+                   strokeWidth="8"
+                 />
+                 {/* Progress Ring */}
+@@ -92,7 +92,7 @@ export default function WardDashboard() {
+                   cy="50"
+                   r={radius}
+                   fill="transparent"
+-                  stroke="#BEF000"
++                  stroke="#014BAA"
+                   strokeWidth="8"
+                   strokeDasharray={strokeCircumference}
+                   strokeDashoffset={strokeDashoffset}
+@@ -103,19 +103,19 @@ export default function WardDashboard() {
+               {/* Inner readout */}
+               <div className="absolute inset-0 flex flex-col items-center justify-center space-y-0.5">
+                 <span className="text-xl font-medium text-brand-text leading-none">{coveragePercent}%</span>
+-                <span className="text-[8px] font-light text-brand-text-muted uppercase tracking-wider">Cleared</span>
++                <span className="text-[11px] font-light text-brand-text-muted uppercase tracking-wider">Cleared</span>
+               </div>
+             </div>
+ 
+             <div className="space-y-3 flex-1 min-w-0">
+               <div className="space-y-0.5">
+                 <h3 className="text-xs font-medium text-brand-text">Coverage Summary</h3>
+-                <p className="text-[10px] font-light text-brand-text-muted">
++                <p className="text-[11px] font-light text-brand-text-muted">
+                   Daily route tracking index.
+                 </p>
+               </div>
+ 
+-              <div className="grid grid-cols-2 gap-2 text-[10px]">
++              <div className="grid grid-cols-2 gap-2 text-[11px]">
+                 <div className="space-y-0.5 border-l border-brand-success/40 pl-2">
+                   <span className="text-brand-text-muted block">Cleaned</span>
+                   <strong className="text-brand-success text-xs font-medium">{collectedCount} Houses</strong>
+@@ -131,10 +131,12 @@ export default function WardDashboard() {
+           {/* Export Report Actions */}
+           <button
+             onClick={handleExport}
+-            className="w-full flex items-center justify-center gap-2 py-3 rounded-lg bg-brand-accent text-brand-bg text-xs font-medium hover:bg-brand-accent/90 transition-colors shadow-md shadow-brand-accent/10"
++            className="w-full flex items-center justify-center gap-3 pl-6 pr-1.5 py-1.5 rounded-full bg-[#014BAA] text-white text-xs font-medium hover:opacity-90 transition-all shadow-md shadow-[#014BAA]/20 transform active:scale-95 duration-150"
+           >
+-            <Download size={14} />
+             <span>Export Ward Audit Report</span>
++            <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[#FAF6F3] text-[#014BAA]">
++              <Download size={12} />
++            </span>
+           </button>
+ 
+           {/* Pending houses list */}
+@@ -156,11 +158,11 @@ export default function WardDashboard() {
+                     <div key={h.id} className="p-3.5 flex items-start justify-between gap-3 bg-brand-surface-alt/10">
+                       <div className="space-y-0.5 min-w-0">
+                         <span className="text-xs font-medium text-brand-text block">{h.houseNo}</span>
+-                        <p className="text-[10px] font-light text-brand-text-muted truncate leading-relaxed">
++                        <p className="text-[11px] font-light text-brand-text-muted truncate leading-relaxed">
+                           {h.address}
+                         </p>
+                       </div>
+-                      <span className={`text-[8px] font-medium uppercase tracking-wider px-1.5 py-0.5 rounded border shrink-0 ${
++                      <span className={`text-[11px] font-medium uppercase tracking-wider px-1.5 py-0.5 rounded border shrink-0 ${
+                         h.status === 'attempted'
+                           ? 'bg-brand-warning/10 text-brand-warning border-brand-warning/20'
+                           : 'bg-brand-text-muted/10 text-brand-text-muted border-brand-text-muted/20'
+diff --git a/app/globals.css b/app/globals.css
+index 0b46f92..cbec234 100644
+--- a/app/globals.css
++++ b/app/globals.css
+@@ -1,14 +1,14 @@
+ @import "tailwindcss";
+ 
+ @theme {
+-  --color-brand-accent: #BEF000;
+-  --color-brand-bg: #F8FAFC;
++  --color-brand-accent: #FF5A36;
++  --color-brand-bg: #F8F3F0;
+   --color-brand-surface: #FFFFFF;
+-  --color-brand-surface-alt: #F1F5F9;
+-  --color-brand-text: #0A3D2A;
+-  --color-brand-text-muted: #3D7A5F;
+-  --color-brand-success: #16A34A;
+-  --color-brand-warning: #EA580C;
++  --color-brand-surface-alt: #EFEAE6;
++  --color-brand-text: #0A1C33;
++  --color-brand-text-muted: #4A607A;
++  --color-brand-success: #10B981;
++  --color-brand-warning: #EF4444;
+   
+   --font-sans: var(--font-dm-sans), sans-serif;
+   
+@@ -28,12 +28,12 @@
+ }
+ 
+ ::-webkit-scrollbar-thumb {
+-  background: #A7C4B5;
++  background: #B4C6D8;
+   border-radius: 3px;
+ }
+ 
+ ::-webkit-scrollbar-thumb:hover {
+-  background: #6B9E82;
++  background: #7FA3C7;
+ }
+ 
+ /* Base custom classes */
+@@ -45,15 +45,15 @@ body {
+ 
+ /* Glassmorphism utility card */
+ .glass-panel {
+-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
+-  border: 1px solid rgba(15, 100, 65, 0.08);
++  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 243, 240, 0.95) 100%);
++  border: 1px solid rgba(1, 75, 170, 0.08);
+   backdrop-filter: blur(10px);
+-  box-shadow: 0 10px 25px -5px rgba(15, 100, 65, 0.05), 0 8px 16px -6px rgba(0, 0, 0, 0.03);
++  box-shadow: 0 10px 25px -5px rgba(1, 75, 170, 0.05), 0 8px 16px -6px rgba(0, 0, 0, 0.03);
+ }
+ 
+ .glass-panel-hover:hover {
+-  border-color: rgba(15, 100, 65, 0.2);
+-  box-shadow: 0 12px 30px -5px rgba(15, 100, 65, 0.1), 0 10px 20px -6px rgba(0, 0, 0, 0.04);
++  border-color: rgba(1, 75, 170, 0.2);
++  box-shadow: 0 12px 30px -5px rgba(1, 75, 170, 0.1), 0 10px 20px -6px rgba(0, 0, 0, 0.04);
+   transform: translateY(-2px);
+   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+ }
+@@ -62,11 +62,11 @@ body {
+ @keyframes pulse-glow {
+   0%, 100% {
+     opacity: 1;
+-    box-shadow: 0 0 10px rgba(190, 240, 0, 0.4);
++    box-shadow: 0 0 10px rgba(255, 90, 54, 0.4);
+   }
+   50% {
+     opacity: 0.6;
+-    box-shadow: 0 0 2px rgba(190, 240, 0, 0.1);
++    box-shadow: 0 0 2px rgba(255, 90, 54, 0.1);
+   }
+ }
+ 
+diff --git a/app/layout.tsx b/app/layout.tsx
+index c61d432..386726c 100644
+--- a/app/layout.tsx
++++ b/app/layout.tsx
+@@ -21,7 +21,7 @@ export default function RootLayout({
+ }>) {
+   return (
+     <html lang="en" className={`${dmSans.variable} h-full antialiased`}>
+-      <body className="min-h-full flex flex-col bg-black text-[#F0FDF4] font-sans antialiased">
++      <body className="min-h-full flex flex-col bg-black text-brand-text font-sans antialiased">
+         <Navbar />
+         {/* Mobile Mock Container */}
+         <main className="flex-1 w-full max-w-[480px] mx-auto px-4 pt-6 pb-28 flex flex-col">
+diff --git a/app/page.tsx b/app/page.tsx
+index c91d73c..d1b1cb5 100644
+--- a/app/page.tsx
++++ b/app/page.tsx
+@@ -20,8 +20,8 @@ export default function Home() {
+       desc: 'Verify routes, QR checks & receipts.',
+       image: '/garbage-illust.png',
+       href: '/garbage',
+-      gradient: 'from-[#059669] to-[#047857]', // Emerald/Teal
+-      glow: 'shadow-emerald-950/40 border-emerald-400/20'
++      gradient: 'from-[#014BAA] to-[#0A3366]', // Royal Blue/Dark Blue
++      glow: 'shadow-blue-950/40 border-blue-400/20'
+     },
+     {
+       title: 'Service Hub',
+@@ -151,7 +151,7 @@ export default function Home() {
+             <span 
+               className="bg-clip-text text-transparent inline-block pb-0.5"
+               style={{
+-                backgroundImage: 'linear-gradient(to top, #0F6441 0%, #16A34A 15%, #0F172A 40%, #0F172A 100%)',
++                backgroundImage: 'linear-gradient(to top, #014BAA 0%, #FF5A36 15%, #0A1C33 40%, #0A1C33 100%)',
+                 WebkitBackgroundClip: 'text',
+                 WebkitTextFillColor: 'transparent',
+               }}
+@@ -161,7 +161,7 @@ export default function Home() {
+             <span 
+               className="bg-clip-text text-transparent inline-block"
+               style={{
+-                backgroundImage: 'linear-gradient(to top, #0F6441 10%, #16A34A 25%, #0F172A 76%, #0F172A 100%)',
++                backgroundImage: 'linear-gradient(to top, #014BAA 10%, #FF5A36 25%, #0A1C33 76%, #0A1C33 100%)',
+                 WebkitBackgroundClip: 'text',
+                 WebkitTextFillColor: 'transparent',
+               }}
+@@ -257,7 +257,7 @@ export default function Home() {
+       <div className="flex items-center justify-between px-6 mt-2 mb-2">
+         <button
+           onClick={prevSlide}
+-          className="flex items-center justify-center w-11 h-11 rounded-full border border-[#0F6441]/20 bg-brand-surface-alt text-[#0F6441] hover:bg-brand-surface transition-all active:scale-95 duration-100 shadow-sm"
++          className="flex items-center justify-center w-11 h-11 rounded-full border border-[#014BAA]/20 bg-brand-surface-alt text-[#014BAA] hover:bg-brand-surface transition-all active:scale-95 duration-100 shadow-sm"
+           aria-label="Previous Slide"
+         >
+           <ChevronLeft size={20} />
+@@ -269,7 +269,7 @@ export default function Home() {
+               key={idx}
+               onClick={() => setActiveIndex(idx)}
+               className={`h-2 rounded-full transition-all duration-300 ${
+-                idx === activeIndex ? 'w-6 bg-[#0F6441]' : 'w-2 bg-brand-text-muted/30'
++                idx === activeIndex ? 'w-6 bg-[#014BAA]' : 'w-2 bg-brand-text-muted/30'
+               }`}
+               aria-label={`Go to slide ${idx + 1}`}
+             />
+@@ -278,7 +278,7 @@ export default function Home() {
+ 
+         <button
+           onClick={nextSlide}
+-          className="flex items-center justify-center w-11 h-11 rounded-full border border-[#0F6441]/20 bg-brand-surface-alt text-[#0F6441] hover:bg-brand-surface transition-all active:scale-95 duration-100 shadow-sm"
++          className="flex items-center justify-center w-11 h-11 rounded-full border border-[#014BAA]/20 bg-brand-surface-alt text-[#014BAA] hover:bg-brand-surface transition-all active:scale-95 duration-100 shadow-sm"
+           aria-label="Next Slide"
+         >
+           <ChevronRight size={20} />
+diff --git a/components/Navbar.tsx b/components/Navbar.tsx
+index e081a69..fb4eedd 100644
+--- a/components/Navbar.tsx
++++ b/components/Navbar.tsx
+@@ -46,18 +46,18 @@ export default function Navbar() {
+   if (isHome || isLogin) return null;
+ 
+   return (
+-    <nav className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2.5rem)] max-w-[380px] bg-white/95 border border-[#0F6441]/10 backdrop-blur-md rounded-full shadow-lg p-1.5 flex items-center justify-between">
+-      {/* Left: Back Button (Deep green color, light slate bg, fully rounded) */}
++    <nav className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2.5rem)] max-w-[380px] bg-white/95 border border-[#014BAA]/10 backdrop-blur-md rounded-full shadow-lg p-1.5 flex items-center justify-between">
++      {/* Left: Back Button (Royal blue color, warm cream bg, fully rounded) */}
+       <button
+         onClick={handleBack}
+-        className="flex items-center justify-center w-11 h-11 rounded-full bg-[#F0F7F4] border border-[#0F6441]/12 text-[#0F6441] hover:bg-[#E0F0E8] transition-colors shadow-sm min-h-[44px] min-w-[44px]"
++        className="flex items-center justify-center w-11 h-11 rounded-full bg-brand-surface-alt border border-[#014BAA]/12 text-[#014BAA] hover:bg-[#E5EFFC] transition-colors shadow-sm min-h-[44px] min-w-[44px]"
+         aria-label="Go Back"
+       >
+         <ArrowLeft size={18} />
+       </button>
+ 
+       {/* Middle: Dashboard Text */}
+-      <span className="text-[10px] font-medium tracking-[0.12em] text-[#0F6441] uppercase select-none px-4 text-center">
++      <span className="text-[10px] font-medium tracking-[0.12em] text-[#014BAA] uppercase select-none px-4 text-center">
+         {pathname === '/garbage/admin/status' ? 'collection' : 'dashboard'}
+       </span>
+ 
+diff --git a/design.md b/design.md
+index a029668..64bc3cb 100644
+--- a/design.md
++++ b/design.md
+@@ -4,20 +4,31 @@ This document defines the visual design system, color palette, typography guidel
+ 
+ ---
+ 
+-## 1. Color Palette (Dark Theme / Glassmorphism)
++## 1. Color Palette (SaaS Light Mode / Royal Blue & Light Cream Identity)
+ 
+-Based on the **Leafy Lemon** and **Greenish Black** palette, the app will use a premium, high-contrast dark theme inspired by organic modernism and glowing civic UI elements.
++The app uses a clean, premium **light SaaS theme** with a strong **Royal Blue and Light Cream identity**. All text, borders, and backgrounds carry blue and cream tints instead of neutral greys.
+ 
+-| Color Token | Hex / HSL | Usage | Role |
++| Color Token | Hex | Usage | Role |
+ | :--- | :--- | :--- | :--- |
+-| **Primary Accent (Leafy Lemon)** | `#BEF000` / `hsl(72, 100%, 47%)` | Buttons, Active states, Highlights, Focus borders | High-visibility CTA |
+-| **Base Background (Pitch Black)**  | `#000000` / `hsl(0, 0%, 0%)`   | App background | Pure screen depth |
+-| **Surface Dark (Greenish Black)** | `#0F6441` / `hsl(156, 74%, 22%)` | Card backgrounds, panels, navigation containers | Secondary structure |
+-| **Surface Medium (Moss Slate)** | `#162E23` / `hsl(154, 35%, 14%)` | Card borders, secondary actions, inputs | Tertiary utility |
+-| **Text Primary (Snow)** | `#F0FDF4` / `hsl(133, 60%, 97%)` | Large headings, critical labels | High contrast |
+-| **Text Secondary (Sage)** | `#8FA399` / `hsl(150, 11%, 60%)` | Descriptions, captions, helper texts | Subtext |
+-| **Warning/Alert (Tangerine)** | `#FB8500` / `hsl(32, 100%, 49%)` | Missed collections, failed GPS checks | Status |
+-| **Success Alert (Lime Glow)** | `#2BE080` / `hsl(148, 74%, 52%)` | Done status, paid checkmarks | Status |
++| **Primary Accent (Vibrant Coral)** | `#FF5A36` | CTA button fills, active badges with light/dark text | High-visibility CTA |
++| **App Background** | `#F8F3F0` | Page backdrop | Clean Light Cream base |
++| **Card Surface** | `#FFFFFF` | Card/panel backgrounds | Primary surface |
++| **Surface Alt (Cream Sage)** | `#EFEAE6` | Input backgrounds, borders, dividers, secondary fills | Cream-tinted neutral |
++| **Text Primary (Deep Navy)** | `#0A1C33` | Headings, values, primary labels | High contrast navy |
++| **Text Secondary (Steel Blue)** | `#4A607A` | Descriptions, captions, muted labels | Subtext blue-grey |
++| **Royal Blue** | `#014BAA` | Section headers, icon accents, active nav text, borders | Brand identity |
++| **Dark Blue** | `#0A3366` | Body text in cards, message content | Reading blue |
++| **Placeholder (Steel)** | `#6B7F96` | Input placeholders | Subtle blue-grey hint |
++| **Tint Background** | `#FAF6F3` | Input fills, autofill card fills, log panel backgrounds | Soft cream wash |
++| **Hover Tint** | `#E5EFFC` | Button/card hover state backgrounds | Interactive feedback |
++| **Warning/Alert (Red)** | `#EF4444` | Missed collections, failed GPS checks | Status |
++| **Success Alert (Green)** | `#10B981` | Done status, paid checkmarks | Status |
++
++### Contrast Guard Rules
++
++- **Vibrant Coral (`#FF5A36`)** is **only** used as a **filled background** with high-contrast text (e.g., CTA buttons, active status badges). Never use as text color on light backgrounds.
++- All text accents, active indicators, and icon highlights use **Royal Blue (`#014BAA`)** or **Deep Navy (`#0A1C33`)**.
++- Borders use `#014BAA` with low opacity (`/8`, `/10`, `/12`) instead of grey `border-slate-*` classes.
+ 
+ ---
+ 
+@@ -45,7 +56,7 @@ We use the Google Font **"DM Sans"** for a clean, friendly, geometric sans-serif
+ 
+ The demo is optimized for mobile-first interactions simulating a citizen's or field collector's smartphone.
+ 
+-* **App Shell Max-Width:** `480px` (centered on desktop viewports with a deep `#000000` backdrop to mimic a phone device body).
++* **App Shell Max-Width:** `480px` (centered on desktop viewports with a soft `#F8FAFC` backdrop).
+ * **Grid Layouts:**
+   - **Home Screen Tile Grid:** `2x2` columns (`grid-template-columns: repeat(2, 1fr)`), Gap: `1rem` (16px).
+   - **Stats & Dashboard Lists:** Stacked vertical list structure, Gap: `0.75rem` (12px).
+@@ -56,19 +67,21 @@ The demo is optimized for mobile-first interactions simulating a citizen's or fi
+ 
+ ---
+ 
+-## 4. Visual Tokens & Glassmorphism
++## 4. Visual Tokens & Glass Panels
+ 
+-To give the app a premium, glowing, high-fidelity appearance:
++To give the app a premium, clean, SaaS-grade appearance:
+ 
+ * **Corner Radius (Rounding):**
+-  - **Large Panels & Screens:** `24px` (`1.5rem`) - Matches the organic roundness in the Leafy Lemon color card.
++  - **Large Panels & Screens:** `24px` (`1.5rem`)
+   - **Cards & Modals:** `20px` (`1.25rem`)
+   - **Buttons & Inputs:** `12px` (`0.75rem`)
+   - **Badges:** `6px` (`0.375rem`)
+ * **Borders:**
+-  - Standard card borders: `1px solid rgba(190, 240, 0, 0.15)` (Leafy Lemon with low opacity over Greenish Black).
+-  - Active/Focus state borders: `1.5px solid #BEF000` (Glow accent).
+-* **Gradients & Shadows:**
+-  - Main background gradient: `radial-gradient(circle at top left, #0F6441 0%, #000000 80%)`.
+-  - Accent card gradient: `linear-gradient(135deg, rgba(15, 100, 65, 0.4) 0%, rgba(5, 15, 11, 0.9) 100%)`.
+-  - Glow Shadow: `box-shadow: 0 0 20px rgba(190, 240, 0, 0.12)`.
++  - Standard card borders: `1px solid rgba(1, 75, 170, 0.08)` (Royal Blue low opacity).
++  - Active/Focus state borders: `1px solid rgba(1, 75, 170, 0.5)`.
++  - Element borders: `border-[#014BAA]/10` or `border-[#014BAA]/12`.
++* **Glass Panel:**
++  - Background: `linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 243, 240, 0.95) 100%)`
++  - Border: `1px solid rgba(1, 75, 170, 0.08)`
++  - Shadow: `0 10px 25px -5px rgba(1, 75, 170, 0.05), 0 8px 16px -6px rgba(0, 0, 0, 0.03)`
++* **Scrollbars:** Blue-tinted thumbs (`#B4C6D8` / `#7FA3C7` on hover).
+diff --git a/state.md b/state.md
+new file mode 100644
+index 0000000..3221222
+--- /dev/null
++++ b/state.md
+@@ -0,0 +1,60 @@
++# Project State
++
++> This file is maintained automatically by the agent. Updated after every change.
++
++---
++
++## Current Phase
++
++- **Phase:** `Mobile Typography & Button Reskinning`
++- **Status:** `Complete`
++- **Last Updated:** `2026-05-22`
++
++---
++
++## Last Session Work
++
++### Summary
++Implemented mobile accessibility typography specifications on the garbage portal pages, ensuring all sub-11px text labels (`text-[8px]`, `text-[9px]`, `text-[10px]`) are scaled up to `text-[11px]` to comply with mobile reading standards. Standardized primary CTA/action buttons across the garbage portal to a pill shape styled in Royal Blue (`#014BAA`) with trailing icons housed in a circular Cream (`#FAF6F3`) background. Verified project compilation success via production Next.js compiler.
++
++### Files Changed
++| File                                              | Change Type | Notes                                                        |
++|---------------------------------------------------|-------------|--------------------------------------------------------------|
++| `app/garbage/login/page.tsx`                      | Modified    | Updated credentials labels font size and reskinned Access Portal CTA.|
++| `app/garbage/collector/page.tsx`                  | Modified    | Scaled shift controller fonts and reskinned Start Shift/Selfie buttons.|
++| `app/garbage/collector/house/[id]/page.tsx`       | Modified    | Scaled photo stream and status label fonts and reskinned capture CTA.|
++| `app/garbage/collector/map/page.tsx`              | Modified    | Scaled progress card statistics and checklist house statuses to text-[11px].|
++| `app/garbage/admin/page.tsx`                      | Modified    | Scaled broadcast form text labels and reskinned Send Broadcast CTA.|
++| `app/garbage/admin/status/page.tsx`               | Modified    | Scaled list row metadata and status badge indicators.|
++| `app/garbage/resident/page.tsx`                   | Modified    | Scaled dashboard navigation link labels and collection status alerts.|
++| `app/garbage/resident/pay/page.tsx`               | Modified    | Scaled fee summaries, method selections, and reskinned Pay Fee CTA.|
++| `app/garbage/resident/receipts/page.tsx`           | Modified    | Scaled empty state and tax receipts list row text sizes.|
++| `app/garbage/ward/page.tsx`                       | Modified    | Scaled metrics text sizes and reskinned Ward Audit Export CTA.|
++
++---
++
++## Decisions Made
++
++| # | Decision                           | Rationale                                                     | Date       |
++|---|------------------------------------|---------------------------------------------------------------|------------|
++| 1 | Use Royal Blue and Light Cream     | Align with user branding requirements                        | 2026-05-22 |
++| 2 | Use Vibrant Coral as Accent        | Replaces Leafy Lemon for high contrast                        | 2026-05-22 |
++| 3 | Use Deep Navy on Cream for QR      | Creates themed, highly scannable QR passes                     | 2026-05-22 |
++| 4 | Restrict DM Sans weights to 300/500| Enforce clean, geometric, light-weight SaaS aesthetic         | 2026-05-22 |
++| 5 | Enforce 11px Mobile Font Minimum   | Adhere to mobile-typo.md guidelines to prevent unreadable text.| 2026-05-22 |
++| 6 | Standardize Royal Blue CTAs with Cream Icons | Reskin all core dashboard action buttons for uniform brand UX.| 2026-05-22 |
++
++---
++
++## Open Questions
++
++| # | Question                           | Priority | Owner  |
++|---|------------------------------------|----------|--------|
++| - | None                               | -        | -      |
++
++---
++
++## Notes
++
++- Dev server is running and verified.
++- Production build compiles successfully (Next.js 16.2.6 Turbopack) with zero TypeScript/TSX errors.

@@ -35,12 +35,12 @@ export default function Toast({ message, type = 'info', onClose, duration = 3000
   return (
     <div className="fixed top-18 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-[400px] flex items-center gap-3 px-4 py-3 rounded-xl border border-brand-accent/25 bg-brand-surface-alt text-brand-text shadow-xl shadow-black/40 animate-fade-in-down">
       {getIcon()}
-      <p className="text-xs font-normal leading-relaxed text-brand-text flex-1">
+      <p className="text-[12px] font-normal leading-relaxed text-brand-text flex-1">
         {message}
       </p>
       <button 
         onClick={onClose}
-        className="text-[10px] uppercase font-medium text-brand-text-muted hover:text-brand-accent transition-colors p-2 -mr-2 min-h-[44px] min-w-[44px] flex items-center justify-center"
+        className="text-[12px] uppercase font-medium text-brand-text-muted hover:text-brand-accent transition-colors p-2 -mr-2 min-h-[44px] min-w-[44px] flex items-center justify-center"
       >
         Dismiss
       </button>

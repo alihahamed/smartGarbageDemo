@@ -15,7 +15,7 @@ The app uses a clean, premium **light SaaS theme** with a strong **Royal Blue an
 | **Card Surface** | `#FFFFFF` | Card/panel backgrounds | Primary surface |
 | **Surface Alt (Cream Sage)** | `#EFEAE6` | Input backgrounds, borders, dividers, secondary fills | Cream-tinted neutral |
 | **Text Primary (Deep Navy)** | `#0A1C33` | Headings, values, primary labels | High contrast navy |
-| **Text Secondary (Steel Blue)** | `#4A607A` | Descriptions, captions, muted labels | Subtext blue-grey |
+| **Text Secondary (Steel Blue)** | `#000000` | Descriptions, captions, muted labels | Subtext blue-grey |
 | **Royal Blue** | `#014BAA` | Section headers, icon accents, active nav text, borders | Brand identity |
 | **Dark Blue** | `#0A3366` | Body text in cards, message content | Reading blue |
 | **Placeholder (Steel)** | `#6B7F96` | Input placeholders | Subtle blue-grey hint |
@@ -56,9 +56,16 @@ All interactive buttons and action selectors have been reskinned and scaled:
 
 * **Primary CTAs (Royal Blue Pill):** 
   - **Fills:** Royal Blue (`#014BAA`) background with high-contrast white text.
-  - **Height:** Increased by 2px (padding adjusted from `py-1.5` to `py-[7px]`, or `py-2.5` to `py-[11px]`). Width is unchanged.
-  - **Icon Wrapper:** Fully rounded trailing/leading circle badge in Cream (`#FAF6F3`) background of size `w-14 h-14` (56px) to fit premium touch targets.
-  - **Icon Details:** Lucide icons scaled up to `size={22}` and colored in Royal Blue (`#014BAA`) to stand out clearly against the cream background.
+  - **Sizing & Padding:** 
+    - *Standard:* Tightly padded pill CTA with `pl-6 pr-1.5 py-[5px] rounded-full`.
+    - *Compact (Login & Collector Console):* Tightly padded pill CTA with `pl-6 pr-1.5 py-[3px] rounded-full`.
+  - **Typography:** Text size `15px` (`text-[15px] font-medium`).
+  - **Icon Wrapper:** 
+    - *Standard:* Fully rounded trailing circle badge in Cream (`#FAF6F3`) background of size `w-13 h-13` and `min-h-[50px] min-w-[50px]`.
+    - *Compact (Login & Collector Console):* Fully rounded trailing circle badge in Cream (`#FAF6F3`) background of size `w-11 h-11` and `min-h-[44px] min-w-[44px]`.
+  - **Icon Details:** 
+    - *Standard:* Lucide icons scaled up to `size={22}` and colored in Royal Blue (`#014BAA`).
+    - *Compact (Login & Collector Console):* Lucide icons scaled to `size={18}` and colored in Royal Blue (`#014BAA`).
 * **Filter and Action Pills:**
   - **Pills:** Compact fully rounded pills with `py-[7px] px-3.5` and `text-[12px]`.
 * **Grid and Card Buttons:**

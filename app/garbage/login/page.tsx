@@ -2,8 +2,16 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { LogIn, HelpCircle, ArrowLeft } from 'lucide-react';
+import { LogIn, HelpCircle, ArrowLeft, Eye, EyeOff } from 'lucide-react';
 import Toast from '@/components/Toast';
+import { Field, FieldLabel } from '@/components/ui/field';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export default function GarbageLogin() {
   const router = useRouter();
@@ -11,6 +19,7 @@ export default function GarbageLogin() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,10 +40,11 @@ export default function GarbageLogin() {
     localStorage.setItem('sgcs_username', username);
     localStorage.setItem('sgcs_userId', userId);
 
-    setToastMessage(`Login success! Redirecting to ${role} dashboard...`);
+    const redirectPath = role === 'ward' ? 'admin' : role;
+    setToastMessage(`Login success! Redirecting to ${role === 'ward' ? 'Ward Monitor' : role} dashboard...`);
 
     setTimeout(() => {
-      router.push(`/garbage/${role}`);
+      router.push(`/garbage/${redirectPath}`);
     }, 1000);
   };
 
@@ -45,7 +55,7 @@ export default function GarbageLogin() {
   };
 
   return (
-    <div className="flex-1 flex flex-col -mx-4 -mt-6 -mb-28 min-h-[calc(100vh+28px)] bg-brand-bg pb-24 overflow-y-auto select-none">
+    <div className="flex-1 flex flex-col -mx-4 -mt-6 -mb-28 h-[100dvh] max-h-[100dvh] bg-brand-bg overflow-hidden select-none">
       {toastMessage && (
         <Toast 
           message={toastMessage} 
@@ -55,7 +65,7 @@ export default function GarbageLogin() {
       )}
 
       {/* Top Background Image Section */}
-      <div className="relative w-full h-[35vh] min-h-[220px]">
+      <div className="relative w-full h-[22vh] min-h-[160px]">
         <img 
           src="/login-bg.png" 
           alt="Login Background" 
@@ -71,89 +81,117 @@ export default function GarbageLogin() {
           aria-label="Back to home"
         >
           <ArrowLeft size={14} className="text-[#014BAA]" />
-          <span className="text-[12px] font-medium uppercase tracking-wider">Back</span>
+          <span className="text-[12px] font-medium uppercase tracking-wider text-black">Back</span>
         </button>
       </div>
 
       {/* Curved Bottom Sheet Form container */}
-      <div className="flex-1 -mt-8 relative z-10 w-full rounded-t-[32px] bg-white border-t border-[#014BAA]/10 px-6 pt-8 pb-10 flex flex-col justify-between shadow-[0_-8px_30px_rgba(1,75,170,0.04)]">
-        <div>
+      <div className="flex-1 -mt-8 relative z-10 w-full rounded-t-[32px] bg-white border-t border-[#014BAA]/10 px-6 py-8 flex flex-col justify-center shadow-[0_-8px_30px_rgba(1,75,170,0.04)]">
+        <div className="max-w-[340px] mx-auto w-full flex flex-col space-y-6">
           {/* Title */}
-          <div className="text-center mb-6">
-            <h2 className="text-[16px] font-medium text-[#0A1C33] tracking-wide">Garbage Portal Sign-In</h2>
+          <div className="text-center">
+            <h2 className="text-[24px] font-medium text-[#0A1C33] tracking-tight">Welcome Back</h2>
           </div>
 
           {/* Form */}
-          <form onSubmit={handleLogin} className="space-y-4">
-            <div className="space-y-1.5">
-              <label className="text-[12px] font-medium uppercase tracking-wider text-[#4A607A]">Select Role</label>
-              <select
-                value={role}
-                onChange={(e) => setRole(e.target.value as any)}
-                className="w-full px-4 py-3 rounded-xl border border-[#014BAA]/12 bg-brand-surface-alt text-[#0A1C33] text-[12px] focus:outline-none focus:border-[#014BAA]/50 transition-colors font-light"
-              >
-                <option value="resident">Resident</option>
-                <option value="collector">Collector</option>
-                <option value="admin">Admin</option>
-                <option value="ward">Ward Member</option>
-              </select>
-            </div>
+          <form onSubmit={handleLogin} className="space-y-4 w-full">
+            <Field className="space-y-1">
+              <FieldLabel className="text-[14px] font-medium uppercase tracking-wider text-black">Select Role</FieldLabel>
+              <Select value={role} onValueChange={(value) => setRole(value as any)}>
+                <SelectTrigger className="w-full px-4 py-3.5 rounded-xl border border-[#014BAA]/15 bg-[#FAF6F3] text-black text-[18px] focus:bg-white focus:border-[#014BAA] focus:ring-2 focus:ring-[#014BAA]/10 transition-all font-light shadow-sm cursor-pointer h-auto">
+                  <SelectValue placeholder="Select Role" />
+                </SelectTrigger>
+                <SelectContent className="bg-white border border-[#014BAA]/15 rounded-xl text-black">
+                  <SelectItem value="resident">Resident</SelectItem>
+                  <SelectItem value="collector">Collector</SelectItem>
+                  <SelectItem value="admin">Admin</SelectItem>
+                  <SelectItem value="ward">Ward Member</SelectItem>
+                </SelectContent>
+              </Select>
+            </Field>
 
-            <div className="space-y-1.5">
-              <label className="text-[12px] font-medium uppercase tracking-wider text-[#4A607A]">Username</label>
+            <Field className="space-y-1">
+              <FieldLabel className="text-[14px] font-medium uppercase tracking-wider text-black">Username</FieldLabel>
               <input
                 type="text"
                 placeholder="e.g. resident42"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-[#014BAA]/12 bg-brand-surface-alt text-[#0A1C33] text-[12px] placeholder-[#6B7F96] focus:outline-none focus:border-[#014BAA]/50 transition-colors font-light"
+                className="w-full px-4 py-3.5 rounded-xl border border-[#014BAA]/15 bg-[#FAF6F3] text-black text-[18px] placeholder-[#6B7F96] focus:outline-none focus:bg-white focus:border-[#014BAA] focus:ring-2 focus:ring-[#014BAA]/10 transition-all font-light shadow-sm"
               />
-            </div>
+            </Field>
 
-            <div className="space-y-1.5">
-              <label className="text-[12px] font-medium uppercase tracking-wider text-[#4A607A]">Password</label>
-              <input
-                type="password"
-                placeholder="••••••••"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-[#014BAA]/12 bg-brand-surface-alt text-[#0A1C33] text-[12px] placeholder-[#6B7F96] focus:outline-none focus:border-[#014BAA]/50 transition-colors font-light"
-              />
-            </div>
+            <Field className="space-y-1">
+              <FieldLabel className="text-[14px] font-medium uppercase tracking-wider text-black">Password</FieldLabel>
+              <div className="relative">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  placeholder="••••••••"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full pl-4 pr-10 py-3.5 rounded-xl border border-[#014BAA]/15 bg-[#FAF6F3] text-black text-[18px] placeholder-[#6B7F96] focus:outline-none focus:bg-white focus:border-[#014BAA] focus:ring-2 focus:ring-[#014BAA]/10 transition-all font-light shadow-sm"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-black hover:text-[#014BAA] focus:outline-none transition-colors cursor-pointer"
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
+                >
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
+              </div>
+            </Field>
 
             {/* Submit Button (Pill shaped with trailing dark blue circle icon wrapper) */}
-            <div className="flex justify-center w-full pt-4">
+            <div className="flex justify-center w-full pt-2">
               <button
                 type="submit"
-                className="flex items-center gap-3 pl-6 pr-1.5 py-[7px] rounded-full bg-[#014BAA] text-white text-[16px] font-medium hover:opacity-90 transition-all shadow-md shadow-[#014BAA]/20 transform active:scale-95 duration-150"
+                className="flex items-center gap-3 pl-6 pr-1.5 py-[3px] rounded-full bg-[#014BAA] text-white text-[15px] font-medium hover:opacity-90 transition-all shadow-md shadow-[#014BAA]/20 transform active:scale-95 duration-150"
               >
                 <span>Access Portal</span>
-                <span className="flex items-center justify-center w-14 h-14 rounded-full bg-[#FAF6F3] text-[#014BAA] min-h-[56px] min-w-[56px]">
-                  <LogIn size={22} />
+                <span className="flex items-center justify-center w-11 h-11 rounded-full bg-[#FAF6F3] text-[#014BAA] min-h-[44px] min-w-[44px]">
+                  <LogIn size={18} />
                 </span>
               </button>
             </div>
           </form>
-        </div>
 
-        {/* Quick Autofill Tools */}
-        <div className="mt-8 pt-6 border-t border-[#014BAA]/8">
-          <p className="text-[12px] font-medium text-[#4A607A] uppercase tracking-wider mb-3 flex items-center gap-1.5">
-            <HelpCircle size={13} className="text-[#014BAA]" />
-            <span>Autofill Demo Roles</span>
-          </p>
-          <div className="grid grid-cols-2 gap-2.5">
-            {(['admin', 'collector', 'resident', 'ward'] as const).map((r) => (
+          {/* Quick Autofill Tools */}
+          <div className="pt-4 border-t border-[#014BAA]/8 flex flex-col items-center">
+            <p className="text-[12px] font-medium text-black uppercase tracking-wider mb-3 flex items-center gap-1.5">
+              <HelpCircle size={13} className="text-[#014BAA]" />
+              <span>Autofill Demo Roles</span>
+            </p>
+            <div className="flex flex-wrap justify-center gap-3">
               <button
-                key={r}
                 type="button"
-                onClick={() => autofill(r)}
-                className="px-3.5 py-[11px] rounded-xl border border-[#014BAA]/12 bg-brand-surface-alt hover:bg-[#E5EFFC] hover:border-[#014BAA]/30 text-left transition-all min-h-[46px]"
+                onClick={() => autofill('admin')}
+                className="px-6 py-3 rounded-full text-[16px] font-medium transition-all active:scale-95 bg-[#E5EFFC] text-[#014BAA] border border-[#014BAA]/15 cursor-pointer hover:bg-[#D5E5FC]"
               >
-                <div className="text-[12px] font-medium text-[#0A1C33] capitalize">{r}</div>
-                <div className="text-[12px] font-light text-[#4A607A] truncate">{r}42 / demo</div>
+                Admin
               </button>
-            ))}
+              <button
+                type="button"
+                onClick={() => autofill('collector')}
+                className="px-6 py-3 rounded-full text-[16px] font-medium transition-all active:scale-95 bg-[#FFF3E0] text-[#E65100] border border-[#FFB74D]/30 cursor-pointer hover:bg-[#FFE0B2]"
+              >
+                Collector
+              </button>
+              <button
+                type="button"
+                onClick={() => autofill('resident')}
+                className="px-6 py-3 rounded-full text-[16px] font-medium transition-all active:scale-95 bg-[#E8F5E9] text-[#2E7D32] border border-[#81C784]/30 cursor-pointer hover:bg-[#C8E6C9]"
+              >
+                Resident
+              </button>
+              <button
+                type="button"
+                onClick={() => autofill('ward')}
+                className="px-6 py-3 rounded-full text-[16px] font-medium transition-all active:scale-95 bg-[#F3E5F5] text-[#7B1FA2] border border-[#BA68C8]/30 cursor-pointer hover:bg-[#E1BEE7]"
+              >
+                Ward
+              </button>
+            </div>
           </div>
         </div>
       </div>
