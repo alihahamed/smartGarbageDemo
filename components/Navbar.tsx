@@ -46,7 +46,7 @@ export default function Navbar() {
   if (isHome || isLogin) return null;
 
   return (
-    <nav className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2.5rem)] max-w-[380px] bg-white/95 border border-[#014BAA]/10 backdrop-blur-md rounded-full shadow-lg p-1.5 flex items-center justify-between">
+    <nav className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2.5rem)] max-w-[300px] bg-white/95 border border-[#014BAA]/10 backdrop-blur-md rounded-full shadow-lg p-2.5 flex items-center justify-between">
       {/* Left: Back Button (Royal blue color, warm cream bg, fully rounded) */}
       <button
         onClick={handleBack}
@@ -57,7 +57,7 @@ export default function Navbar() {
       </button>
 
       {/* Middle: Dashboard Text */}
-      <span className="text-[10px] font-medium tracking-[0.12em] text-[#014BAA] uppercase select-none px-4 text-center">
+      <span className="text-[13px] font-medium tracking-[0.12em] text-[#014BAA] uppercase select-none px-4 text-center">
         {pathname === '/garbage/admin/status' ? 'collection' : 'dashboard'}
       </span>
 

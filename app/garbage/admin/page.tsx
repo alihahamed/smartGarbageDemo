@@ -307,7 +307,7 @@ export default function GarbageAdmin() {
 
       {/* Send Notification Broadcast (Taller text area, centered pill CTA button) */}
       <div className="py-6 px-5 rounded-xl glass-panel border border-[#014BAA]/10 space-y-5">
-        <h3 className="text-xs font-medium text-[#014BAA] flex items-center gap-1.5">
+        <h3 className="text-[16px] font-medium text-[#014BAA] flex items-center gap-1.5">
           <Megaphone size={13} className="text-[#014BAA]" />
           Broadcast to Ward Residents
         </h3>
@@ -317,12 +317,12 @@ export default function GarbageAdmin() {
             value={broadcastText}
             onChange={(e) => setBroadcastText(e.target.value)}
             placeholder="Write announcement (e.g. Collection delayed today due to rain)..."
-            className="w-full h-40 p-3 rounded-lg border border-[#014BAA]/12 bg-white text-[#0A1C33] text-xs font-light placeholder-[#6B7F96] focus:outline-none focus:border-[#014BAA]/50 transition-colors resize-none"
+            className="w-full h-40 p-3 rounded-lg border border-[#014BAA]/12 bg-white text-[#0A1C33] text-sm font-light placeholder-[#6B7F96] focus:outline-none focus:border-[#014BAA]/50 transition-colors resize-none"
           />
           <div className="flex justify-center w-full">
             <button
               type="submit"
-              className="flex items-center gap-3 pl-6 pr-1.5 py-1.5 rounded-full bg-[#014BAA] text-white text-xs font-medium hover:opacity-90 transition-all shadow-md shadow-[#014BAA]/20 transform active:scale-95 duration-150"
+              className="flex items-center gap-3 pl-6 pr-1.5 py-1.5 rounded-full bg-[#014BAA] text-white text-sm font-medium hover:opacity-90 transition-all shadow-md shadow-[#014BAA]/20 transform active:scale-95 duration-150"
             >
               <span>Send Broadcast</span>
               <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[#FAF6F3] text-[#014BAA]">
@@ -339,14 +339,14 @@ export default function GarbageAdmin() {
         className="flex items-center justify-between p-4 rounded-xl glass-panel border border-[#014BAA]/10 border-l-[3px] border-l-[#014BAA] hover:border-[#014BAA]/20 hover:shadow-[0_4px_12px_rgba(1,75,170,0.04)] group transition-all"
       >
         <div className="space-y-0.5">
-          <h3 className="text-xs font-medium text-[#014BAA] group-hover:text-brand-text transition-colors">
+          <h3 className="text-[16px] font-medium text-[#014BAA] group-hover:text-brand-text transition-colors">
             House Status Dashboard
           </h3>
-          <p className="text-[11px] font-light text-[#4A607A]">
+          <p className="text-[12px] font-light text-[#4A607A]">
             Monitor real-time route checklist status of households.
           </p>
         </div>
-        <div className="flex items-center justify-center w-7 h-7 rounded-full bg-[#014BAA] border border-[#014BAA]/12 group-hover:bg-[#014BAA] text-white group-hover:text-white transition-all">
+        <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#014BAA] border border-[#014BAA]/12 group-hover:bg-[#014BAA] text-white group-hover:text-white transition-all">
           <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
         </div>
       </Link>
